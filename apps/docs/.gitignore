@@ -1,0 +1,9 @@
+!/.storybook/**/*
+/storybook-static/
+/build-storybook.log
+
+# Folder for temporary UI framework archives
+/tmp
+
+# Compiled stories
+/stories/frameworks/

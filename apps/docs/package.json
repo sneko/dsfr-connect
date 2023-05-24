@@ -1,0 +1,69 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneko/dsfr-connect.git",
+    "directory": "apps/docs"
+  },
+  "license": "AGPL-3.0",
+  "scripts": {
+    "dev": "storybook dev -p 6006 --no-open",
+    "build": "storybook build",
+    "start": "serve -l 6006 storybook-static"
+  },
+  "devDependencies": {
+    "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
+    "@gouvfr/dsfr": "^1.9.3",
+    "@storybook/addon-essentials": "^7.0.13",
+    "@storybook/addon-interactions": "^7.0.13",
+    "@storybook/addon-links": "^7.0.13",
+    "@storybook/addon-storysource": "^7.0.15",
+    "@storybook/addon-styling": "^1.0.8",
+    "@storybook/blocks": "^7.0.13",
+    "@storybook/html": "^7.0.13",
+    "@storybook/html-vite": "^7.0.13",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/types": "^7.0.15",
+    "@types/adm-zip": "^0.5.0",
+    "@types/fs-extra": "^11.0.1",
+    "@types/he": "^1.2.0",
+    "@types/jsdom": "^21.1.1",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.0-alpha3",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.2.6",
+    "handlebars": "^4.7.7",
+    "he": "^1.2.0",
+    "jsdom": "^22.0.0",
+    "node-fetch-native": "^1.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "storybook": "^7.0.13",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^4.9.3",
+    "url-toolkit": "^2.2.5",
+    "vite": "^4.3.8",
+    "vite-plugin-require": "^1.1.10",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
