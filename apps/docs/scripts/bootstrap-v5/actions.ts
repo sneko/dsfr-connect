@@ -47,7 +47,6 @@ export async function build() {
 
           // Format the story
           const storyContent = storyTemplate({
-            framework: framework,
             component: componentName,
           });
 
@@ -63,9 +62,4 @@ export async function build() {
 
     throw error;
   }
-}
-
-export async function run() {
-  await downloadAndExtract();
-  await build();
 }

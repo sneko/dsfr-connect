@@ -1,4 +1,4 @@
-const preview = {
+export const preview = {
   parameters: {
     options: {
       showPanel: false,
@@ -9,5 +9,3 @@ const preview = {
   },
   decorators: [],
 };
-
-export default preview;

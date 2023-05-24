@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@dsfrc/docs/.storybook/*": ["../../apps/docs/.storybook/*"],
       "@dsfrc/docs/*": ["../../apps/docs/*"],
       "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
@@ -25,6 +26,6 @@
     "target": "esnext",
     "jsx": "preserve"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
