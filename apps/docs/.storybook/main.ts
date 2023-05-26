@@ -15,6 +15,10 @@ const config: StorybookConfig = {
     ...(commonConfig.core || {}),
     builder: '@storybook/builder-vite',
   },
+  env: (config) => ({
+    ...config,
+    CRISP_WEBSITE_ID: process.env.CRISP_WEBSITE_ID || 'no_crisp_settings',
+  }),
   viteFinal: viteFinalFactory(),
 };
 
