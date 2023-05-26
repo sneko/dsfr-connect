@@ -12,9 +12,9 @@ export function getConfig(framework?: string): StorybookConfig {
 
   // Stories from other storybooks will be listed thanks to references if launched
   if (framework) {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/frameworks/${framework}/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/framework/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   } else {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/frameworks/raw/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/framework/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   }
 
   return {
@@ -48,10 +48,17 @@ export function getConfig(framework?: string): StorybookConfig {
 export function viteFinalFactory(framework?: string) {
   return async (config: InlineConfig, options: Options) => {
     return mergeConfig(config, {
-      cacheDir: path.resolve(__dirname, `../../node_modules/.cache/.vite-storybook-${framework || 'main'}`), // Using the default "node_modules/.cache/.vite-storybook" breaks since we use concurrent Storybooks at the same time
       plugins: [pluginRequire()],
       resolve: {
         alias: [
+          ...(!!framework
+            ? [
+                {
+                  find: `@dsfrc/docs-${framework}`,
+                  replacement: path.resolve(__dirname, `../../../../apps/docs-${framework}`),
+                },
+              ]
+            : []),
           {
             find: '@dsfrc/docs',
             replacement: path.resolve(__dirname, '../../../../apps/docs'),

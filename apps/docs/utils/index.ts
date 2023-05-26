@@ -12,3 +12,7 @@ export async function downloadFile(url: string, destination: string): Promise<vo
   const content = await response.arrayBuffer();
   await fs.outputFile(destination, new Uint8Array(content));
 }
+
+export function getFrameworkFolderPath(mainFolderPath: string, framework: string): string {
+  return path.resolve(mainFolderPath, `../../apps/docs-${framework}`);
+}

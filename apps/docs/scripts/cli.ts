@@ -1,6 +1,8 @@
 import { Option, program } from 'commander';
 import concurrently from 'concurrently';
+import path from 'path';
 
+import { getFrameworkFolderPath } from '@dsfrc/docs/utils';
 import { Target, frameworks, mainTarget } from '@dsfrc/docs/utils/targets';
 
 interface CommandOptions {
@@ -36,43 +38,66 @@ program
       selectedFrameworks = frameworks;
     }
 
+    const mainFolderPath = path.resolve(__dirname, '../');
+
     let commands: TargetCommand[] | undefined;
     switch (action) {
       case 'dev':
         commands = [
           {
             target: mainTarget,
-            command: `storybook dev -p ${mainTarget.port} --no-open`,
+            command: `storybook dev -p ${mainTarget.port} -c ${mainFolderPath}/.storybook --no-open`,
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
-            command: `storybook dev -p ${framework.port} -c .storybook/frameworks/${framework.name} --no-open`,
+            // To avoid cache concurrency we need to run `storybook` in the dedicated folder (no cross-call)
+            command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && storybook dev -p ${framework.port} --no-open`,
           })),
         ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
         break;
       case 'build':
         commands = [
           {
             target: mainTarget,
-            command: 'storybook build --output-dir dist',
+            // The first intent was to output in `/dist/` directly but it was messing with others in `/dist/frameworks/*`
+            // So use a subdirectory for the build and add a redirection file (`index.html`) after the build to easily allow using root URL
+            command: `cd ${mainFolderPath} && storybook build --output-dir ${mainFolderPath}/dist/main`,
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
-            command: `storybook build -c .storybook/frameworks/${framework.name} --output-dir dist/frameworks/${framework.name}`,
+            // To avoid cache concurrency we need to run `storybook` in the dedicated folder (no cross-call)
+            command: `cd ${getFrameworkFolderPath(
+              mainFolderPath,
+              framework.name
+            )} && storybook build --output-dir ${mainFolderPath}/dist/frameworks/${framework.name}`,
           })),
         ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
+        // As mentioned above, add the index redirection file
+        await concurrently([
+          { command: `cp ${path.resolve(mainFolderPath, './utils/storybook/dist-index.html')} ${path.resolve(mainFolderPath, './dist/index.html')}` },
+        ]).result;
+
         break;
       case 'start':
         commands = [
           {
             target: mainTarget,
-            command: `serve -l ${mainTarget.port}`,
+            command: `serve -l ${mainTarget.port} ${mainFolderPath}/dist`,
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
-            command: `serve -l ${framework.port} dist/frameworks/${framework.name}`,
+            command: `serve -l ${framework.port} ${mainFolderPath}/dist/frameworks/${framework.name}`,
           })),
         ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
         break;
       case 'prepare':
         await Promise.all([
@@ -92,10 +117,6 @@ program
       case 'extract':
         await Promise.all([mainTarget.extract(), ...selectedFrameworks.map(async (framework) => framework.extract())]);
         break;
-    }
-
-    if (commands) {
-      await executeParallelCommands(selectedFrameworks, action, commands);
     }
   })
   .parse(process.argv);

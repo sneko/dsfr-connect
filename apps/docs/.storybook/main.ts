@@ -1,6 +1,6 @@
 import { StorybookConfig } from '@storybook/html-vite';
 
-import { getConfig, viteFinalFactory } from '@dsfrc/docs/.storybook/common/main';
+import { getConfig, viteFinalFactory } from '@dsfrc/docs/utils/storybook/main';
 
 const commonConfig = getConfig();
 

@@ -1,9 +1,9 @@
 import { StorybookConfig } from '@storybook/html-vite';
-import path from 'path';
 
-import { getConfig, viteFinalFactory } from '@dsfrc/docs/.storybook/common/main';
+import { getConfig, viteFinalFactory } from '@dsfrc/docs/utils/storybook/main';
+import { TargetName } from '@dsfrc/docs/utils/targets';
 
-const framework: string = path.basename(__dirname);
+const framework: TargetName = 'bootstrap-v5';
 
 const commonConfig = getConfig(framework);
 

@@ -2,9 +2,11 @@ import AdmZip from 'adm-zip';
 import fs from 'fs-extra';
 import handlebars from 'handlebars';
 import path from 'path';
-import { downloadFile } from 'utils';
 
-const framework = 'bootstrap-v5';
+import { getFrameworkFolderPath } from '@dsfrc/docs/utils';
+import { downloadFile } from '@dsfrc/docs/utils';
+
+const framework: string = path.basename(__dirname);
 const zipUrl = 'https://github.com/twbs/bootstrap/archive/refs/tags/v5.3.0-alpha3.zip';
 
 export async function downloadAndExtract() {
@@ -22,7 +24,7 @@ export async function downloadAndExtract() {
 export async function build() {
   const srcFolderPath = path.resolve(__dirname, `../../tmp/${framework}/bootstrap-5.3.0-alpha3/site/content/docs/5.3/examples`);
   const templateFilePath = path.resolve(__dirname, `./template.stories.ts`);
-  const outputFolderPath = path.resolve(__dirname, `../../stories/frameworks/${framework}/`);
+  const outputFolderPath = path.resolve(getFrameworkFolderPath(path.resolve(__dirname, `../../`), framework), 'stories/framework/');
 
   try {
     const entries = (await fs.readdir(srcFolderPath, { withFileTypes: true })).filter((entry) => !!entry);

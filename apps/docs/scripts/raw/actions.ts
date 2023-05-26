@@ -7,7 +7,9 @@ import { JSDOM } from 'jsdom';
 import path from 'path';
 import urlToolkit from 'url-toolkit';
 
-const framework = 'raw';
+import { getFrameworkFolderPath } from '@dsfrc/docs/utils';
+
+const framework: string = path.basename(__dirname);
 
 const mainPageUrl = new URL('https://main--ds-gouv.netlify.app/example/');
 const baseUrl = mainPageUrl.toString();
@@ -24,7 +26,7 @@ export async function build() {
   const folderToStripPath = path.resolve(__dirname, `../../tmp/${framework}/example`);
   const storyTemplateFilePath = path.resolve(__dirname, `./template.stories.ts`);
   const htmlTemplateFilePath = path.resolve(__dirname, `./template.hbs`);
-  const outputFolderPath = path.resolve(__dirname, `../../stories/frameworks/${framework}/`);
+  const outputFolderPath = path.resolve(__dirname, '../../stories/framework/');
 
   try {
     const storyTemplateContent = await fs.readFile(storyTemplateFilePath, 'utf-8');
