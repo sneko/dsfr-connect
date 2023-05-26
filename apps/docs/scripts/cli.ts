@@ -13,6 +13,7 @@ interface CommandOptions {
 interface TargetCommand {
   target: Target;
   command: string;
+  env?: Record<string, unknown>;
 }
 
 const actions = ['dev', 'build', 'start', 'prepare', 'download', 'extract'];
@@ -46,7 +47,14 @@ program
         commands = [
           {
             target: mainTarget,
-            command: `storybook dev -p ${mainTarget.port} -c ${mainFolderPath}/.storybook --no-open`,
+            // With "dev" if launching concurrently the instance referencing others will fail with CORS issue... just adding
+            // delay solves this... which is weird :/ . Maybe the server does a specific call different then a browser visit
+            // and change the CORS configuration. We did avoid sharing the same cache, don't understand know what could be the cause.
+            // Ref: https://github.com/storybookjs/storybook/issues/12108#issuecomment-1564231780
+            command: `sleep 3 && cd ${mainFolderPath} && storybook dev -p ${mainTarget.port} --no-open`,
+            env: {
+              SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
+            },
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
@@ -65,6 +73,9 @@ program
             // The first intent was to output in `/dist/` directly but it was messing with others in `/dist/frameworks/*`
             // So use a subdirectory for the build and add a redirection file (`index.html`) after the build to easily allow using root URL
             command: `cd ${mainFolderPath} && storybook build --output-dir ${mainFolderPath}/dist/main`,
+            env: {
+              SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
+            },
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
@@ -130,6 +141,7 @@ async function executeParallelCommands(frameworks: Target[], action: string, tar
   const enhancedCommands = targetCommands.map((targetCommand) => ({
     name: targetCommand.target.terminalFormatter(`${targetCommand.target.name}:${action}`),
     command: targetCommand.command,
+    env: targetCommand.env,
   }));
 
   await concurrently(enhancedCommands, {
