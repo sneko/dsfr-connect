@@ -54,6 +54,7 @@
     "usehooks-ts": "^2.9.1",
     "vite": "^4.3.8",
     "vite-plugin-require": "^1.1.10",
+    "vite-plugin-static-copy": "^0.15.0",
     "vite-tsconfig-paths": "^4.2.0"
   }
 }

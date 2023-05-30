@@ -6,6 +6,7 @@ overrides:
   ts-node: ^10.9.1
   tsconfig-paths: ^4.2.0
   typescript: ^4.9.3
+  vite-plugin-static-copy: ^0.15.0
 
 importers:
 
@@ -152,6 +153,9 @@ importers:
       vite-plugin-require:
         specifier: ^1.1.10
         version: 1.1.10(handlebars@4.7.7)(react-dom@18.2.0)(react@18.2.0)(vite@4.3.8)
+      vite-plugin-static-copy:
+        specifier: ^0.15.0
+        version: 0.15.0(vite@4.3.8)
       vite-tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0(typescript@4.9.5)(vite@4.3.8)
@@ -8958,6 +8962,19 @@ packages:
       - walrus
       - webpack-cli
       - whiskers
+    dev: true
+
+  /vite-plugin-static-copy@0.15.0(vite@4.3.8):
+    resolution: {integrity: sha512-Ww+/Ug9guV45oIfIi/lA2z8v3K+lLHV9zCJqTVO4FTdqrJoZBj68VgGBSH1fi0N4q/EHW32RsL3ympi4Wlsq5w==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0
+    dependencies:
+      chokidar: 3.5.3
+      fast-glob: 3.2.12
+      fs-extra: 11.1.1
+      picocolors: 1.0.0
+      vite: 4.3.8(sass@1.62.1)
     dev: true
 
   /vite-tsconfig-paths@4.2.0(typescript@4.9.5)(vite@4.3.8):

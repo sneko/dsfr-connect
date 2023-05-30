@@ -1,7 +1,9 @@
 import { Options, StorybookConfig } from '@storybook/types';
 import path from 'path';
 import { InlineConfig, mergeConfig } from 'vite';
+import { normalizePath } from 'vite';
 import pluginRequire from 'vite-plugin-require';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export function getConfig(framework?: string): StorybookConfig {
   const stories: string[] = [
@@ -19,6 +21,7 @@ export function getConfig(framework?: string): StorybookConfig {
 
   return {
     stories: stories,
+    staticDirs: ['../public'],
     addons: [
       '@storybook/addon-links',
       {
@@ -48,7 +51,18 @@ export function getConfig(framework?: string): StorybookConfig {
 export function viteFinalFactory(framework?: string) {
   return async (config: InlineConfig, options: Options) => {
     return mergeConfig(config, {
-      plugins: [pluginRequire()],
+      plugins: [
+        pluginRequire(),
+        viteStaticCopy({
+          // Directly served in "development" but copied during the "production" build
+          targets: [
+            {
+              src: `${normalizePath(path.dirname(require.resolve('@gouvfr/dsfr/dist/fonts/Marianne-Bold.woff2')))}/*`,
+              dest: 'assets/fonts', // Must be relative
+            },
+          ],
+        }),
+      ],
       resolve: {
         alias: [
           ...(!!framework
