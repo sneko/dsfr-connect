@@ -81,6 +81,12 @@ export function viteFinalFactory(framework?: string) {
             find: '@dsfrc/dsfr-connect',
             replacement: path.resolve(__dirname, '../../../../packages/dsfr-connect'),
           },
+          // When using SASS DSFR imports it's unable to find for example `module/string`
+          // so we define here the alias (it should not conflict with other JavaScript librairies)
+          {
+            find: 'module',
+            replacement: path.resolve(__dirname, '../../../../packages/dsfr-connect/node_modules/@gouvfr/dsfr/module'),
+          },
         ],
       },
     });

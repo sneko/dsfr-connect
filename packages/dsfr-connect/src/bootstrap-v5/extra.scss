@@ -1,0 +1,10 @@
+// Other files are from the framework itself
+// In case it's not sufficient to customize their style, please use this
+
+// ---
+
+// Bootstrap does not support dark CSS variables for now (generated from their `scss/_root.scss`)
+// Ref: https://github.com/twbs/bootstrap/issues/37976
+
+// Missing compatibility for dark mode:
+// - Buttons (it seems they don't define CSS variables for dark mode, either wait for a fix or replicate the logic of `scss/_buttons.scss`)

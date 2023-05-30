@@ -1,3 +1,17 @@
+@use '@gouvfr/dsfr/module/color/variable/_decisions' as dsfrDecisions;
+@use '@gouvfr/dsfr/module/color/variable/_options' as dsfrOptions;
+@use '@gouvfr/dsfr/module/color/variable/_sets' as dsfrSets;
+@use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
+@use '@gouvfr/dsfr/src/component/accordion/style/_setting' as dsfrAccordionSetting;
+@use '@gouvfr/dsfr/src/component/badge/style/_setting' as dsfrBadgeSetting;
+@use '@gouvfr/dsfr/src/component/button/style/_setting' as dsfrButtonSetting;
+
+$typography-vars: ();
+@import '@gouvfr/dsfr/src/core/style/typography/setting/_title';
+
+@import '@gouvfr/dsfr/src/core/style/icon/_setting';
+@import '@gouvfr/dsfr/src/core/style/icon/tool/_default';
+
 @import 'bootstrap/scss/_functions';
 
 // Variables
@@ -8,16 +22,16 @@
 // Color system
 
 // scss-docs-start gray-color-variables
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
+$white: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$gray-100: nth(map-get(dsfrOptions.$values, grey-975), 1) !default;
+$gray-200: nth(map-get(dsfrOptions.$values, grey-950), 1) !default;
+$gray-300: nth(map-get(dsfrOptions.$values, grey-925), 1) !default;
+$gray-400: nth(map-get(dsfrOptions.$values, grey-900), 1) !default;
+$gray-500: nth(map-get(dsfrOptions.$values, grey-850), 1) !default;
+$gray-600: nth(map-get(dsfrOptions.$values, grey-625), 1) !default;
+$gray-700: nth(map-get(dsfrOptions.$values, grey-425), 1) !default;
+$gray-800: nth(map-get(dsfrOptions.$values, grey-200), 1) !default;
+$gray-900: nth(map-get(dsfrOptions.$values, grey-100), 1) !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
@@ -38,16 +52,16 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue: #0d6efd !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #d63384 !default;
-$red: #dc3545 !default;
-$orange: #fd7e14 !default;
-$yellow: #ffc107 !default;
-$green: #198754 !default;
-$teal: #20c997 !default;
-$cyan: #0dcaf0 !default;
+$blue: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, primary, blue-france, strong), 1)), 1) !default;
+$indigo: nth(map-get(dsfrOptions.$values, purple-glycine-200), 1) !default;
+$purple: nth(map-get(dsfrOptions.$values, purple-glycine-main-494), 1) !default;
+$pink: nth(map-get(dsfrOptions.$values, pink-tuile-sun-425), 1) !default;
+$red: nth(map-get(dsfrOptions.$values, red-marianne-main-472), 1) !default;
+$orange: nth(map-get(dsfrOptions.$values, warning-main-525), 1) !default;
+$yellow: nth(map-get(dsfrOptions.$values, yellow-tournesol-sun-407), 1) !default;
+$green: nth(map-get(dsfrOptions.$values, success-main-525), 1) !default;
+$teal: nth(map-get(dsfrOptions.$values, green-menthe-main-548), 1) !default;
+$cyan: nth(map-get(dsfrOptions.$values, green-archipel-main-557), 1) !default;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -335,14 +349,14 @@ $dark-text-emphasis: $gray-700 !default;
 // scss-docs-end theme-text-variables
 
 // scss-docs-start theme-bg-subtle-variables
-$primary-bg-subtle: tint-color($primary, 80%) !default;
-$secondary-bg-subtle: tint-color($secondary, 80%) !default;
-$success-bg-subtle: tint-color($success, 80%) !default;
-$info-bg-subtle: tint-color($info, 80%) !default;
-$warning-bg-subtle: tint-color($warning, 80%) !default;
-$danger-bg-subtle: tint-color($danger, 80%) !default;
-$light-bg-subtle: mix($gray-100, $white) !default;
-$dark-bg-subtle: $gray-400 !default;
+$primary-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$secondary-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$success-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$info-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$warning-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$danger-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$light-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
+$dark-bg-subtle: nth(map-get(dsfrOptions.$values, grey-1000), 1) !default;
 // scss-docs-end theme-bg-subtle-variables
 
 // scss-docs-start theme-border-subtle-variables
@@ -431,14 +445,23 @@ $position-values: (
 // Settings for the `<body>` element.
 
 $body-text-align: null !default;
-$body-color: $gray-900 !default;
-$body-bg: $white !default;
+$body-color: nth(
+  map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, map-get(dsfrDecisions.$values, text, default, neutral)), 1)),
+  1
+) !default;
+$body-bg: nth(
+  map-get(
+    dsfrOptions.$values,
+    nth(map-get(dsfrSets.$values, neutral, grey, nth(map-get(dsfrDecisions.$values, background, default, neutral), 1)), 1)
+  ),
+  1
+) !default;
 
-$body-secondary-color: rgba($body-color, 0.75) !default;
-$body-secondary-bg: $gray-200 !default;
+$body-secondary-color: $body-color !default;
+$body-secondary-bg: $white !default;
 
-$body-tertiary-color: rgba($body-color, 0.5) !default;
-$body-tertiary-bg: $gray-100 !default;
+$body-tertiary-color: $body-color !default;
+$body-tertiary-bg: $white !default;
 
 $body-emphasis-color: $black !default;
 
@@ -448,9 +471,9 @@ $body-emphasis-color: $black !default;
 
 $link-color: $primary !default;
 $link-decoration: underline !default;
-$link-shade-percentage: 20% !default;
-$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
-$link-hover-decoration: null !default;
+$link-shade-percentage: 0 !default;
+$link-hover-color: $link-color !default;
+$link-hover-decoration: underline 2px !default;
 
 $stretched-link-pseudo-element: after !default;
 $stretched-link-z-index: 1 !default;
@@ -531,17 +554,17 @@ $border-widths: (
   5: 5px,
 ) !default;
 $border-style: solid !default;
-$border-color: $gray-300 !default;
-$border-color-translucent: rgba($black, 0.175) !default;
+$border-color: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, border), 1)), 1) !default;
+$border-color-translucent: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, border), 1)), 1) !default;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
-$border-radius: 0.375rem !default;
-$border-radius-sm: 0.25rem !default;
-$border-radius-lg: 0.5rem !default;
-$border-radius-xl: 1rem !default;
-$border-radius-xxl: 2rem !default;
-$border-radius-pill: 50rem !default;
+$border-radius: 0rem !default;
+$border-radius-sm: 0rem !default;
+$border-radius-lg: 0rem !default;
+$border-radius-xl: 0rem !default;
+$border-radius-xxl: 0rem !default;
+$border-radius-pill: 0rem !default;
 // scss-docs-end border-radius-variables
 // fusv-disable
 $border-radius-2xl: $border-radius-xxl !default; // Deprecated in v5.3.0
@@ -622,12 +645,12 @@ $line-height-base: 1.5 !default;
 $line-height-sm: 1.25 !default;
 $line-height-lg: 2 !default;
 
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
-$h5-font-size: $font-size-base * 1.25 !default;
-$h6-font-size: $font-size-base !default;
+$h1-font-size: dsfrSpacing.space(map-get($title-settings, h1, breakpoints, md)) !default;
+$h2-font-size: dsfrSpacing.space(map-get($title-settings, h2, breakpoints, md)) !default;
+$h3-font-size: dsfrSpacing.space(map-get($title-settings, h3, breakpoints, md)) !default;
+$h4-font-size: dsfrSpacing.space(map-get($title-settings, h4, breakpoints, md)) !default;
+$h5-font-size: dsfrSpacing.space(map-get($title-settings, h5, breakpoints, md)) !default;
+$h6-font-size: dsfrSpacing.space(map-get($title-settings, h6, breakpoints, md)) !default;
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
@@ -645,7 +668,7 @@ $font-sizes: (
 $headings-margin-bottom: $spacer * 0.5 !default;
 $headings-font-family: null !default;
 $headings-font-style: null !default;
-$headings-font-weight: 500 !default;
+$headings-font-weight: map-get($title-settings, h6, weight) !default; // Same weight for all titles
 $headings-line-height: 1.2 !default;
 $headings-color: null !default;
 // scss-docs-end headings-variables
@@ -714,22 +737,29 @@ $mark-bg: $yellow-100 !default;
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 // scss-docs-start table-variables
-$table-cell-padding-y: 0.5rem !default;
-$table-cell-padding-x: 0.5rem !default;
-$table-cell-padding-y-sm: 0.25rem !default;
-$table-cell-padding-x-sm: 0.25rem !default;
+$table-cell-padding-y: dsfrSpacing.space(4v) !default;
+$table-cell-padding-x: dsfrSpacing.space(4v) !default;
+$table-cell-padding-y-sm: dsfrSpacing.space(3v) !default;
+$table-cell-padding-x-sm: dsfrSpacing.space(3v) !default;
 
 $table-cell-vertical-align: top !default;
 
-$table-color: var(--#{$prefix}body-color) !default;
-$table-bg: transparent !default;
+:root {
+  --dsfr-table-color: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, black), 1)), 1)};
+  --dsfr-table-bg: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, contrast-raised), 1)), 1)};
+  --dsfr-table-stripped-color: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, strongest), 1)), 1)};
+  --dsfr-table-stripped-bg: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, lightest), 1)), 1)};
+}
+
+$table-color: var(--dsfr-table-color) !default;
+$table-bg: var(--dsfr-table-bg) !default;
 $table-accent-bg: transparent !default;
 
 $table-th-font-weight: null !default;
 
-$table-striped-color: $table-color !default;
+$table-striped-color: var(--dsfr-table-stripped-color) !default;
 $table-striped-bg-factor: 0.05 !default;
-$table-striped-bg: rgba($black, $table-striped-bg-factor) !default;
+$table-striped-bg: var(--dsfr-table-stripped-bg) !default;
 
 $table-active-color: $table-color !default;
 $table-active-bg-factor: 0.1 !default;
@@ -740,7 +770,7 @@ $table-hover-bg-factor: 0.075 !default;
 $table-hover-bg: rgba($black, $table-hover-bg-factor) !default;
 
 $table-border-factor: 0.1 !default;
-$table-border-width: var(--#{$prefix}border-width) !default;
+$table-border-width: 0 !default;
 $table-border-color: var(--#{$prefix}border-color) !default;
 
 $table-striped-order: odd !default;
@@ -771,8 +801,8 @@ $table-variants: (
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 // scss-docs-start input-btn-variables
-$input-btn-padding-y: 0.375rem !default;
-$input-btn-padding-x: 0.75rem !default;
+$input-btn-padding-y: dsfrSpacing.space(2v) !default;
+$input-btn-padding-x: dsfrSpacing.space(4v) !default;
 $input-btn-font-family: null !default;
 $input-btn-font-size: $font-size-base !default;
 $input-btn-line-height: $line-height-base !default;
@@ -801,19 +831,19 @@ $input-btn-border-width: var(--#{$prefix}border-width) !default;
 // scss-docs-start btn-variables
 $btn-color: var(--#{$prefix}body-color) !default;
 $btn-padding-y: $input-btn-padding-y !default;
-$btn-padding-x: $input-btn-padding-x !default;
+$btn-padding-x: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, md, padding-x)) !default;
 $btn-font-family: $input-btn-font-family !default;
-$btn-font-size: $input-btn-font-size !default;
+$btn-font-size: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, md, font-size)) !default;
 $btn-line-height: $input-btn-line-height !default;
 $btn-white-space: null !default; // Set to `nowrap` to prevent text wrapping
 
 $btn-padding-y-sm: $input-btn-padding-y-sm !default;
-$btn-padding-x-sm: $input-btn-padding-x-sm !default;
-$btn-font-size-sm: $input-btn-font-size-sm !default;
+$btn-padding-x-sm: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, sm, padding-x)) !default;
+$btn-font-size-sm: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, sm, font-size)) !default;
 
 $btn-padding-y-lg: $input-btn-padding-y-lg !default;
-$btn-padding-x-lg: $input-btn-padding-x-lg !default;
-$btn-font-size-lg: $input-btn-font-size-lg !default;
+$btn-padding-x-lg: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, lg, padding-x)) !default;
+$btn-font-size-lg: dsfrSpacing.space(map-get(dsfrButtonSetting.$btn-settings, sizes, lg, font-size)) !default;
 
 $btn-border-width: $input-btn-border-width !default;
 
@@ -835,6 +865,7 @@ $btn-border-radius-lg: var(--#{$prefix}border-radius-lg) !default;
 
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
+// TODO-DSFR: cannot set raw values without reimplementing `scss/_buttons.scss` and `scss/mixins/_buttons.scss`
 $btn-hover-bg-shade-amount: 15% !default;
 $btn-hover-bg-tint-amount: 15% !default;
 $btn-hover-border-shade-amount: 20% !default;
@@ -1026,7 +1057,7 @@ $form-select-transition: $input-transition !default;
 $form-range-track-width: 100% !default;
 $form-range-track-height: 0.5rem !default;
 $form-range-track-cursor: pointer !default;
-$form-range-track-bg: var(--#{$prefix}tertiary-bg) !default;
+$form-range-track-bg: $gray-200 !default;
 $form-range-track-border-radius: 1rem !default;
 $form-range-track-box-shadow: $box-shadow-inset !default;
 
@@ -1317,8 +1348,8 @@ $placeholder-opacity-min: 0.2 !default;
 // Cards
 
 // scss-docs-start card-variables
-$card-spacer-y: $spacer !default;
-$card-spacer-x: $spacer !default;
+$card-spacer-y: dsfrSpacing.space(8v) !default;
+$card-spacer-x: dsfrSpacing.space(8v) !default;
 $card-title-spacer-y: $spacer * 0.5 !default;
 $card-title-color: null !default;
 $card-subtitle-color: null !default;
@@ -1329,7 +1360,7 @@ $card-box-shadow: null !default;
 $card-inner-border-radius: subtract($card-border-radius, $card-border-width) !default;
 $card-cap-padding-y: $card-spacer-y * 0.5 !default;
 $card-cap-padding-x: $card-spacer-x !default;
-$card-cap-bg: rgba(var(--#{$prefix}body-color-rgb), 0.03) !default;
+$card-cap-bg: var(--#{$prefix}body-bg) !default;
 $card-cap-color: null !default;
 $card-height: null !default;
 $card-color: null !default;
@@ -1342,7 +1373,7 @@ $card-group-margin: $grid-gutter-width * 0.5 !default;
 
 // scss-docs-start accordion-variables
 $accordion-padding-y: 1rem !default;
-$accordion-padding-x: 1.25rem !default;
+$accordion-padding-x: dsfrSpacing.space(map-get(dsfrAccordionSetting.$accordions-settings, sizes, md, padding-x)) !default;
 $accordion-color: var(--#{$prefix}body-color) !default;
 $accordion-bg: var(--#{$prefix}body-bg) !default;
 $accordion-border-width: var(--#{$prefix}border-width) !default;
@@ -1359,19 +1390,19 @@ $accordion-button-color: var(--#{$prefix}body-color) !default;
 $accordion-button-bg: var(--#{$prefix}accordion-bg) !default;
 $accordion-transition: $btn-transition, border-radius 0.15s ease !default;
 $accordion-button-active-bg: var(--#{$prefix}primary-bg-subtle) !default;
-$accordion-button-active-color: var(--#{$prefix}primary-text-emphasis) !default;
+$accordion-button-active-color: var(--#{$prefix}body-color) !default;
 
-$accordion-button-focus-border-color: $input-focus-border-color !default;
-$accordion-button-focus-box-shadow: $btn-focus-box-shadow !default;
+$accordion-button-focus-border-color: none !default;
+$accordion-button-focus-box-shadow: none !default;
 
-$accordion-icon-width: 1.25rem !default;
+$accordion-icon-width: icon-size(map-get(dsfrAccordionSetting.$accordions-settings, sizes, md, icon)) !default;
 $accordion-icon-color: $body-color !default;
 $accordion-icon-active-color: $primary-text-emphasis !default;
 $accordion-icon-transition: transform 0.2s ease-in-out !default;
-$accordion-icon-transform: rotate(-180deg) !default;
+$accordion-icon-transform: none !default;
 
-$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
+$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$accordion-icon-color}'><path d='M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z'/></svg>") !default;
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$accordion-icon-active-color}'><path d='M5 11h14v2H5v-2Z'/></svg>") !default;
 // scss-docs-end accordion-variables
 
 // Tooltips
@@ -1459,20 +1490,22 @@ $toast-header-border-color: $toast-border-color !default;
 // Badges
 
 // scss-docs-start badge-variables
+// $badge-font-size: dsfrSpacing.space(map-get(dsfrBadgeSetting.$badge-settings, sizes, md, font-size)) !default;
 $badge-font-size: 0.75em !default;
 $badge-font-weight: $font-weight-bold !default;
 $badge-color: $white !default;
 $badge-padding-y: 0.35em !default;
-$badge-padding-x: 0.65em !default;
-$badge-border-radius: var(--#{$prefix}border-radius) !default;
+// $badge-padding-x: dsfrSpacing.space(map-get(dsfrBadgeSetting.$badge-settings, sizes, md, padding-x)) !default;
+$badge-padding-x: 0.55em !default;
+$badge-border-radius: dsfrSpacing.space(1v) !default;
 // scss-docs-end badge-variables
 
 // Modals
 
 // scss-docs-start modal-variables
-$modal-inner-padding: $spacer !default;
+$modal-inner-padding: dsfrSpacing.space(8v) !default;
 
-$modal-footer-margin-between: 0.5rem !default;
+$modal-footer-margin-between: dsfrSpacing.space(4v) !default;
 
 $modal-dialog-margin: 0.5rem !default;
 $modal-dialog-margin-y-sm-up: 1.75rem !default;
@@ -1482,7 +1515,7 @@ $modal-title-line-height: $line-height-base !default;
 $modal-content-color: null !default;
 $modal-content-bg: var(--#{$prefix}body-bg) !default;
 $modal-content-border-color: var(--#{$prefix}border-color-translucent) !default;
-$modal-content-border-width: var(--#{$prefix}border-width) !default;
+$modal-content-border-width: 0 !default;
 $modal-content-border-radius: var(--#{$prefix}border-radius-lg) !default;
 $modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width) !default;
 $modal-content-box-shadow-xs: $box-shadow-sm !default;
@@ -1493,9 +1526,9 @@ $modal-backdrop-opacity: 0.5 !default;
 
 $modal-header-border-color: var(--#{$prefix}border-color) !default;
 $modal-header-border-width: $modal-content-border-width !default;
-$modal-header-padding-y: $modal-inner-padding !default;
-$modal-header-padding-x: $modal-inner-padding !default;
-$modal-header-padding: $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
+$modal-header-padding-y: dsfrSpacing.space(8v) !default;
+$modal-header-padding-x: dsfrSpacing.space(8v) !default;
+$modal-header-padding: $modal-header-padding-y $modal-header-padding-x 0 !default; // Keep this for backwards compatibility
 
 $modal-footer-bg: null !default;
 $modal-footer-border-color: $modal-header-border-color !default;

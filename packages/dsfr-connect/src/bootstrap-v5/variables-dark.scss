@@ -1,63 +1,100 @@
+@use '@gouvfr/dsfr/module/color/variable/_decisions' as dsfrDecisions;
+@use '@gouvfr/dsfr/module/color/variable/_options' as dsfrOptions;
+@use '@gouvfr/dsfr/module/color/variable/_sets' as dsfrSets;
+
+@import 'bootstrap/scss/mixins/_color-mode';
+
 // Dark color mode variables
 //
 // Custom variables for the `[data-bs-theme="dark"]` theme. Use this as a starting point for your own custom color modes by creating a new theme-specific file like `_variables-dark.scss` and adding the variables you need.
 
-//
-// Global colors
-//
-
-// TODO: cannot support `$primary-dark` for now due to Bootstrap limitation
-// Ref: https://github.com/twbs/bootstrap/issues/37976
-
-// ------------------------------------------------------------------------------- test end
-
 // scss-docs-start sass-dark-mode-vars
+// scss-docs-start theme-color-variables
+$primary-dark: nth(
+  map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, primary, blue-france, map-get(dsfrDecisions.$values, text, default, system)), 2)),
+  1
+) !default;
+$secondary-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, soft), 2)), 1) !default;
+$success-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, success, strong), 2)), 1) !default;
+$info-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, info, strong), 2)), 1) !default;
+$warning-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, warning, strong), 2)), 1) !default;
+$danger-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, error, strong), 2)), 1) !default;
+$light-dark: $dark !default;
+$dark-dark: $light !default;
+// scss-docs-end theme-color-variables
+
 // scss-docs-start theme-text-dark-variables
-$primary-text-emphasis-dark: tint-color($primary, 40%) !default;
-$secondary-text-emphasis-dark: tint-color($secondary, 40%) !default;
-$success-text-emphasis-dark: tint-color($success, 40%) !default;
-$info-text-emphasis-dark: tint-color($info, 40%) !default;
-$warning-text-emphasis-dark: tint-color($warning, 40%) !default;
-$danger-text-emphasis-dark: tint-color($danger, 40%) !default;
-$light-text-emphasis-dark: $gray-100 !default;
+$primary-text-emphasis-dark: nth(
+  map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, primary, blue-france, map-get(dsfrDecisions.$values, text, default, system)), 2)),
+  1
+) !default;
+$secondary-text-emphasis-dark: tint-color($secondary-dark, 40%) !default;
+$success-text-emphasis-dark: tint-color($success-dark, 40%) !default;
+$info-text-emphasis-dark: tint-color($info-dark, 40%) !default;
+$warning-text-emphasis-dark: tint-color($warning-dark, 40%) !default;
+$danger-text-emphasis-dark: tint-color($danger-dark, 40%) !default;
+$light-text-emphasis-dark: $gray-300 !default;
 $dark-text-emphasis-dark: $gray-300 !default;
 // scss-docs-end theme-text-dark-variables
 
 // scss-docs-start theme-bg-subtle-dark-variables
-$primary-bg-subtle-dark: shade-color($primary, 80%) !default;
-$secondary-bg-subtle-dark: shade-color($secondary, 80%) !default;
-$success-bg-subtle-dark: shade-color($success, 80%) !default;
-$info-bg-subtle-dark: shade-color($info, 80%) !default;
-$warning-bg-subtle-dark: shade-color($warning, 80%) !default;
-$danger-bg-subtle-dark: shade-color($danger, 80%) !default;
-$light-bg-subtle-dark: $gray-800 !default;
-$dark-bg-subtle-dark: mix($gray-800, $black) !default;
+$primary-bg-subtle-dark: nth(
+  map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, primary, blue-france, map-get(dsfrDecisions.$values, text, default, system)), 2)),
+  1
+) !default;
+$secondary-bg-subtle-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, soft), 2)), 1) !default;
+$success-bg-subtle-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, success, strong), 2)), 1) !default;
+$info-bg-subtle-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, info, strong), 2)), 1) !default;
+$warning-bg-subtle-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, warning, strong), 2)), 1) !default;
+$danger-bg-subtle-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, system, error, strong), 2)), 1) !default;
+$light-bg-subtle-dark: $gray-300 !default;
+$dark-bg-subtle-dark: $gray-300 !default;
 // scss-docs-end theme-bg-subtle-dark-variables
 
 // scss-docs-start theme-border-subtle-dark-variables
-$primary-border-subtle-dark: shade-color($primary, 40%) !default;
-$secondary-border-subtle-dark: shade-color($secondary, 40%) !default;
-$success-border-subtle-dark: shade-color($success, 40%) !default;
-$info-border-subtle-dark: shade-color($info, 40%) !default;
-$warning-border-subtle-dark: shade-color($warning, 40%) !default;
-$danger-border-subtle-dark: shade-color($danger, 40%) !default;
+$primary-border-subtle-dark: shade-color($primary-dark, 40%) !default;
+$secondary-border-subtle-dark: shade-color($secondary-dark, 40%) !default;
+$success-border-subtle-dark: shade-color($success-dark, 40%) !default;
+$info-border-subtle-dark: shade-color($info-dark, 40%) !default;
+$warning-border-subtle-dark: shade-color($warning-dark, 40%) !default;
+$danger-border-subtle-dark: shade-color($danger-dark, 40%) !default;
 $light-border-subtle-dark: $gray-700 !default;
 $dark-border-subtle-dark: $gray-800 !default;
 // scss-docs-end theme-border-subtle-dark-variables
 
-$body-color-dark: $gray-500 !default;
-$body-bg-dark: $gray-900 !default;
-$body-secondary-color-dark: rgba($body-color-dark, 0.75) !default;
-$body-secondary-bg-dark: $gray-800 !default;
-$body-tertiary-color-dark: rgba($body-color-dark, 0.5) !default;
-$body-tertiary-bg-dark: mix($gray-800, $gray-900, 50%) !default;
+$body-color-dark: nth(
+  map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, map-get(dsfrDecisions.$values, text, default, neutral)), 2)),
+  1
+) !default;
+$body-bg-dark: nth(
+  map-get(
+    dsfrOptions.$values,
+    nth(map-get(dsfrSets.$values, neutral, grey, nth(map-get(dsfrDecisions.$values, background, default, neutral), 1)), 2)
+  ),
+  1
+) !default;
+$body-secondary-color-dark: $body-color-dark !default;
+$body-secondary-bg-dark: $body-bg-dark !default;
+$body-tertiary-color-dark: $body-color-dark !default;
+$body-tertiary-bg-dark: $body-bg-dark !default;
 $body-emphasis-color-dark: $white !default;
-$border-color-dark: $gray-700 !default;
-$border-color-translucent-dark: rgba($white, 0.15) !default;
+$border-color-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, border), 2)), 1) !default;
+$border-color-translucent-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, border), 2)), 1) !default;
 $headings-color-dark: null !default;
-$link-color-dark: tint-color($primary, 40%) !default;
-$link-hover-color-dark: shift-color($link-color-dark, -$link-shade-percentage) !default;
+$link-color-dark: nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, primary, blue-france, strong), 2)), 1) !default;
+$link-hover-color-dark: $link-color-dark !default;
 $code-color-dark: tint-color($code-color, 40%) !default;
+
+//
+// Tables
+//
+
+@include color-mode(dark, true) {
+  --dsfr-table-color: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, black), 2)), 1)};
+  --dsfr-table-bg: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, contrast-raised), 2)), 1)};
+  --dsfr-table-stripped-color: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, strongest), 2)), 1)};
+  --dsfr-table-stripped-bg: #{nth(map-get(dsfrOptions.$values, nth(map-get(dsfrSets.$values, neutral, grey, lightest), 2)), 1)};
+}
 
 //
 // Forms
