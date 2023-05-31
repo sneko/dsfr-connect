@@ -51,6 +51,16 @@ export function getConfig(framework?: string): StorybookConfig {
 export function viteFinalFactory(framework?: string) {
   return async (config: InlineConfig, options: Options) => {
     return mergeConfig(config, {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: `@import "${path.resolve(
+              __dirname,
+              `../../../../apps/docs/utils/storybook/variables.${options.configType === 'PRODUCTION' ? 'prod' : 'dev'}.scss`
+            )}";`,
+          },
+        },
+      },
       plugins: [
         pluginRequire(),
         viteStaticCopy({
