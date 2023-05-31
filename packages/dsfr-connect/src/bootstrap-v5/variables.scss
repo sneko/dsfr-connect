@@ -1,3 +1,4 @@
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
 @use '@gouvfr/dsfr/module/color/variable/_decisions' as dsfrDecisions;
 @use '@gouvfr/dsfr/module/color/variable/_options' as dsfrOptions;
 @use '@gouvfr/dsfr/module/color/variable/_sets' as dsfrSets;
@@ -13,6 +14,15 @@ $typography-vars: ();
 @import '@gouvfr/dsfr/src/core/style/icon/tool/_default';
 
 @import 'bootstrap/scss/_functions';
+
+//
+// TODO: we should use the following instead of most of our `map-get()` to get hexadecimal colors
+//
+// @debug dsfrColors.from(background action-high blue-france, hex);
+//
+// (see for name definition https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/couleurs-utilisation-dans-le-dsfr)
+// (sorry for not understanding how it works before...):
+//
 
 // Variables
 //
