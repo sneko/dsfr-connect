@@ -61,6 +61,8 @@ You must configure 1 environment in the CI/CD settings:
 The following ones must be repository secrets (not environment ones):
 
 - `NPM_TOKEN`: [SECRET]
+- `NETLIFY_AUTH_TOKEN`: [SECRET]
+- `NETLIFY_SITE_ID`: [SECRET]
 - `CRISP_WEBSITE_ID`: [SECRET]
 
 ### Default branch
@@ -77,7 +79,9 @@ The default branch is `main`.
 
 ### Hosting & domain
 
-We managed to have all Storybooks static in the same folder, so we choose GitHub Pages to host it. It's done in the CI/CD, you can add a custom domain easily.
+We managed to have all Storybooks static in the same folder and we chose Netlify to host it. Just configure the 2 environments variables you can find from the Netlify interface and you're good to go!
+
+_Note: you can add a custom domain easily_
 
 ### Crisp
 

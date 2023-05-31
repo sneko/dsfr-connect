@@ -10,6 +10,10 @@
   "license": "AGPL-3.0",
   "scripts": {
     "cli": "ts-node -r tsconfig-paths/register ./scripts/cli.ts",
+    "dev:prepare": "pnpm cli prepare",
+    "dev": "pnpm cli dev",
+    "build:prepare": "pnpm cli prepare",
+    "build": "pnpm cli build",
     "lint": "pnpm cli lint",
     "lint:es": "pnpm cli lint:es",
     "lint:ts": "pnpm cli lint:ts"

@@ -10,8 +10,14 @@ endef
 help:
 	$(info $(HELP_TEXT))
 
+build-prepare:
+	pnpm turbo build:prepare
+
 build:
 	pnpm turbo build
+
+serve-prepare:
+	pnpm turbo serve:prepare
 
 serve:
 	pnpm turbo dev

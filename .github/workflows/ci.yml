@@ -4,15 +4,14 @@ on:
     branches:
       - main
       - dev
+      - test-ci
 env:
-  APP_NAME: mediature
-  CONTAINER_REGISTRY: ghcr.io
-  CONTAINER_IMAGE_FOLDER: ghcr.io/${{ github.repository }}
   NODE_OPTIONS: --max_old_space_size=4096
   NODE_VERSION: 16.15.0
   PNPM_VERSION: 7.27.1
-  CYPRESS_CACHE_FOLDER_SUFFIX: .cache/Cypress
-  PLAYWRIGHT_BROWSERS_CACHE_FOLDER_SUFFIX: .cache/ms-playwright
+concurrency:
+  group: 'cicd'
+  cancel-in-progress: false
 jobs:
   requirements:
     name: Continuous Integration
@@ -27,16 +26,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set environment for branch
-        run: |
-          if [[ $GITHUB_REF_NAME == 'main' ]]; then
-              echo "APP_MODE=prod" >> $GITHUB_ENV
-          elif [[ $GITHUB_REF_NAME == 'dev' ]]; then
-              echo "APP_MODE=dev" >> $GITHUB_ENV
-          else
-              echo "APP_MODE=test" >> $GITHUB_ENV
-          fi
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -62,22 +51,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - uses: actions/cache@v3
-        name: Setup Next.js build cache
-        with:
-          path: ${{ github.workspace }}/apps/main/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
-
       - name: Install dependencies
-        env:
-          CYPRESS_CACHE_FOLDER: ${{ env.STORE_PATH }}/${{ env.CYPRESS_CACHE_FOLDER_SUFFIX }}
-          PLAYWRIGHT_BROWSERS_PATH: ${{ env.STORE_PATH }}/${{ env.PLAYWRIGHT_BROWSERS_CACHE_FOLDER_SUFFIX }}
         run: make deps
-
-      - name: Prepare linting
-        run: make lint-prepare
 
       - name: Lint
         run: make lint
@@ -85,42 +60,22 @@ jobs:
       - name: Format check
         run: make format-check
 
-      - name: Prepare tests
-        run: make test-prepare
-
-      - uses: KengoTODA/actions-setup-docker-compose@v1
-        name: Install `docker-compose` for local CI/CD simulations (https://github.com/nektos/act/issues/112#issuecomment-1387307297)
-        if: ${{ env.ACT }}
-        with:
-          version: '2.14.2'
-      - name: Install `Xvfb` and others to run browsers for end-to-end testing in local CI/CD simulations (https://github.com/nektos/act/issues/1300#issuecomment-1387344639)
-        if: ${{ env.ACT }}
-        run: sudo apt-get update && sudo apt-get install -y xvfb && npx playwright install-deps
-
       - name: Test unit
         run: make test-unit
 
+      - name: Prepare building
+        run: make build-prepare
+
       - name: Build
-        env:
-          SENTRY_URL: ${{ secrets.SENTRY_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-          SENTRY_RELEASE_UPLOAD: true
-        run: make build
+        run: make build && cat apps/docs/dist/main/stories.json
 
-      - name: Test end-to-end
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=apps/docs/dist --prod
         env:
-          CYPRESS_CACHE_FOLDER: ${{ env.STORE_PATH }}/${{ env.CYPRESS_CACHE_FOLDER_SUFFIX }}
-          PLAYWRIGHT_BROWSERS_PATH: ${{ env.STORE_PATH }}/${{ env.PLAYWRIGHT_BROWSERS_CACHE_FOLDER_SUFFIX }}
-        run: make test-e2e
-
-      # TODO: enable again once Next 13 with "appDir: true" is compatible with `next export`
-      # Ref: https://beta.nextjs.org/docs/app-directory-roadmap#supported-and-planned-features
-      # - name: Accessibility with Lighthouse
-      #   run: make accessibility
-      #   env:
-      #     LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
       # - name: Release
       #   if: ${{ !env.ACT }}
@@ -128,64 +83,3 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       #   run: npx semantic-release
-
-  publish-chromatic:
-    name: Publish to Chromatic
-    if: ${{ !github.event.act }}
-    # if: ${{ !github.event.act && (github.ref_name == 'dev' || github.ref_name == 'main') }}
-    needs: [requirements]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
-      - name: Install turbo
-        run: npm install -g turbo
-
-      - name: Export pnpm store directory as an environment variable
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Reduce dependency list
-        run: turbo prune --scope=docs
-
-      - name: Install dependencies
-        env:
-          CYPRESS_CACHE_FOLDER: ${{ env.STORE_PATH }}/${{ env.CYPRESS_CACHE_FOLDER_SUFFIX }}
-          PLAYWRIGHT_BROWSERS_PATH: ${{ env.STORE_PATH }}/${{ env.PLAYWRIGHT_BROWSERS_CACHE_FOLDER_SUFFIX }}
-        run: pnpm install
-
-      - uses: chromaui/action@v1
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        with:
-          # Note: since we use `buildScriptName` we have to specify some of those parameters into the underlying `package.json` script named `chromatic`
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: apps/docs
-          buildScriptName: chromatic
-          autoAcceptChanges: true # TODO: adjust in the future
-          onlyChanged: false # TODO: adjust in the future
-          exitZeroOnChanges: true

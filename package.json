@@ -6,8 +6,10 @@
   },
   "license": "AGPL-3.0",
   "scripts": {
+    "build:prepare": "turbo run build:prepare",
     "build": "turbo run build",
     "clean": "turbo run clean",
+    "dev:prepare": "turbo run dev:prepare",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mdx}\"",
