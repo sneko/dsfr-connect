@@ -130,6 +130,9 @@ async function crawlPage(url: string) {
           continue;
         }
 
+        // Wait a bit to not flood and not have the connection reset by the server
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
         await crawlPage(absoluteUrl);
       }
     }
