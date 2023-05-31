@@ -1,10 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Storybook",
+  "display": "dsfr-connect",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dsfrc/docs/*": ["../../apps/docs/*"],
       "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
     "composite": false,
@@ -25,6 +24,6 @@
     "target": "esnext",
     "jsx": "preserve"
   },
-  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "tmp"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

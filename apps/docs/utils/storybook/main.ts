@@ -65,7 +65,7 @@ export function viteFinalFactory(framework?: string) {
       ],
       resolve: {
         alias: [
-          ...(!!framework
+          ...(framework
             ? [
                 {
                   find: `@dsfrc/docs-${framework}`,

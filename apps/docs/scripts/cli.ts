@@ -16,7 +16,11 @@ interface TargetCommand {
   env?: Record<string, unknown>;
 }
 
-const actions = ['dev', 'build', 'start', 'prepare', 'download', 'extract'];
+const actions = ['dev', 'build', 'start', 'prepare', 'download', 'extract', 'lint', 'lint:es', 'lint:ts'];
+
+const lintEsCommand = 'TIMING=1 pnpm eslint --ext .js,.jsx,.ts,.tsx,.mdx .';
+const lintTsCommand = 'pnpm tsc --noEmit --incremental false';
+const lintCommand = `${lintEsCommand} && ${lintTsCommand}`;
 
 program
   .addOption(new Option('-f, --frameworks <frameworks...>', 'Frameworks to use').choices(frameworks.map((f) => f.name)))
@@ -127,6 +131,51 @@ program
         break;
       case 'extract':
         await Promise.all([mainTarget.extract(), ...selectedFrameworks.map(async (framework) => framework.extract())]);
+        break;
+      case 'lint':
+        commands = [
+          {
+            target: mainTarget,
+            command: `cd ${mainFolderPath} && ${lintCommand}`,
+          },
+          ...selectedFrameworks.map((framework) => ({
+            target: framework,
+            command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintCommand}`,
+          })),
+        ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
+        break;
+      case 'lint:es':
+        commands = [
+          {
+            target: mainTarget,
+            command: `cd ${mainFolderPath} && ${lintEsCommand}`,
+          },
+          ...selectedFrameworks.map((framework) => ({
+            target: framework,
+            command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintEsCommand}`,
+          })),
+        ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
+        break;
+      case 'lint:ts':
+        commands = [
+          {
+            target: mainTarget,
+            command: `cd ${mainFolderPath} && ${lintTsCommand}`,
+          },
+          ...selectedFrameworks.map((framework) => ({
+            target: framework,
+            command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintTsCommand}`,
+          })),
+        ];
+
+        await executeParallelCommands(selectedFrameworks, action, commands);
+
         break;
     }
   })

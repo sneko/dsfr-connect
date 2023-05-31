@@ -7,8 +7,6 @@ import { JSDOM } from 'jsdom';
 import path from 'path';
 import urlToolkit from 'url-toolkit';
 
-import { getFrameworkFolderPath } from '@dsfrc/docs/utils';
-
 const framework: string = path.basename(__dirname);
 
 const mainPageUrl = new URL('https://main--ds-gouv.netlify.app/example/');

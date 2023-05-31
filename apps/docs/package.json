@@ -9,7 +9,10 @@
   },
   "license": "AGPL-3.0",
   "scripts": {
-    "cli": "ts-node -r tsconfig-paths/register ./scripts/cli.ts"
+    "cli": "ts-node -r tsconfig-paths/register ./scripts/cli.ts",
+    "lint": "pnpm cli lint",
+    "lint:es": "pnpm cli lint:es",
+    "lint:ts": "pnpm cli lint:ts"
   },
   "devDependencies": {
     "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
@@ -36,6 +39,8 @@
     "commander": "^10.0.1",
     "concurrently": "^8.0.1",
     "crisp-sdk-web": "^1.0.18",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
     "fs-extra": "^11.1.1",
     "glob": "^10.2.6",
     "handlebars": "^4.7.7",
