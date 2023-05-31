@@ -130,7 +130,7 @@ async function crawlPage(url: string) {
           continue;
         }
 
-        crawlPage(absoluteUrl);
+        await crawlPage(absoluteUrl);
       }
     }
   } catch (error) {
