@@ -21,6 +21,7 @@
   "devDependencies": {
     "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
     "@gouvfr/dsfr": "^1.9.3",
+    "@storybook/addon-docs": "^7.0.18",
     "@storybook/addon-essentials": "^7.0.17",
     "@storybook/addon-interactions": "^7.0.17",
     "@storybook/addon-links": "^7.0.17",
@@ -54,6 +55,7 @@
     "node-fetch-native": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "remark-gfm": "^3.0.1",
     "sass": "^1.62.1",
     "storybook": "^7.0.17",
     "ts-node": "^10.9.1",

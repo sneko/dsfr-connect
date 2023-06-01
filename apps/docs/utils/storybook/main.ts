@@ -1,5 +1,6 @@
-import { Options, StorybookConfig } from '@storybook/types';
+import { Options, Preset, StorybookConfig } from '@storybook/types';
 import path from 'path';
+import remarkGfm from 'remark-gfm';
 import { InlineConfig, mergeConfig } from 'vite';
 import { normalizePath } from 'vite';
 import pluginRequire from 'vite-plugin-require';
@@ -14,33 +15,51 @@ export function getConfig(framework?: string): StorybookConfig {
 
   // Stories from other storybooks will be listed thanks to references if launched
   if (framework) {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/framework/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.@(mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   } else {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/framework/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.@(mdx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.stories.@(js|ts|jsx|tsx)`));
+  }
+
+  const addons: Preset[] = [
+    '@storybook/addon-links',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        actions: false,
+        controls: false,
+        docs: !!framework,
+      },
+    },
+    {
+      name: '@storybook/addon-storysource',
+      options: {
+        loaderOptions: {
+          prettierConfig: { singleQuote: true },
+        },
+      },
+    },
+    '@storybook/addon-styling',
+  ];
+
+  if (!framework) {
+    addons.push({
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm], // Needed to format tables (but needs to disable the default `docs` from `@storybook/addon-essentials`)
+          },
+        },
+      },
+    });
   }
 
   return {
     stories: stories,
     staticDirs: ['../public'],
-    addons: [
-      '@storybook/addon-links',
-      {
-        name: '@storybook/addon-essentials',
-        options: {
-          actions: false,
-          controls: false,
-        },
-      },
-      {
-        name: '@storybook/addon-storysource',
-        options: {
-          loaderOptions: {
-            prettierConfig: { singleQuote: true },
-          },
-        },
-      },
-      '@storybook/addon-styling',
-    ],
+    addons: addons,
     core: {
       enableCrashReports: false,
       disableTelemetry: true,

@@ -11,6 +11,9 @@ export default {
   parameters: {
     options: {
       showPanel: false,
+      storySort: {
+        order: ['Introduction', 'Exemples', 'gallery'],
+      },
     },
     controls: {
       hideNoControlsWarning: true,

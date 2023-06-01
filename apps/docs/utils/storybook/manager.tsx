@@ -8,7 +8,7 @@ import { mainTargetPort } from '../../../../apps/docs/utils/static-workdaround';
 export const config: Addon_Config = {
   sidebar: {
     showRoots: true,
-    collapsedRoots: [],
+    collapsedRoots: ['gallery'],
   },
 };
 
