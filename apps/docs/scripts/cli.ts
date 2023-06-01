@@ -103,11 +103,11 @@ program
         commands = [
           {
             target: mainTarget,
-            command: `serve -l ${mainTarget.port} ${mainFolderPath}/dist`,
+            command: `http-server -p ${mainTarget.port} ${mainFolderPath}/dist`,
           },
           ...selectedFrameworks.map((framework) => ({
             target: framework,
-            command: `serve -l ${framework.port} ${mainFolderPath}/dist/frameworks/${framework.name}`,
+            command: `http-server -p ${framework.port} ${mainFolderPath}/dist/frameworks/${framework.name}`,
           })),
         ];
 
