@@ -7,8 +7,9 @@
       "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
     "composite": false,
-    "declaration": false,
-    "declarationMap": false,
+    "declaration": true,
+    "declarationDir": "./dist/",
+    "outDir": "./dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
@@ -24,6 +25,6 @@
     "target": "esnext",
     "jsx": "preserve"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

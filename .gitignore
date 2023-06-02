@@ -1,6 +1,7 @@
 # tools settings folders
 /**/.*/**/*
 !.github/**/*
+!.husky/**/*
 !.vscode/extensions.json
 !.vscode/i18n-ally-reviews.yml
 !.vscode/launch.json

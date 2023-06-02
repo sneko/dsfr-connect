@@ -35,5 +35,5 @@
       "cache": false
     }
   },
-  "globalEnv": ["CRISP_WEBSITE_ID", "SELECTED_FRAMEWORKS"]
+  "globalEnv": ["CRISP_WEBSITE_ID", "npm_package_name", "SELECTED_FRAMEWORKS"]
 }

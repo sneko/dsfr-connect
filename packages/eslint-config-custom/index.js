@@ -27,6 +27,9 @@ module.exports = {
         // The version needs to be "fixed" due to linting errors otherwise (ref: https://github.com/mdx-js/eslint-mdx/issues/366#issuecomment-1361898854)
         ecmaVersion: 12,
       },
+      rules: {
+        'no-unused-vars': 'off', // It triggers for no reason on statically used variables like the Storybook for `<Meta>`
+      },
     },
   ],
 };

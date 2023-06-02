@@ -60,10 +60,12 @@ Post an issue or contact us through the livechat module on our Storybook.
 
 - [CodeCov](https://github.com/marketplace/codecov): code coverage reports _(we have CodeQL in addition in the CI/CD... pick just one in the future)_
 
-### Environments
+#### Environments
 
-You must configure 1 environment in the CI/CD settings:
+You must configure 2 environments in the CI/CD settings:
 
+- `global` (to restrict to `dev` and `main` branches only)
+- `dev` (to restrict to `dev` branch only)
 - `prod` (to restrict to `main` branch only)
 
 ### Secrets
@@ -77,7 +79,7 @@ The following ones must be repository secrets (not environment ones):
 
 ### Default branch
 
-The default branch is `main`.
+The default branch is `dev`.
 
 ### Branch protection rules
 
@@ -86,6 +88,13 @@ The default branch is `main`.
 
     - Require status checks to pass before merging
     - Do not allow bypassing the above settings
+
+2.  Pattern: `dev`
+    Checked:
+
+    - Require linear history
+    - Do not allow bypassing the above settings
+    - Allow force pushes (+ "Specify who can force push" and leave for administrators)
 
 ### Hosting & domain
 

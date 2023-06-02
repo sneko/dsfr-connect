@@ -1,3 +1,6 @@
+// Empty default value if not specified
+$fontBaseUrl: if(global-variable-exists('fontBaseUrl'), $fontBaseUrl, '');
+
 @font-face {
   font-family: Marianne;
   src: url('#{$fontBaseUrl}Marianne-Light.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Light.woff') format('woff');
