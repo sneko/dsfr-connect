@@ -1,6 +1,8 @@
 # dsfr-connect
 
-This library will help you in theming your favorite UI framework to look like the official DSFR as much as possible (https://github.com/GouvernementFR/dsfr). Our Storybook expands on how to integrate this library but also why using main UI frameworks can help. Also, it shows a real preview of each framework components themed.
+This library will help you in theming your favorite UI framework to look like the official DSFR as much as possible (https://github.com/GouvernementFR/dsfr). Our Storybook expands on how to integrate this library but also why using main UI frameworks can help. Also, it shows a real preview of each framework components themed:
+
+🎨 https://dsfr-connect.rame.fr
 
 ## Contribute
 
