@@ -67,6 +67,8 @@ jobs:
         run: make build-prepare
 
       - name: Build
+        env:
+          CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
         run: make build && cat apps/docs/dist/main/stories.json
 
       - name: Deploy to Netlify
