@@ -1,5 +1,13 @@
 # dsfr-connect
 
+[![npm package][npm-img]][npm-url]
+[![Build Status][build-img]][build-url]
+[![Downloads][downloads-img]][downloads-url]
+[![Issues][issues-img]][issues-url]
+[![Code Coverage][codecov-img]][codecov-url]
+[![Commitizen Friendly][commitizen-img]][commitizen-url]
+[![Semantic Release][semantic-release-img]][semantic-release-url]
+
 This library will help you in theming your favorite UI framework to look like the official DSFR as much as possible (https://github.com/GouvernementFR/dsfr). Our Storybook expands on how to integrate this library but also why using main UI frameworks can help. Also, it shows a real preview of each framework components themed:
 
 🎨 https://dsfr-connect.rame.fr
@@ -116,3 +124,18 @@ Even if your project uses a TypeScript program located inside your `node_modules
 4. Then select `Use Workspace Version`
 
 In addition, using the workspace TypeScript will load `compilerOptions.plugins` specified in your `tsconfig.json` files, which is not the case otherwise. Those plugins will bring more confort while developing!
+
+[build-img]: https://github.com/sneko/dsfr-connect/actions/workflows/release.yml/badge.svg
+[build-url]: https://github.com/sneko/dsfr-connect/actions/workflows/release.yml
+[downloads-img]: https://img.shields.io/npm/dt/dsfr-connect
+[downloads-url]: https://www.npmtrends.com/dsfr-connect
+[npm-img]: https://img.shields.io/npm/v/dsfr-connect
+[npm-url]: https://www.npmjs.com/package/dsfr-connect
+[issues-img]: https://img.shields.io/github/issues/sneko/dsfr-connect
+[issues-url]: https://github.com/sneko/dsfr-connect/issues
+[codecov-img]: https://codecov.io/gh/sneko/dsfr-connect/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/sneko/dsfr-connect
+[semantic-release-img]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-url]: https://github.com/semantic-release/semantic-release
+[commitizen-img]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+[commitizen-url]: http://commitizen.github.io/cz-cli/
