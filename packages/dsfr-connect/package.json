@@ -1,7 +1,7 @@
 {
   "name": "dsfr-connect",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sneko/dsfr-connect.git",
