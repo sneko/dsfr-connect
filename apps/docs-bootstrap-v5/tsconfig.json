@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Storybook",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dsfrc/docs/*": ["../../apps/docs/*"],
+      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
+    },
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictBindCallApply": true,
+    "strict": true,
+    "target": "esnext",
+    "jsx": "preserve"
+  },
+  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

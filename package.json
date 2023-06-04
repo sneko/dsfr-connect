@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneko/dsfr-connect.git"
+  },
+  "license": "AGPL-3.0",
+  "scripts": {
+    "build:prepare": "turbo run build:prepare",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev:prepare": "turbo run dev:prepare",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mdx}\"",
+    "test:unit": "turbo run test:unit",
+    "test:unit:watch": "turbo run test:unit:watch",
+    "start": "turbo run start"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^2.5.1",
+    "turbo": "1.9.3",
+    "typescript": "^4.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@gouvfr/dsfr": "^1.9.3",
+      "@types/fs-extra": "^11.0.1",
+      "concurrently": "^8.0.1",
+      "fs-extra": "^11.1.1",
+      "http-server": "^14.1.1",
+      "sass": "^1.62.1",
+      "ts-node": "^10.9.1",
+      "tsconfig-paths": "^4.2.0",
+      "typescript": "^4.9.3",
+      "vite-plugin-static-copy": "^0.15.0"
+    }
+  },
+  "packageManager": "pnpm@7.27.1",
+  "engines": {
+    "node": "16.15.0"
+  }
+}

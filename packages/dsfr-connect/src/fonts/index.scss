@@ -1,0 +1,72 @@
+// Empty default value if not specified
+$fontBaseUrl: if(global-variable-exists('fontBaseUrl'), $fontBaseUrl, '');
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Light.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Light_Italic.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Light_Italic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Regular.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Regular_Italic.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Regular_Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Medium.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Medium_Italic.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Medium_Italic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Bold.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('#{$fontBaseUrl}Marianne-Bold_Italic.woff2') format('woff2'), url('#{$fontBaseUrl}Marianne-Bold_Italic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Spectral;
+  src: url('#{$fontBaseUrl}Spectral-Regular.woff2') format('woff2'), url('#{$fontBaseUrl}Spectral-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Spectral;
+  src: url('#{$fontBaseUrl}Spectral-ExtraBold.woff2') format('woff2'), url('#{$fontBaseUrl}Spectral-ExtraBold.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}

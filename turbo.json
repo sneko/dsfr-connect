@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build:prepare": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "test:unit": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "test:unit:watch": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "lint": {
+      "cache": false
+    },
+    "dev:prepare": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "format": {
+      "cache": false
+    },
+    "format:check": {
+      "cache": false
+    }
+  },
+  "globalEnv": ["CRISP_WEBSITE_ID", "npm_package_name", "SELECTED_FRAMEWORKS"]
+}

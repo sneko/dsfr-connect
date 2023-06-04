@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "benspaulding.procfile",
+    "bradgashler.htmltagwrap",
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
+    "deque-systems.vscode-axe-linter",
+    "dsznajder.es7-react-js-snippets",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "lacroixdavid1.vscode-format-context-menu",
+    "ms-vsliveshare.vsliveshare",
+    "Orta.vscode-jest",
+    "Prisma.prisma",
+    "SimonSiefke.svg-preview",
+    "unifiedjs.vscode-mdx"
+  ]
+}

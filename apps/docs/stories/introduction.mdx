@@ -1,0 +1,114 @@
+import LinkTo from '@storybook/addon-links/react';
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+{/* import designSystem from './design-system.png'; */}
+{/* <img src={designSystem} height="200px" /> */}
+
+# Introduction
+
+La librairie `dsfr-connect` fournit des thèmes pour les framework UI tiers (MUI, Bootstrap...) afin d'approcher le rendu visuel du [Système de Design de l'État](https://www.systeme-de-design.gouv.fr) (DSFR). C'est l'entre-deux entre garder une identité publique non reconnue, et adopter à 100% un DSFR qui dans certains cas ne répond pas à vos contraintes (lire la section ["motivation"](#motivation)).
+
+C'est un projet ouvert à contribution car adapter parfaitement le thème d'un framework pensé différemment prend du temps, mais il est bon de tous utiliser une base commune. Vous aurez les bases mais il se peut qu'il y ait quelques manques (comme dans tout outil). Il en va de même s'il manque selon vous certains frameworks UI voire certaines versions, n'hésitez pas à contribuer ou à nous contacter.
+
+Ci-dessous les différents frameworks supportés (ou non). **Ils sont tous consultables avec leur thème respectif dans ce Storybook** afin de vous donner un aperçu de la qualité du thème (ce qui aide aussi pour contribuer et voir les différences avec le vrai DSFR):
+
+| Framework UI | Version | Code technique | Statut              | Aperçu                                                                    |
+| ------------ | ------- | -------------- | ------------------- | ------------------------------------------------------------------------- |
+| Bootstrap    | v5.x.x  | `bootstrap-v5` | 🎨 Implémenté à 90% | [Voir](./?path=/story/bootstrap-v5_gallery-components-accordion--default) |
+| Vuetify      | v3.x.x  | `vuetify-v3`   | 💡 Planifié         |
+| MUI          |         |                | 💡 Planifié         |
+| Tailwind     |         |                | 💡 Planifié         |
+| Bulma        |         |                | 💡 Planifié         |
+| SemanticUI   |         |                | 💡 Planifié         |
+| HeadlessUI   |         |                | 💡 Planifié         |
+| Foundation   |         |                | 💡 Planifié         |
+| Ant Design   |         |                | 💡 Planifié         |
+| ChakraUI     |         |                | 💡 Planifié         |
+
+{/* work in progress 🚧 | approved ✅ */}
+
+_L'équipe du DSFR n'est pas à l'origine de cette librairie, leurs auteurs ne sont donc pas porte-paroles des intentions de diffuser l'adoption du DSFR. Pour autant, thémer des outils largement utilisés par la communauté est un réel besoin._
+
+## Installation
+
+**(des exemples pour chaque framework UI sont explicités dans la section "<LinkTo kind='Exemples'>Exemples</LinkTo>")**
+
+### Projet JavaScript/TypeScript
+
+Avec NPM :
+
+```
+npm install dsfr-connect
+```
+
+Avec Yarn :
+
+```
+yarn add dsfr-connect
+```
+
+Vous êtes ensuite en mesure d'importer les styles nécessaires pour adapter l'instance de votre framework UI.
+
+### Projet dans un autre langage
+
+La librairie est faite pour vous laisser à disposition les fichiers sources `.scss / .ts` et les fichiers compilés `.css / .json`. Vous pouvez ainsi utiliser des services comme [https://www.unpkg.com/]() afin de récupérer ces fichiers pour les utiliser directement dans votre projet Python par exemple.
+
+Il est aussi d'ailleurs possible d'utiliser ce type de service pour importer votre thème dans des outils démuni de compilation (par exemple un Wordpress).
+
+## <a name="motivation"></a> Motivation du project
+
+2 raisons principales quant à la réalisation de cette librairie face à l'adoption directe du DSFR.
+
+### Votre projet existe déjà
+
+Vous gérez un site public basé sur un framework UI connu et vous n'avez pas d'enveloppe budgétaire (ou pas le temps) pour vous lancer dans l'adaptation complète de votre plateforme, qui incluerait potentiellement :
+
+- de repenser la logique complète d'affichage de votre site internet
+- de retrouver des librairies (validation de formulaire, gestion de modals...) compatibles avec le DSFR (ou une implémentation du DSFR)
+
+### Votre démarrez un projet
+
+Vous avez carte blanche mais pour autant :
+
+- il est selon vous plus judicieux de repartir d'un code applicatif existant qui utilise un framework UI tiers (par exemple un outil backoffice open source qui vous éviterait de réinventer la roue)
+- vous savez que vous allez gérer beaucoup formulaires de saisie compliqués et vous avez pleine conscience que le DSFR ne propose pas encore tous les composants tels que : combobox, datepicker, select avec recherche, tableau avec filtrage...
+
+## Recommandation
+
+Dernier point avant d'utiliser `dsfr-connect` ! Utiliser un thème est très utile pour adapter en quelques minutes tout le contenu du site. Mais les frameworks UI n'ont pas de composant natif qui ressemble au `header` et `footer` du DSFR. Avec toute la volonté du monde il serait très difficile de produire un résultat similaire sans modifier votre structure HTML pour ces composants.
+
+La recommandation est donc d'utiliser le DSFR "brut" ou l'une de ses [implémentations](#implementations) afin d'intégrer un `header` et `footer` DSFR. Comme ces composants sont quasi communs à toutes les pages, la tâche devrait être facile. De l'autre côté, le thème s'occupera d'adapter le reste du site.
+
+## <a name="implementations"></a> Le DSFR et ses implémentations
+
+Le DSFR est agnostique de toute technologie et/ou outil. Il est donc fourni sous une forme "raw / vanilla" en HTML/CSS/JS.
+
+Certaines initiatives non-officielles **(mais de très bonne qualité)** ont implémenté le DSFR pour certains frameworks applicatifs afin de faciliter l'utilisation et l'adoption. Voici celles devenues références :
+
+- Pour React : [react-dsfr](https://github.com/codegouvfr/react-dsfr)
+- Pour Vue : [vue-dsfr](https://github.com/dnum-mi/vue-dsfr)
+- Pour Angular : [ngx-dsfr](https://github.com/betagouv/ngx-dsfr)
+- Pour Django : [django-dsfr](https://github.com/entrepreneur-interet-general/django-dsfr)
+- Rappel de la version "raw" officielle : [dsfr](https://github.com/GouvernementFR/dsfr)
+
+On peut les considérer comme des "frameworks UI" à proprement parler. Donc s'ils répondent à votre besoin (hors mentions faites dans [les raisons de cette librairie](#motivation)), il est clairement plus judicieux de les utiliser.
+
+## Rappel légal
+
+L'utilisation du DSFR est soumise à certaines règles que nous rappelons ici :
+
+> **Utilisation interdite en dehors des sites Internet de l'État**
+>
+> Il est formellement interdit à tout autre acteur d'utiliser le Système de Design de l'État (les administrations territoriales ou tout autre acteur privé). Le Système de Design de l'État représente l'identité numérique de l'État. En cas d'usage à des fins trompeuses ou frauduleuses, l'État se réserve le droit d'entreprendre les actions nécessaires pour y mettre un terme. Voir les [conditions générales d'utilisation](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md).
+
+## Support
+
+Si vous rencontrez un problème n'hésitez pas à poster une issue ([https://github.com/sneko/dsfr-connect/issues]()). Ou si vous souhaitez échanger concernant le librairie vous pouvez aussi utiliser la section "Support" en haut de page afin d'ouvrir un livechat.
+
+_Le support sur cette librairie est bénévole, on fera de notre mieux pour vous assister._
+
+## Contributions
+
+Le code source et les indications pour contribuer sont disponibles sur [https://github.com/sneko/dsfr-connect]().
