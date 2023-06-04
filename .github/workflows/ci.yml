@@ -7,7 +7,7 @@ on:
   pull_request:
 env:
   NODE_OPTIONS: --max_old_space_size=4096
-  NODE_VERSION: 16.15.0
+  NODE_VERSION: 18.16.0
   PNPM_VERSION: 7.27.1
 concurrency:
   group: 'cicd'
@@ -82,6 +82,7 @@ jobs:
 
       - name: Release package
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        working-directory: packages/dsfr-connect
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
