@@ -10,7 +10,8 @@ env:
   NODE_VERSION: 18.16.0
   PNPM_VERSION: 7.27.1
 concurrency:
-  group: 'cicd'
+  # Prevent parallel builds of the same branch
+  group: cicd-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   requirements:
