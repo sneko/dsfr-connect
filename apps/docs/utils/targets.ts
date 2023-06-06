@@ -2,8 +2,9 @@ import chalk, { Chalk } from 'chalk';
 
 import { build as bootstrapV5Build, downloadAndExtract as bootstrapV5DownloadAndExtract } from '@dsfrc/docs/scripts/bootstrap-v5/actions';
 import { build as mainBuild, downloadAndExtract as mainDownloadAndExtract } from '@dsfrc/docs/scripts/raw/actions';
+import { build as vuetifyV3Build, downloadAndExtract as vuetifyV3DownloadAndExtract } from '@dsfrc/docs/scripts/vuetify-v3/actions';
 
-export type TargetName = 'main' | 'bootstrap-v5';
+export type TargetName = 'main' | 'bootstrap-v5' | 'vuetify-v3';
 
 export interface Target {
   name: TargetName;
@@ -29,8 +30,11 @@ export const frameworks: Target[] = [
     extract: bootstrapV5Build,
     terminalFormatter: chalk.green,
   },
-  // {
-  //   name: 'vuetify-v3',
-  //   port: 6008,
-  // },
+  {
+    name: 'vuetify-v3',
+    port: 6008,
+    download: vuetifyV3DownloadAndExtract,
+    extract: vuetifyV3Build,
+    terminalFormatter: chalk.yellow,
+  },
 ];

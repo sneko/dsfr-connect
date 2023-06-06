@@ -15,7 +15,6 @@ export function getConfig(framework?: string): StorybookConfig {
 
   // Stories from other storybooks will be listed thanks to references if launched
   if (framework) {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.@(mdx)`));
     stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   } else {
     stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.@(mdx)`));
@@ -67,16 +66,30 @@ export function getConfig(framework?: string): StorybookConfig {
   };
 }
 
-export function viteFinalFactory(framework?: string) {
+export interface ViteFinalFactoryOptions {
+  framework?: string;
+  configToMerge?: (options: Options) => InlineConfig;
+}
+
+export function viteFinalFactory(factoryOptions?: ViteFinalFactoryOptions) {
   return async (config: InlineConfig, options: Options) => {
-    return mergeConfig(config, {
+    config = mergeConfig(config, {
       css: {
         preprocessorOptions: {
           scss: {
-            additionalData: `@import "${path.resolve(
-              __dirname,
-              `../../../../apps/docs/utils/storybook/variables.${options.configType === 'PRODUCTION' ? 'prod' : 'dev'}.scss`
-            )}";`,
+            additionalData: (content: string) => {
+              // Only add the variables to the font file for now
+              // Setting it on all would break those using `@use` since no definition must be done before
+              let preprendContent = '';
+              if (content.includes('$fontBaseUrl: ')) {
+                preprendContent = `@import "${path.resolve(
+                  __dirname,
+                  `../../../../apps/docs/utils/storybook/variables.${options.configType === 'PRODUCTION' ? 'prod' : 'dev'}.scss`
+                )}";`;
+              }
+
+              return `${preprendContent}\n${content}`;
+            },
           },
         },
       },
@@ -94,11 +107,11 @@ export function viteFinalFactory(framework?: string) {
       ],
       resolve: {
         alias: [
-          ...(framework
+          ...(factoryOptions?.framework
             ? [
                 {
-                  find: `@dsfrc/docs-${framework}`,
-                  replacement: path.resolve(__dirname, `../../../../apps/docs-${framework}`),
+                  find: `@dsfrc/docs-${factoryOptions.framework}`,
+                  replacement: path.resolve(__dirname, `../../../../apps/docs-${factoryOptions.framework}`),
                 },
               ]
             : []),
@@ -119,5 +132,11 @@ export function viteFinalFactory(framework?: string) {
         ],
       },
     });
+
+    if (factoryOptions?.configToMerge) {
+      config = mergeConfig(config, factoryOptions.configToMerge(options));
+    }
+
+    return config;
   };
 }

@@ -18,7 +18,9 @@ const config: StorybookConfig = {
     ...(commonConfig.core || {}),
     builder: '@storybook/builder-vite',
   },
-  viteFinal: viteFinalFactory(framework),
+  viteFinal: viteFinalFactory({
+    framework: framework,
+  }),
 };
 
 export default config;
