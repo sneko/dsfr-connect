@@ -20,7 +20,7 @@ addons.register(supportAddonId, () => {
     type: types.TOOLEXTRA,
     render: (options) => {
       useEffectOnce(() => {
-        let sessionIdToResume = null;
+        let sessionIdToResume: string | null = null;
         if (window) {
           const searchParams = new URLSearchParams(window.location.search);
           sessionIdToResume = searchParams.get('crisp_sid');

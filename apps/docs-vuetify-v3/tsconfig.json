@@ -6,9 +6,8 @@
       "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"],
       "@/util/*": ["stories/framework/util/*"]
     },
-    "module": "esnext",
     "types": ["vite/client"]
   },
   "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".storybook/manager.ts", "stories/framework/util"]
 }
