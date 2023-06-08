@@ -1,8 +1,6 @@
-import { getColors } from '@codegouvfr/react-dsfr';
 import { VuetifyOptions } from 'vuetify';
 
-const lightColors = getColors(false);
-const darkColors = getColors(true);
+import { darkColors, lightColors } from '../common';
 
 export function getVuetifyOptions(): VuetifyOptions {
   return {

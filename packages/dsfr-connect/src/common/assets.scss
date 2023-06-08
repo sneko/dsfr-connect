@@ -1,0 +1,5 @@
+// We set our default "CDN" to ease the usage of our themes in case people does not have
+// the time to manage assets on their own (always tedious), or want a solution out of the box
+//
+// `$assetsBaseUrl` can be overriden by defining it before the @import/@forward we make
+$assetsBaseUrl: if(global-variable-exists('assetsBaseUrl'), $assetsBaseUrl, 'https://dsfr-connect.rame.fr/main/assets/');
