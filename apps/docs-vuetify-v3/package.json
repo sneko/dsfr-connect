@@ -1,0 +1,53 @@
+{
+  "name": "docs-vuetify-v3",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneko/dsfr-connect.git",
+    "directory": "apps/docs-vuetify-v3"
+  },
+  "license": "AGPL-3.0",
+  "scripts": {
+    "cli": "cd ../../apps/docs && ts-node -r tsconfig-paths/register ./scripts/cli.ts"
+  },
+  "devDependencies": {
+    "@dsfrc/docs": "workspace:docs@*",
+    "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
+    "@mdi/font": "^7.2.96",
+    "@mdi/js": "^7.2.96",
+    "@storybook/addon-essentials": "7.0.17",
+    "@storybook/addon-interactions": "7.0.17",
+    "@storybook/addon-links": "7.0.17",
+    "@storybook/addon-storysource": "7.0.17",
+    "@storybook/addon-styling": "^1.0.8",
+    "@storybook/blocks": "7.0.17",
+    "@storybook/manager-api": "7.0.17",
+    "@storybook/types": "7.0.17",
+    "@storybook/vue3": "7.0.17",
+    "@storybook/vue3-vite": "7.0.17",
+    "@vuelidate/core": "^2.0.2",
+    "@vuelidate/validators": "^2.0.2",
+    "bootstrap": "^5.3.0-alpha3",
+    "date-fns": "^2.30.0",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "glob": "^10.2.6",
+    "http-server": "^14.1.1",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "storybook": "7.0.17",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^4.9.3",
+    "vee-validate": "^4.9.6",
+    "vite": "^4.3.8",
+    "vite-plugin-require": "^1.1.10",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vue": "^3.3.4",
+    "vuetify": "3.3.1"
+  }
+}

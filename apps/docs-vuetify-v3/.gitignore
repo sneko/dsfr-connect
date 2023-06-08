@@ -1,0 +1,5 @@
+!/.storybook/**/*
+/build-storybook.log
+
+# Compiled stories
+/stories/framework/

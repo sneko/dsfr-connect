@@ -1,0 +1,13 @@
+{
+  "extends": "../../apps/docs/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@dsfrc/docs/*": ["../../apps/docs/*"],
+      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"],
+      "@/util/*": ["stories/framework/util/*"]
+    },
+    "types": ["vite/client"]
+  },
+  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".storybook/manager.ts", "stories/framework/util"]
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "../../apps/docs/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@dsfrc/docs/*": ["../../apps/docs/*"],
+      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
+    }
+  },
+  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "stories/**/*.ts", "stories/**/*.tsx"],
+  // For whatever reason we get the following error through `stories/framework` files despite trying tons of solutions, giving up for now (not that sensitive):
+  // `Could not find a declaration file for module 'react'. '/Users/sneko/Documents/beta.gouv.fr/repos/dsfr-connect/node_modules/.pnpm/react@18.2.0/node_modules/react/index.js' implicitly has an 'any' type.`
+  "exclude": ["node_modules", "stories/framework/**/*.ts", "stories/framework/**/*.tsx"]
+}

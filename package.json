@@ -28,11 +28,26 @@
   },
   "pnpm": {
     "overrides": {
+      "@codegouvfr/react-dsfr": "^0.60.0",
       "@gouvfr/dsfr": "^1.9.3",
+      "@storybook/addon-docs": "7.0.17",
+      "@storybook/addon-essentials": "7.0.17",
+      "@storybook/addon-interactions": "7.0.17",
+      "@storybook/addon-links": "7.0.17",
+      "@storybook/addon-storysource": "7.0.17",
+      "@storybook/addon-styling": "^1.0.8",
+      "@storybook/blocks": "7.0.17",
+      "@storybook/components": "7.0.17",
+      "@storybook/manager-api": "7.0.17",
+      "@storybook/types": "7.0.17",
       "@types/fs-extra": "^11.0.1",
+      "@types/react": "18.2.9",
+      "@types/react-dom": "18.2.4",
       "concurrently": "^8.0.1",
       "fs-extra": "^11.1.1",
       "http-server": "^14.1.1",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
       "sass": "^1.62.1",
       "ts-node": "^10.9.1",
       "tsconfig-paths": "^4.2.0",
@@ -40,7 +55,7 @@
       "vite-plugin-static-copy": "^0.15.0"
     }
   },
-  "packageManager": "pnpm@7.27.1",
+  "packageManager": "pnpm@8.6.1",
   "engines": {
     "node": "18.16.0"
   }

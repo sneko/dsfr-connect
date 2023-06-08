@@ -1,6 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "dsfr-connect",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "nodenext",
+      "target": "esnext"
+    }
+  },
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -22,9 +28,10 @@
     "skipLibCheck": true,
     "strictBindCallApply": true,
     "strict": true,
+    "module": "esnext",
     "target": "esnext",
     "jsx": "preserve"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", "builder-dist"]
 }
