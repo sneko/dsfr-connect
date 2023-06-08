@@ -18,7 +18,7 @@
     "build": "pnpm run build:script && pnpm run build:json && pnpm run build:style",
     "build:script": "tsup",
     "build:style": "ts-node -r tsconfig-paths/register ./compile-style-files.ts",
-    "build:json": "ts-node -r tsconfig-paths/register ./generate-json-files.ts",
+    "build:json": "tsup --config tsup.builder.config.ts --onSuccess \"node ./builder-dist/generate-json-files.js\"",
     "dev": "concurrently --kill-others \"pnpm run dev:script\" \"pnpm run dev:style\"",
     "dev:script": "tsup --watch",
     "dev:style": "ts-node -r tsconfig-paths/register ./compile-style-files.ts --watch",
