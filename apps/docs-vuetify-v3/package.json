@@ -33,7 +33,6 @@
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "glob": "^10.2.6",
-    "helpers": "link:@/util/helpers",
     "http-server": "^14.1.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",

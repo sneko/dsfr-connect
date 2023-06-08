@@ -1,10 +1,11 @@
 import chalk, { Chalk } from 'chalk';
 
 import { build as bootstrapV5Build, downloadAndExtract as bootstrapV5DownloadAndExtract } from '@dsfrc/docs/scripts/bootstrap-v5/actions';
+import { build as muiV5Build, downloadAndExtract as muiV5DownloadAndExtract } from '@dsfrc/docs/scripts/mui-v5/actions';
 import { build as mainBuild, downloadAndExtract as mainDownloadAndExtract } from '@dsfrc/docs/scripts/raw/actions';
 import { build as vuetifyV3Build, downloadAndExtract as vuetifyV3DownloadAndExtract } from '@dsfrc/docs/scripts/vuetify-v3/actions';
 
-export type TargetName = 'main' | 'bootstrap-v5' | 'vuetify-v3';
+export type TargetName = 'main' | 'bootstrap-v5' | 'vuetify-v3' | 'mui-v5';
 
 export interface Target {
   name: TargetName;
@@ -36,5 +37,12 @@ export const frameworks: Target[] = [
     download: vuetifyV3DownloadAndExtract,
     extract: vuetifyV3Build,
     terminalFormatter: chalk.yellow,
+  },
+  {
+    name: 'mui-v5',
+    port: 6009,
+    download: muiV5DownloadAndExtract,
+    extract: muiV5Build,
+    terminalFormatter: chalk.magenta,
   },
 ];

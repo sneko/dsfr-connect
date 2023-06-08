@@ -28,6 +28,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@codegouvfr/react-dsfr": "^0.60.0",
       "@gouvfr/dsfr": "^1.9.3",
       "@storybook/addon-docs": "7.0.17",
       "@storybook/addon-essentials": "7.0.17",
