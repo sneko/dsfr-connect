@@ -40,7 +40,18 @@ export async function build() {
         // Subtract the root and remove the extension
         const storyName = path.relative(folderToStripPath, entry).replace(/\.[^/.]+$/, '');
 
+        // Skip because those components have a logic not easy to mimic or to disable
+        if (
+          [
+            'v-ripple/misc-ripple-in-components', // Triggers the following issue: https://github.com/storybookjs/storybook/issues/22090#issuecomment-1582070420 and https://github.com/storybookjs/storybook/issues/22909
+            'v-sheet/usage', // Use a custom store that adds complexity
+          ].includes(storyName)
+        ) {
+          return;
+        }
+
         let content = await fs.readFile(entry, 'utf-8');
+        content = content.replace(/<codepen-(additional|resources[^>]*)>[\s\S]*?<\/codepen-(additional|resources)>/g, '').trim(); // Clean metadata content from their documentation
 
         // Format the story
         const storyContent = storyTemplate({
