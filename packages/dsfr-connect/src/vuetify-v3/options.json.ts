@@ -1,3 +1,3 @@
 import { getVuetifyOptions } from '.';
 
-export default getVuetifyOptions();
+export default getVuetifyOptions;
