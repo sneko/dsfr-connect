@@ -1,0 +1,94 @@
+import LinkTo from '@storybook/addon-links/react';
+import { Meta } from '@storybook/blocks';
+
+import logoExample from '@dsfrc/docs/stories/prerequisites_logo.svg';
+import logoDsfrConnect from '@dsfrc/dsfr-connect/src/assets/logo/marianne.svg';
+
+<Meta title="dsfr-connect/Prérequis" />
+
+# Prérequis
+
+_(... bon ok ce n'est pas des prérequis mais il faudrait au moins lire `Assets ou pas assets ?`_ 😎 _)_
+
+## Assets ou pas assets ?
+
+Chaque thème proposé va essayer d'initialiser le plus de choses possibles, cela concerne :
+
+- les ajustements graphiques
+- les polices (fonts)
+- les icônes applicatives (favicon)
+- les logos
+
+Pour tous excepté les ajustements grpahiques, cela revient à dépendre de fichiers tiers à fournir pour qu'ils puissent être chargés par le navigateur. Plus communément ils sont distribués par l'application ou sont hébergés sur un CDN.
+
+Que vous utilisiez des étapes de compilation via Webpack, Vite (...) voire aucune, c'est toujours un peu casse-tête pour copier les bons fichiers dans un dossier public afin qu'ils soient accessibles par le navigateur (problèmes en fonction des environnements, en fonction des chemins relatifs et absolus...). Ainsi, **pour faciliter l'adoption et la découverte de nos thèmes**, nous avons fait pointer les liens d'assets vers notre propre "CDN" via une URL absolue.
+
+Bien que cela soit viable, **il est toujours conseillé de fournir vous-mêmes les assets d'un applicatif** (que ce soit sur CDN ou en brut dans un dossier "public" de votre application). Pourquoi ? Car un service tiers n'est pas garanti d'être opérationnel à 100% quand le vôtre l'est, voire il peut être discontinué.
+
+Ci-dessous quelques indications pour ceux qui souhaitent héberger par eux-mêmes les assets.
+
+**Aussi, si les notices d'utilisation d'un thème ne précise rien concernant les assets, et que vous remarquez qu'ils sont manquants, vous devez probablement suivre les étapes suivantes.**
+
+## Héberger les fonts
+
+Sachez que toutes les fonts sont fournies dans le package NPM du DSFR :
+
+```
+@gouvfr/dsfr/dist/fonts/*
+```
+
+Il est conseillé au moment de compiler votre projet de les rendre disponibles via une URL du type `/assets/fonts`.
+
+Quelques plugins pour vous aider en fonction de votre bundler :
+
+- Webpack : `copy-webpack-plugin`
+- Vite : `vite-plugin-static-copy`
+- ...
+
+Il est fort probable que le chemin de destination est de les mettre dans le dossier `public` à la racine de votre projet (cela dépend du framework). Aussi, vous pourrez ensuite ignorer `/public/assets/fonts` dans `.gitignore` afin de ne pas les committer.
+
+_(Il est déconseillé de committer les fonts sur son repository sauf si ça vous paraît être le plus simple dans le cas de votre configuration)_
+
+Ensuite vous devez utiliser un fichier CSS pour pointer vers ces fonts. Si vous avez le module SASS d'activé, vous pouvez directement faire :
+
+```scss
+$assetsBaseUrl: '../chemin-a-definir';
+
+@import 'dsfr-connect/src/fonts/index.scss';
+```
+
+## Héberger les icônes
+
+Même combat que pour les fonts, reprenez les intructions sauf que le chemin où les trouver est :
+
+```
+@gouvfr/dsfr/dist/favicon/*
+```
+
+Et que l'URL du dossier de destination serait `/assets/favicon`
+
+Ensuite dans la balise `<head>` de votre applicatif vous pouvez ajouter :
+
+```html
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+<link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+<link rel="manifest" href="/assets/favicon/manifest.webmanifest" />
+```
+
+_(ajustez les chemins indiqués s'ils ne sont pas servis depuis la racine de votre site)_
+
+## Fournir un logo de votre administration
+
+La charte graphique de l'État définit précisément la nomenclature des logos en fonction de l'administration :
+
+<img src={logoExample} height="150" />
+
+La librairie du DSFR offre un moyen de le réaliser en HTML pour pouvoir utiliser n'importe quel texte et avoir un rendu qui respecte les attentes. Dans le cas de `dsfr-connect` le logo est majoritairement une image demandée par les frameworks UI voire les outils tiers. _(si vous avez accès au HTML très bien, mais il faudra aussi que vous impotiez toute la librairie DSFR)_
+
+Afin d'être le plus exhaustif possible nous fournissons par défaut une simple Marianne quand les thèmes peuvent avoir un logo.
+
+<img src={logoDsfrConnect} height="50" />
+_(le SVG est situé dans `dsfr-connect/src/assets/logo/marianne.svg`)_
+
+Nous vous conseillons de l'ajuster "aux couleurs" de votre administration afin de respecter la charte graphique de l'État. En fonction du thème utilisé il faudra probablement mettre votre image dans un dossier `assets` comme pour les fonts, et ajuster votre thème pour pointer vers ce nouveau fichier.

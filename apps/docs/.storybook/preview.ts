@@ -13,7 +13,7 @@ export default {
     options: {
       showPanel: false,
       storySort: {
-        order: ['dsfr-connect', ['Introduction', 'Utilisation'], 'gallery'],
+        order: ['dsfr-connect', ['Introduction', 'Prérequis', 'Utilisation'], 'gallery'],
       },
     },
     controls: {
