@@ -8,6 +8,7 @@ import { Target, frameworks, mainTarget } from '@dsfrc/docs/utils/targets';
 interface CommandOptions {
   frameworks?: string[];
   framework?: boolean;
+  main?: boolean;
 }
 
 interface TargetCommand {
@@ -34,7 +35,7 @@ program
     }
 
     const options = program.opts<CommandOptions>();
-    const targetsMain = options.framework === false;
+    const targetsMain = options.main === true;
 
     let selectedFrameworks: Target[];
     if (options.frameworks && options.frameworks.length > 0) {
