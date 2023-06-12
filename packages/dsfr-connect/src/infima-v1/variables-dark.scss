@@ -1,0 +1,394 @@
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
+@use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
+
+html[data-theme='dark'],
+body[data-theme='dark'] {
+  --ifm-color-scheme: dark;
+
+  $primary: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  $secondary: dsfrColors.from(
+    background contrast blue-france,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  $success: dsfrColors.from(
+    background action-high success,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  $info: dsfrColors.from(
+    background action-high info,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  $warning: dsfrColors.from(
+    background action-high warning,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  $danger: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+
+  --ifm-color-primary: #{$primary};
+  --ifm-color-secondary: #{$secondary};
+  --ifm-color-success: #{$success};
+  --ifm-color-info: #{$info};
+  --ifm-color-warning: #{$warning};
+  --ifm-color-danger: #{$danger};
+  --ifm-color-primary-dark: #{darken($primary, $darkValue)};
+  --ifm-color-primary-darker: #{darken($primary, $darkerValue)};
+  --ifm-color-primary-darkest: #{darken($primary, $darkestValue)};
+  --ifm-color-primary-light: #{lighten($primary, $lightValue)};
+  --ifm-color-primary-lighter: #{lighten($primary, $lighterValue)};
+  --ifm-color-primary-lightest: #{lighten($primary, $lightestValue)};
+  --ifm-color-primary-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-primary-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-secondary-dark: #{darken($secondary, $darkValue)};
+  --ifm-color-secondary-darker: #{darken($secondary, $darkerValue)};
+  --ifm-color-secondary-darkest: #{darken($secondary, $darkestValue)};
+  --ifm-color-secondary-light: #{lighten($secondary, $lightValue)};
+  --ifm-color-secondary-lighter: #{lighten($secondary, $lighterValue)};
+  --ifm-color-secondary-lightest: #{lighten($secondary, $lightestValue)};
+  --ifm-color-secondary-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-secondary-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-success-dark: #{darken($success, $darkValue)};
+  --ifm-color-success-darker: #{darken($success, $darkerValue)};
+  --ifm-color-success-darkest: #{darken($success, $darkestValue)};
+  --ifm-color-success-light: #{lighten($success, $lightValue)};
+  --ifm-color-success-lighter: #{lighten($success, $lighterValue)};
+  --ifm-color-success-lightest: #{lighten($success, $lightestValue)};
+  --ifm-color-success-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-success-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-info-dark: #{darken($info, $darkValue)};
+  --ifm-color-info-darker: #{darken($info, $darkerValue)};
+  --ifm-color-info-darkest: #{darken($info, $darkestValue)};
+  --ifm-color-info-light: #{lighten($info, $lightValue)};
+  --ifm-color-info-lighter: #{lighten($info, $lighterValue)};
+  --ifm-color-info-lightest: #{lighten($info, $lightestValue)};
+  --ifm-color-info-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-info-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-warning-dark: #{darken($warning, $darkValue)};
+  --ifm-color-warning-darker: #{darken($warning, $darkerValue)};
+  --ifm-color-warning-darkest: #{darken($warning, $darkestValue)};
+  --ifm-color-warning-light: #{lighten($warning, $lightValue)};
+  --ifm-color-warning-lighter: #{lighten($warning, $lighterValue)};
+  --ifm-color-warning-lightest: #{lighten($warning, $lightestValue)};
+  --ifm-color-warning-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-warning-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-danger-dark: #{darken($danger, $darkValue)};
+  --ifm-color-danger-darker: #{darken($danger, $darkerValue)};
+  --ifm-color-danger-darkest: #{darken($danger, $darkestValue)};
+  --ifm-color-danger-light: #{lighten($danger, $lightValue)};
+  --ifm-color-danger-lighter: #{lighten($danger, $lighterValue)};
+  --ifm-color-danger-lightest: #{lighten($danger, $lightestValue)};
+  --ifm-color-danger-contrast-background: #{dsfrColors.from(
+      background default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+  --ifm-color-danger-contrast-foreground: #{dsfrColors.from(
+      text default grey,
+      hex,
+      (
+        theme: dark,
+      )
+    )};
+
+  --ifm-color-emphasis-0: var(--ifm-color-gray-1000);
+  --ifm-color-emphasis-100: var(--ifm-color-gray-900);
+  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
+  --ifm-color-emphasis-300: var(--ifm-color-gray-700);
+  --ifm-color-emphasis-400: var(--ifm-color-gray-600);
+  --ifm-color-emphasis-500: var(--ifm-color-gray-500);
+  --ifm-color-emphasis-600: var(--ifm-color-gray-400);
+  --ifm-color-emphasis-700: var(--ifm-color-gray-300);
+  --ifm-color-emphasis-800: var(--ifm-color-gray-200);
+  --ifm-color-emphasis-900: var(--ifm-color-gray-100);
+  --ifm-color-emphasis-1000: var(--ifm-color-gray-0);
+
+  --ifm-background-color: var(--ifm-color-black);
+  --ifm-background-surface-color: #242526;
+
+  --ifm-hover-overlay: rgba(255, 255, 255, 0.05);
+
+  --ifm-color-content: #e3e3e3;
+  --ifm-color-content-secondary: rgba(255, 255, 255, 1);
+
+  --ifm-breadcrumb-separator-filter: invert(64%) sepia(11%) saturate(0%) hue-rotate(149deg) brightness(99%) contrast(95%);
+
+  --ifm-code-background: rgba(255, 255, 255, 0.1);
+
+  --ifm-scrollbar-track-background-color: #444444;
+  --ifm-scrollbar-thumb-background-color: #686868;
+  --ifm-scrollbar-thumb-hover-background-color: #7a7a7a;
+
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.07);
+
+  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
+  --ifm-color-primary-contrast-background: rgb(16, 36, 69);
+  --ifm-color-primary-contrast-foreground: rgb(235, 242, 252);
+  --ifm-color-secondary-contrast-background: rgb(71, 71, 72);
+  --ifm-color-secondary-contrast-foreground: rgb(253, 253, 254);
+  --ifm-color-success-contrast-background: rgb(0, 49, 0);
+  --ifm-color-success-contrast-foreground: rgb(230, 246, 230);
+  --ifm-color-info-contrast-background: rgb(25, 60, 71);
+  --ifm-color-info-contrast-foreground: rgb(238, 249, 253);
+  --ifm-color-warning-contrast-background: rgb(77, 56, 0);
+  --ifm-color-warning-contrast-foreground: rgb(255, 248, 230);
+  --ifm-color-danger-contrast-background: rgb(75, 17, 19);
+  --ifm-color-danger-contrast-foreground: rgb(255, 235, 236);
+
+  .alert--primary {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background action-high blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .alert--secondary {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background contrast blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .alert--success {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background flat success,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .alert--info {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background flat info,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .alert--warning {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background flat warning,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .alert--danger {
+    --ifm-alert-border-color: #{dsfrColors.from(
+        background flat error,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--primary {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background action-high blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text inverted blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--secondary {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background contrast blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text title blue-france,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--success {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background contrast success,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text default success,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--info {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background contrast info,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text default info,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--warning {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background contrast warning,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text default warning,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .badge--danger {
+    --ifm-badge-background-color: #{dsfrColors.from(
+        background contrast error,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+    --ifm-badge-color: #{dsfrColors.from(
+        text default error,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+
+  .card {
+    box-shadow: 0 0 0 1px var(--border-default-grey);
+    box-shadow: 0 0 0 1px #{dsfrColors.from(
+        border default grey,
+        hex,
+        (
+          theme: dark,
+        )
+      )};
+  }
+}

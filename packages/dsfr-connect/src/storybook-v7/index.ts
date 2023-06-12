@@ -49,8 +49,6 @@ const commonVariables: ThemeVars = {
   // gridCellSize: ?, // Don't know what it targets
 };
 
-lightColors.decisions.text.inverted.grey.default;
-
 const lightVariables: ThemeVars = {
   ...commonVariables,
   base: 'light',
