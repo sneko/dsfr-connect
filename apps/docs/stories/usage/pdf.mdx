@@ -1,4 +1,3 @@
-import LinkTo from '@storybook/addon-links/react';
 import { Meta } from '@storybook/blocks';
 
 import preview from '@dsfrc/docs/stories/usage/pdf_preview.png';
@@ -23,7 +22,7 @@ Vous pouvez trouver la charte sur [https://www.culture.gouv.fr/content/download/
 
 Dans votre langage backend trouvez une librairie pour formatter les PDF sans devoir spécifier des placements en coordonnées absolues `(x, y)`. Cela deviendrait trop vite compliqué. Il vaut mieux trouver une librairie qui reprend les notions de placement et de style du web (flexbox, CSS...), vous gagnerez du temps pour la prise en main, et ça vous permettra de facilement gérer des scénarios compliqués où un long tableau doit être "coupé" précisément quand il est à cheval sur plusieurs pages.
 
-A noter qu'il est peu probable que la personne qui visionnera votre PDF ait les fonts "Marianne" sur son ordinateur. Donc regardez aussi si votre librairie vous permet de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans <LinkTo kind='Prérequis'>les prérequis</LinkTo>).
+A noter qu'il est peu probable que la personne qui visionnera votre PDF ait les fonts "Marianne" sur son ordinateur. Donc regardez aussi si votre librairie vous permet de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans [les prérequis](./?path=/docs/dsfr-connect-prérequis--docs)).
 
 Bref, on n'a pas de solution agnostique... **mais si jamais vous utilisez les technologies React nous vous recommandons de regarder l'implémentation d'un projet qui permet ce rendu** :
 
