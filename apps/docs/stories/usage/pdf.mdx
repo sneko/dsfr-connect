@@ -1,0 +1,37 @@
+import LinkTo from '@storybook/addon-links/react';
+import { Meta } from '@storybook/blocks';
+
+import preview from '@dsfrc/docs/stories/usage/pdf_preview.png';
+
+<Meta title="dsfr-connect/Utilisation/pdf" />
+
+# pdf
+
+Il n'y a pas d'équivalent de librairie DSFR pour la création d'un PDF aux couleurs des administrations.
+
+Cela peut sembler assez logique puisque le DSFR se concentre sur la technologie web pour les navigateurs internet. Le formattage de PDF n'est pas propre aux navigateurs, pire encore, cela va dépendre de votre technologie backend.
+
+Il faut donc improviser...
+
+## Quel rendu visuel attendu ?
+
+Il existe une nomenclature dans la charte graphique de l'État pour mettre en page les formats A4, donc normalement cela devrait correspondre pour habiller votre PDF.
+
+Vous pouvez trouver la charte sur [https://www.culture.gouv.fr/content/download/273817/file/charte_graphique_de_letat.pdf?inLanguage=fre-FR](https://www.culture.gouv.fr/content/download/273817/file/charte_graphique_de_letat.pdf?inLanguage=fre-FR) et aller à partir de la page 55 pour voir quelques exemples "PDF".
+
+## Nos conseils
+
+Dans votre langage backend trouvez une librairie pour formatter les PDF sans devoir spécifier des placements en coordonnées absolues `(x, y)`. Cela deviendrait trop vite compliqué. Il vaut mieux trouver une librairie qui reprend les notions de placement et de style du web (flexbox, CSS...), vous gagnerez du temps pour la prise en main, et ça vous permettra de facilement gérer des scénarios compliqués où un long tableau doit être "coupé" précisément quand il est à cheval sur plusieurs pages.
+
+A noter qu'il est peu probable que la personne qui visionnera votre PDF ait les fonts "Marianne" sur son ordinateur. Donc regardez aussi si votre librairie vous permet de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans <LinkTo kind='Prérequis'>les prérequis</LinkTo>).
+
+Bref, on n'a pas de solution agnostique... **mais si jamais vous utilisez les technologies React nous vous recommandons de regarder l'implémentation d'un projet qui permet ce rendu** :
+
+<img src={preview} height="500" />
+_(la prévisualisation de cet exemple est disponible sur [https://dev--63755f407b1dc7a43c637c1d.chromatic.com/?path=/story/documents-templates-casesynthesis--normal](https://dev--63755f407b1dc7a43c637c1d.chromatic.com/?path=/story/documents-templates-casesynthesis--normal))_
+
+Ce projet utilise [react-pdf](https://react-pdf.org/) afin de bénéficier du framework React pour la gestion de variables, l'imbrication des composants... Si cela vous intéresse allez sur le dossier [https://github.com/inclusion-numerique/mediature/tree/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/documents](https://github.com/inclusion-numerique/mediature/tree/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/documents) et récupérez ces fichiers (vous pouvez ignorez ceux ayant l'extension `.stories.ts` qui sont liés à Storybook). Si jamais vous rencontrez la moindre difficulté n'hésitez pas à nous contacter.
+
+**À noter qu'en fonction de l'adoption de cette méthode, nous l'incorporerons peut-être dans `dsfr-connect`.**
+
+_Dernier point, si vous êtes curieux de l'utilisation de Storybook au sein de votre projet pour prévisualiser vos composants, emails et PDF sans utiliser de backend, ce projet avait fait un petit retour d'expérience disponible ici : [https://docs.google.com/document/d/1jOwMgouNtsnaqlQB139jzoA5synRfIjhtuUFrHK65-U](https://docs.google.com/document/d/1jOwMgouNtsnaqlQB139jzoA5synRfIjhtuUFrHK65-U)_
