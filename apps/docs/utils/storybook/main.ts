@@ -14,7 +14,7 @@ function getEnvironmentVariables(environment: 'development' | 'production'): Rec
   const isProduction = environment === 'production';
 
   return {
-    DSFR_CONNECT_ASSETS_BASE_URL: isProduction ? './' : '/assets/',
+    DSFR_CONNECT_ASSETS_BASE_URL: isProduction ? './assets/' : '/assets/',
   };
 }
 
@@ -70,8 +70,8 @@ export function getConfig(framework?: string): StorybookConfig {
 
   return {
     managerHead: managerHeadFactory({
-      storybookStylePath: '/assets/storybook/index.css',
-      faviconFolderPath: '/assets/favicon/',
+      storybookStylePath: './assets/storybook/index.css',
+      faviconFolderPath: './assets/favicon/',
     }),
     stories: stories,
     staticDirs: ['../public'],

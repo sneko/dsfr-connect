@@ -42,7 +42,7 @@ const commonVariables: ThemeVars = {
   fontCode: 'monospace',
   brandTitle: `Storybook de l'État`,
   brandUrl: './',
-  brandImage: `${assetsBaseUrl}logo/marianne.svg`, // TODO
+  brandImage: `${assetsBaseUrl}logo/marianne.svg`,
   brandTarget: '_self',
   appBorderRadius: 0,
   inputBorderRadius: 0, // Will be set with CSS
