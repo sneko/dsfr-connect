@@ -4,8 +4,12 @@
     "build:prepare": {
       "cache": false
     },
+    "dsfr-connect#build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["dsfr-connect#build"],
       "outputs": ["dist/**"]
     },
     "test:unit": {
