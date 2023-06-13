@@ -39,9 +39,9 @@ export default <StorybookConfig>{
 
 ### Utiliser le dark mode
 
-Il n'y a pas de gestion native pour gérer 2 thèmes (bien que la UI Storybook de base sache le faire, ce n'est pas paramétable). Il faut vous pour cela utiliser le plugin [https://github.com/hipstersmoothie/storybook-dark-mode](https://github.com/hipstersmoothie/storybook-dark-mode).
+Il n'y a pas de gestion native pour gérer 2 thèmes (bien que la UI Storybook de base sache le faire, ce n'est pas paramétable). Il vous faut pour cela utiliser le plugin [https://github.com/hipstersmoothie/storybook-dark-mode](https://github.com/hipstersmoothie/storybook-dark-mode).
 
-Vous devrez faire en sorte de ne pas spécifier de thème dans `manager.ts` puis mettre dans votre configuration Storybook :
+Assurez-vous de ne pas spécifier de thème "fixe"" dans `manager.ts`, puis mettez dans votre configuration Storybook :
 
 ```ts
 // .storybook/preview.ts
@@ -83,11 +83,11 @@ import '@gouvfr/dsfr/dist/utility/utility.css';
 import 'dsfr-connect/dist/fonts/index.css';
 ```
 
-Cet exemple est pour le DSFR "brut", c'est à dire qu'on ne décrit pas les initialisations propres à l'implémentation DSFR que vous pourriez utiliser (`react-dsfr`, `vue-dsfr`...). Aussi, il ne prend pas en compte la gestion du dark mode car celui-ci doit être géré par des plugins Storybook tiers (libre à vous de vous inspirer du code de ce Storybook).
+Cet exemple est pour utiliser le DSFR "brut", c'est à dire que l'on ne décrit pas les initialisations propres aux implémentations DSFR que vous pourriez utiliser (`react-dsfr`, `vue-dsfr`...). Aussi, dans cet exemple le DSFR ne prendra pas en compte les changements du dark mode via les menus Storybook, vous devez pour cela relier le "switch" (= action) au fait manipuler la balise `<html>` en `<html data-fr-theme="dark" data-fr-scheme="dark">` (libre à vous de vous inspirer du code de ce Storybook pour le mettre en place).
 
 ## Utiliser le DSFR dans les fichiers de documentation
 
-Si écrivez `.mdx` dans Storybook v7 vous avez probablement remarqué que le style par défaut de Storybook est en conflit avec celui du DSFR. La solution que nous avons trouvé est de les mettre dans un composant `<Unstyled>`. Bien que cela ne règle pas des conflits sur certains liens en markdown, cela vous aidera grandement.
+Si écrivez des fichiers `.mdx` dans Storybook v7 vous avez probablement remarqué que le style par défaut de Storybook est en conflit avec celui du DSFR. La solution que nous avons trouvé est de mettre les contenus `.mdx` dans un composant `<Unstyled>`. Bien que cela ne règle pas la totalité des conflits cela aidera grandement.
 
 ```ts
 // .storybook/preview.ts
