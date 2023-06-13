@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/blocks';
+
+import darkPreview from '@dsfrc/docs/stories/usage/email_dark_preview.png';
+import preview from '@dsfrc/docs/stories/usage/email_preview.png';
+
+<Meta title="dsfr-connect/Utilisation/email" />
+
+# email
+
+Malheureusement à notre connaissance ni le DSFR ni la charte graphique de l'État ne donnent d'indications sur le format d'un email malgré qu'ils soient omniprésents dans les applications de l'État. _(si cela change ou si on a loupé quelque chose, merci de nous contacter)_
+
+Il faut donc improviser...
+
+## Nos conseils
+
+Les emails ont toujours été compliqué à formatter car non content d'hériter de technologies web disparates (webkit, internet explorer...) ils ont en plus des restrictions toujours plus ou moins d'actualité en fonction des clients web emails (exemples : il faut que le style CSS soit "inline" dans les balises HTML, il faut utiliser des balises `<table>` de préférence...).
+
+Autant d'incertitudes qui amènent à la conclusion : **n'essayez pas de formatter la structure de vos emails vous-même. Appuyez-vous d'un framework dédié !**
+
+L'un des plus connus et celui que l'on recommande est [`mjml`](https://mjml.io). L'idée est que `mjml` vous propose quelques balises HTML qui devraient vous suffire à formatter votre email. Ainsi, il se charge de compiler ces balises en HTML brut afin d'avoir un email compatible sur quasiment tous les clients emails HTML. Des librairies/API de compilation MJML sont disponibles sur pas mal de languages, vous devriez donc trouver votre bonheur.
+
+On ne propose actuellement pas de thème agnostique pour MJML **mais si jamais vous utilisez les technologies React nous vous recommandons de regarder l'implémentation d'un projet qui permet ce rendu** :
+
+<p float="left">
+  <img src={preview} height="500" />
+  <img src={darkPreview} height="500" />
+</p>
+
+_(la prévisualisation de ces exemples est disponible sur [https://dev--63755f407b1dc7a43c637c1d.chromatic.com/?path=/story/emails-templates-signupinvitationasadmin--client-overview](https://dev--63755f407b1dc7a43c637c1d.chromatic.com/?path=/story/emails-templates-signupinvitationasadmin--client-overview))_
+
+**À noter que même si l'implémentation utilise React, vous pouvez quand même vous inspirer des paramètres et styles passés aux composants puisque l'API des composants MJML natifs est quasiment identique.**
+
+Si cela vous intéresse allez sur le dossier [https://github.com/inclusion-numerique/mediature/tree/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/emails](https://github.com/inclusion-numerique/mediature/tree/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/emails) et récupérez ces fichiers (vous pouvez ignorez ceux ayant l'extension `.stories.ts` qui sont liés à Storybook). Si jamais vous rencontrez la moindre difficulté n'hésitez pas à nous contacter.
+
+Quelques points importants implémentés dans cet exemple :
+
+- comme il est peu probable que la personne qui visionnera votre email ait les fonts "Marianne" sur son ordinateur ou téléphone, il est indipensable indispensable de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans [les prérequis](./?path=/docs/dsfr-connect-prérequis--docs))
+- de plus en plus de terminaux active le "dark mode" pour leur client email, l'exemple vous montre comment simplement gérer cela (si vous ne voulez pas le gérer, soyez sûr de mettre un fond clair sur l'ensemble de l'email au risque sinon d'avoir un email presque invisible)
+- il est utile d'envoyer un email "multipart text/html". Certains clients ou certaines personnes n'ont pas le visionnage HTML d'activé, fournir une version textuelle est donc utile. Pour cela pas besoin de maintenir 2 contenus différents du même email, le projet en exemple ci-dessus utilise `html-to-text` (voir [ici](https://github.com/inclusion-numerique/mediature/blob/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/utils/email.ts) pour le paramétrage en lien avec leur layout d'email)
+
+**À noter qu'en fonction de l'adoption de cette méthode, nous incorporerons peut-être la plupart des paramètres et styles de base dans `dsfr-connect`.**
+
+_Dernier point, si vous êtes curieux de l'utilisation de Storybook au sein de votre projet pour prévisualiser vos composants, emails et PDF sans utiliser de backend, ce projet avait fait un petit retour d'expérience disponible ici : [https://docs.google.com/document/d/1jOwMgouNtsnaqlQB139jzoA5synRfIjhtuUFrHK65-U](https://docs.google.com/document/d/1jOwMgouNtsnaqlQB139jzoA5synRfIjhtuUFrHK65-U)_

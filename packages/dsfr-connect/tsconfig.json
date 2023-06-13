@@ -30,7 +30,7 @@
     "strict": true,
     "module": "esnext",
     "target": "esnext",
-    "jsx": "preserve"
+    "jsx": "react"
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "builder-dist"]

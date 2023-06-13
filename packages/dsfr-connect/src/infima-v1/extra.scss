@@ -1,0 +1,94 @@
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
+@use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
+
+.alert--primary {
+  --ifm-alert-border-color: #{dsfrColors.from(background action-high blue-france, hex)};
+}
+
+.alert--secondary {
+  --ifm-alert-border-color: #{dsfrColors.from(background contrast blue-france, hex)};
+}
+
+.alert--success {
+  --ifm-alert-border-color: #{dsfrColors.from(background flat success, hex)};
+}
+
+.alert--info {
+  --ifm-alert-border-color: #{dsfrColors.from(background flat info, hex)};
+}
+
+.alert--warning {
+  --ifm-alert-border-color: #{dsfrColors.from(background flat warning, hex)};
+}
+
+.alert--danger {
+  --ifm-alert-border-color: #{dsfrColors.from(background flat error, hex)};
+}
+
+.badge {
+  font-size: dsfrSpacing.space(3.5v);
+  text-transform: uppercase;
+}
+
+.badge--primary {
+  --ifm-badge-background-color: #{dsfrColors.from(background action-high blue-france, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text inverted blue-france, hex)};
+}
+
+.badge--secondary {
+  --ifm-badge-background-color: #{dsfrColors.from(background contrast blue-france, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text title blue-france, hex)};
+}
+
+.badge--success {
+  --ifm-badge-background-color: #{dsfrColors.from(background contrast success, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text default success, hex)};
+}
+
+.badge--info {
+  --ifm-badge-background-color: #{dsfrColors.from(background contrast info, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text default info, hex)};
+}
+
+.badge--warning {
+  --ifm-badge-background-color: #{dsfrColors.from(background contrast warning, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text default warning, hex)};
+}
+
+.badge--danger {
+  --ifm-badge-background-color: #{dsfrColors.from(background contrast error, hex)};
+  --ifm-badge-color: #{dsfrColors.from(text default error, hex)};
+}
+
+.breadcrumbs__link {
+  text-underline-offset: 3px;
+  text-decoration: underline;
+  color: inherit !important;
+}
+
+.breadcrumbs__link:link:hover,
+.breadcrumbs__link:visited:hover,
+area[href].breadcrumbs__link:hover {
+  background: none;
+  text-decoration: underline !important;
+}
+
+.breadcrumbs__link:-moz-any-link:hover {
+  background: none;
+  text-decoration: underline !important;
+}
+
+.breadcrumbs__link:any-link:hover {
+  background: none;
+  text-decoration: underline !important;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: none;
+  text-decoration: none !important;
+}
+
+.card {
+  box-shadow: 0 0 0 1px var(--border-default-grey);
+  box-shadow: 0 0 0 1px #{dsfrColors.from(border default grey, hex)};
+}

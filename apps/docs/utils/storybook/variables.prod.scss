@@ -2,4 +2,4 @@
 // Setting `/assets/fonts/*` works but in our case of Storybook sometimes it's from the root (development), sometimes from a subfolder like `/frameworks/yyyy/assets/fonts/*` (in production)
 // ... and managing the builder `baseUrl` won't change CSS absolute paths, so we had to analyze the compiled style file location to set a relative
 // path that would work in all cases for production. Since the file `preview-xxxx.css` is under `/assets/` we set the following :)
-$fontBaseUrl: './fonts/';
+$assetsBaseUrl: './';

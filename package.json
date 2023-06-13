@@ -39,6 +39,7 @@
       "@storybook/blocks": "7.0.17",
       "@storybook/components": "7.0.17",
       "@storybook/manager-api": "7.0.17",
+      "@storybook/theming": "7.0.17",
       "@storybook/types": "7.0.17",
       "@types/fs-extra": "^11.0.1",
       "@types/react": "18.2.9",

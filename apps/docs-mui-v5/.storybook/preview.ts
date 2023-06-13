@@ -1,6 +1,7 @@
 import { withThemeByDataAttribute } from '@storybook/addon-styling';
 
-import '@dsfrc/dsfr-connect/src/fonts/index.scss';
+import '@dsfrc/dsfr-connect/src/fonts/definition.scss';
+import { darkTheme, lightTheme } from '@dsfrc/dsfr-connect/src/storybook-v7';
 
 import { withMuiTheme } from './withDsfrMuiTheme';
 
@@ -13,6 +14,11 @@ export default {
     },
     controls: {
       hideNoControlsWarning: true,
+    },
+    darkMode: {
+      light: lightTheme,
+      dark: darkTheme,
+      current: 'light',
     },
   },
   decorators: [

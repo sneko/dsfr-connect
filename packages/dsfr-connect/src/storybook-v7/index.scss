@@ -1,0 +1,51 @@
+// This file is used to style Storybook without bringing the whole DSFR style into the tool
+// because it would break some styling
+
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
+
+// Since this file is precompiled for Storybook we cannot rely on the Storybook compilation variables
+// to set paths... so we hardcode the one for our CDN (we are in `~/assets/storybook/`)
+$assetsBaseUrl: '../';
+
+@import '../fonts/definition';
+
+:root {
+  --border-plain-grey: dsfrColors.from(border plain grey, hex);
+  --text-inverted-blue-france: dsfrColors.from(text inverted blue-france, hex);
+}
+
+body.dark {
+  --border-plain-grey: dsfrColors.from(
+    border plain grey,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+  --text-inverted-blue-france: dsfrColors.from(
+    text inverted blue-france,
+    hex,
+    (
+      theme: dark,
+    )
+  );
+}
+
+#storybook-explorer-searchfield {
+  border-radius: 0 !important;
+}
+
+button[id^='set'] {
+  color: var(--text-inverted-blue-france) !important;
+}
+
+input[id^='control'],
+textarea {
+  &:not([type]),
+  &[type='email'],
+  &[type='password'],
+  &[type='number'] {
+    box-shadow: inset 0 -2px 0 0 var(--border-plain-grey);
+    border-radius: 0.25rem 0.25rem 0 0;
+  }
+}

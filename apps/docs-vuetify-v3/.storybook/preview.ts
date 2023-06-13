@@ -1,6 +1,7 @@
 import { setup } from '@storybook/vue3';
 
-import '@dsfrc/dsfr-connect/src/fonts/index.scss';
+import '@dsfrc/dsfr-connect/src/fonts/definition.scss';
+import { darkTheme, lightTheme } from '@dsfrc/dsfr-connect/src/storybook-v7';
 
 import { registerPlugins } from './plugins';
 import { withVuetifyTheme } from './withVuetifyTheme';
@@ -18,6 +19,11 @@ export default {
     },
     controls: {
       hideNoControlsWarning: true,
+    },
+    darkMode: {
+      light: lightTheme,
+      dark: darkTheme,
+      current: 'light',
     },
   },
   decorators: [

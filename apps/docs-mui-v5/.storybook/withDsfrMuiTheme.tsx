@@ -1,5 +1,6 @@
 import { startReactDsfr } from '@codegouvfr/react-dsfr/spa';
 import type { StoryFn } from '@storybook/react';
+import React from 'react';
 
 import { MuiDsfrThemeProvider } from '@dsfrc/dsfr-connect/src/mui-v5';
 

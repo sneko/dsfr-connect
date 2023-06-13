@@ -16,7 +16,7 @@ async function generateJsonFiles() {
     const generator = await import(generatorPath);
 
     // Beautify the output to ease the reading
-    const jsonContent = JSON.stringify(generator.default, null, 2);
+    const jsonContent = JSON.stringify(generator.default(), null, 2);
 
     const generatorPathWithoutTs = generatorPath.replace(/\.[^/.]+$/, ''); // Remove ".ts" extension
     const destination = path.join(outputFolderPath, path.relative(sourceFolderPath, generatorPathWithoutTs));

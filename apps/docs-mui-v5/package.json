@@ -37,6 +37,8 @@
     "@storybook/manager-api": "7.0.17",
     "@storybook/react": "7.0.17",
     "@storybook/react-vite": "7.0.17",
+    "@types/react": "18.2.9",
+    "@types/react-dom": "18.2.4",
     "autosuggest-highlight": "^3.3.4",
     "clsx": "^1.2.1",
     "css-mediaquery": "^0.1.2",

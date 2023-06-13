@@ -1,0 +1,42 @@
+{
+  "name": "docs-infima-v1",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneko/dsfr-connect.git",
+    "directory": "apps/docs-infima-v1"
+  },
+  "license": "AGPL-3.0",
+  "scripts": {
+    "cli": "cd ../../apps/docs && ts-node -r tsconfig-paths/register ./scripts/cli.ts"
+  },
+  "devDependencies": {
+    "@dsfrc/docs": "workspace:docs@*",
+    "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
+    "@storybook/addon-essentials": "7.0.17",
+    "@storybook/addon-interactions": "7.0.17",
+    "@storybook/addon-links": "7.0.17",
+    "@storybook/addon-storysource": "7.0.17",
+    "@storybook/addon-styling": "^1.0.8",
+    "@storybook/blocks": "7.0.17",
+    "@storybook/html": "7.0.17",
+    "@storybook/html-vite": "7.0.17",
+    "@storybook/manager-api": "7.0.17",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "glob": "^10.2.6",
+    "http-server": "^14.1.1",
+    "infima": "0.2.0-alpha.43",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "storybook": "7.0.17",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.3.8",
+    "vite-plugin-require": "^1.1.10",
+    "vite-tsconfig-paths": "^4.2.0"
+  }
+}

@@ -4,8 +4,12 @@
     "build:prepare": {
       "cache": false
     },
+    "dsfr-connect#build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["dsfr-connect#build"],
       "outputs": ["dist/**"]
     },
     "test:unit": {
@@ -35,5 +39,5 @@
       "cache": false
     }
   },
-  "globalEnv": ["CRISP_WEBSITE_ID", "npm_package_name", "SELECTED_FRAMEWORKS"]
+  "globalEnv": ["CRISP_WEBSITE_ID", "DSFR_CONNECT_ASSETS_BASE_URL", "npm_package_name", "SELECTED_FRAMEWORKS"]
 }

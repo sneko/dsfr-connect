@@ -8,6 +8,7 @@ import { Target, frameworks, mainTarget } from '@dsfrc/docs/utils/targets';
 interface CommandOptions {
   frameworks?: string[];
   framework?: boolean;
+  main?: boolean;
 }
 
 interface TargetCommand {
@@ -25,6 +26,7 @@ const lintCommand = `${lintEsCommand} && ${lintTsCommand}`;
 program
   .addOption(new Option('-f, --frameworks <frameworks...>', 'Frameworks to use').choices(frameworks.map((f) => f.name)))
   .option('-nf, --no-framework', 'Exclude all frameworks')
+  .option('-nm, --no-main', 'Exclude main Storybook')
   .arguments('<action>')
   .action(async (action) => {
     if (!actions.includes(action)) {
@@ -33,6 +35,7 @@ program
     }
 
     const options = program.opts<CommandOptions>();
+    const targetsMain = options.main === true;
 
     let selectedFrameworks: Target[];
     if (options.frameworks && options.frameworks.length > 0) {
@@ -49,17 +52,21 @@ program
     switch (action) {
       case 'dev':
         commands = [
-          {
-            target: mainTarget,
-            // With "dev" if launching concurrently the instance referencing others will fail with CORS issue... just adding
-            // delay solves this... which is weird :/ . Maybe the server does a specific call different then a browser visit
-            // and change the CORS configuration. We did avoid sharing the same cache, don't understand know what could be the cause.
-            // Ref: https://github.com/storybookjs/storybook/issues/12108#issuecomment-1564231780
-            command: `sleep 3 && cd ${mainFolderPath} && storybook dev -p ${mainTarget.port} --no-open`,
-            env: {
-              SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
-            },
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  // With "dev" if launching concurrently the instance referencing others will fail with CORS issue... just adding
+                  // delay solves this... which is weird :/ . Maybe the server does a specific call different then a browser visit
+                  // and change the CORS configuration. We did avoid sharing the same cache, don't understand know what could be the cause.
+                  // Ref: https://github.com/storybookjs/storybook/issues/12108#issuecomment-1564231780
+                  command: `sleep 3 && cd ${mainFolderPath} && storybook dev -p ${mainTarget.port} --no-open`,
+                  env: {
+                    SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
+                  },
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             // To avoid cache concurrency we need to run `storybook` in the dedicated folder (no cross-call)
@@ -72,15 +79,19 @@ program
         break;
       case 'build':
         commands = [
-          {
-            target: mainTarget,
-            // The first intent was to output in `/dist/` directly but it was messing with others in `/dist/frameworks/*`
-            // So use a subdirectory for the build and add a redirection file (`index.html`) after the build to easily allow using root URL
-            command: `cd ${mainFolderPath} && storybook build --output-dir ${mainFolderPath}/dist/main`,
-            env: {
-              SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
-            },
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  // The first intent was to output in `/dist/` directly but it was messing with others in `/dist/frameworks/*`
+                  // So use a subdirectory for the build and add a redirection file (`index.html`) after the build to easily allow using root URL
+                  command: `cd ${mainFolderPath} && storybook build --output-dir ${mainFolderPath}/dist/main`,
+                  env: {
+                    SELECTED_FRAMEWORKS: selectedFrameworks.map((f) => f.name).join(','),
+                  },
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             // To avoid cache concurrency we need to run `storybook` in the dedicated folder (no cross-call)
@@ -101,10 +112,14 @@ program
         break;
       case 'start':
         commands = [
-          {
-            target: mainTarget,
-            command: `http-server -p ${mainTarget.port} ${mainFolderPath}/dist`,
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  command: `http-server -p ${mainTarget.port} ${mainFolderPath}/dist`,
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             command: `http-server -p ${framework.port} ${mainFolderPath}/dist/frameworks/${framework.name}`,
@@ -116,10 +131,12 @@ program
         break;
       case 'prepare':
         await Promise.all([
-          (async () => {
-            await mainTarget.download();
-            await mainTarget.extract();
-          })(),
+          targetsMain
+            ? (async () => {
+                await mainTarget.download();
+                await mainTarget.extract();
+              })()
+            : Promise.resolve(),
           ...selectedFrameworks.map(async (framework) => {
             await framework.download();
             await framework.extract();
@@ -127,17 +144,27 @@ program
         ]);
         break;
       case 'download':
-        await Promise.all([mainTarget.download(), ...selectedFrameworks.map(async (framework) => framework.download())]);
+        await Promise.all([
+          targetsMain ? mainTarget.download() : Promise.resolve(),
+          ...selectedFrameworks.map(async (framework) => framework.download()),
+        ]);
         break;
       case 'extract':
-        await Promise.all([mainTarget.extract(), ...selectedFrameworks.map(async (framework) => framework.extract())]);
+        await Promise.all([
+          targetsMain ? mainTarget.extract() : Promise.resolve(),
+          ...selectedFrameworks.map(async (framework) => framework.extract()),
+        ]);
         break;
       case 'lint':
         commands = [
-          {
-            target: mainTarget,
-            command: `cd ${mainFolderPath} && ${lintCommand}`,
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  command: `cd ${mainFolderPath} && ${lintCommand}`,
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintCommand}`,
@@ -149,10 +176,14 @@ program
         break;
       case 'lint:es':
         commands = [
-          {
-            target: mainTarget,
-            command: `cd ${mainFolderPath} && ${lintEsCommand}`,
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  command: `cd ${mainFolderPath} && ${lintEsCommand}`,
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintEsCommand}`,
@@ -164,10 +195,14 @@ program
         break;
       case 'lint:ts':
         commands = [
-          {
-            target: mainTarget,
-            command: `cd ${mainFolderPath} && ${lintTsCommand}`,
-          },
+          ...(targetsMain
+            ? [
+                {
+                  target: mainTarget,
+                  command: `cd ${mainFolderPath} && ${lintTsCommand}`,
+                },
+              ]
+            : []),
           ...selectedFrameworks.map((framework) => ({
             target: framework,
             command: `cd ${getFrameworkFolderPath(mainFolderPath, framework.name)} && ${lintTsCommand}`,
