@@ -18,7 +18,7 @@ Chaque thème proposé va essayer d'initialiser le plus de choses possibles, cel
 - les icônes applicatives (favicon)
 - les logos
 
-Pour tous excepté les ajustements grpahiques, cela revient à dépendre de fichiers tiers à fournir pour qu'ils puissent être chargés par le navigateur. Plus communément ils sont distribués par l'application ou sont hébergés sur un CDN.
+Pour tous excepté les ajustements graphiques, cela revient à dépendre de fichiers tiers à fournir pour qu'ils puissent être chargés par le navigateur. Plus communément ils sont distribués par l'application ou sont hébergés sur un CDN.
 
 Que vous utilisiez des étapes de compilation via Webpack, Vite (...) voire aucune, c'est toujours un peu casse-tête pour copier les bons fichiers dans un dossier public afin qu'ils soient accessibles par le navigateur (problèmes en fonction des environnements, en fonction des chemins relatifs et absolus...). Ainsi, **pour faciliter l'adoption et la découverte de nos thèmes**, nous avons fait pointer les liens d'assets vers notre propre "CDN" via une URL absolue.
 
@@ -64,7 +64,7 @@ Même combat que pour les fonts, reprenez les intructions sauf que le chemin où
 @gouvfr/dsfr/dist/favicon/*
 ```
 
-Et que l'URL du dossier de destination serait `/assets/favicon`
+Et que l'URL du dossier de destination serait `/assets/favicon`.
 
 Ensuite dans la balise `<head>` de votre applicatif vous pouvez ajouter :
 
@@ -83,11 +83,13 @@ La charte graphique de l'État définit précisément la nomenclature des logos 
 
 <img src={logoExample} height="150" />
 
-La librairie du DSFR offre un moyen de le réaliser en HTML pour pouvoir utiliser n'importe quel texte et avoir un rendu qui respecte les attentes. Dans le cas de `dsfr-connect` le logo est majoritairement une image demandée par les frameworks UI voire les outils tiers. _(si vous avez accès au HTML très bien, mais il faudra aussi que vous impotiez toute la librairie DSFR)_
+La librairie du DSFR offre un moyen de le réaliser en HTML pour pouvoir utiliser n'importe quel texte et avoir un rendu qui respecte les attentes. Dans le cas de `dsfr-connect` le logo est majoritairement une image demandée par les frameworks UI voire les outils tiers. _(si vous avez accès au HTML très bien, mais il faudra aussi que vous importiez toute la librairie DSFR)_
 
-Afin d'être le plus exhaustif possible nous fournissons par défaut une simple Marianne quand les thèmes peuvent avoir un logo.
+Afin d'être le plus exhaustif possible nous fournissons par défaut une simple Marianne quand les thèmes peuvent avoir un logo :
 
 <img src={logoDsfrConnect} height="50" />
 _(le SVG est situé dans `dsfr-connect/src/assets/logo/marianne.svg`)_
 
-Nous vous conseillons de l'ajuster "aux couleurs" de votre administration afin de respecter la charte graphique de l'État. En fonction du thème utilisé il faudra probablement mettre votre image dans un dossier `assets` comme pour les fonts, et ajuster votre thème pour pointer vers ce nouveau fichier.
+Nous vous conseillons de l'ajuster "aux couleurs" de votre administration afin de respecter la charte graphique de l'État. Le plus simple est sûrement d'utiliser le DSFR dans un mini fichier HTML afin de faire le rendu du logo, et de prendre un screenshot et de retravailler la zone d'affichage (cela vous évitera des prises de tête sur un logiciel d'édition).
+
+Ensuite en fonction du thème utilisé il faudra probablement mettre votre image dans un dossier `assets` comme pour les fonts, et ajuster votre thème pour pointer vers ce nouveau fichier.

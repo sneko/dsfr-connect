@@ -34,7 +34,7 @@ Si cela vous intéresse allez sur le dossier [https://github.com/inclusion-numer
 
 Quelques points importants implémentés dans cet exemple :
 
-- comme il est peu probable que la personne qui visionnera votre email ait les fonts "Marianne" sur son ordinateur ou téléphone, il est indipensable indispensable de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans [les prérequis](./?path=/docs/dsfr-connect-prérequis--docs))
+- comme il est peu probable que la personne qui visionnera votre email ait les fonts "Marianne" sur son ordinateur ou téléphone, il est indispensable de pointer vers des fichiers de fonts distantes (idéalement servies par votre application ou hébergées sur un CDN comme expliqué dans [les prérequis](./?path=/docs/dsfr-connect-prérequis--docs))
 - de plus en plus de terminaux active le "dark mode" pour leur client email, l'exemple vous montre comment simplement gérer cela (si vous ne voulez pas le gérer, soyez sûr de mettre un fond clair sur l'ensemble de l'email au risque sinon d'avoir un email presque invisible)
 - il est utile d'envoyer un email "multipart text/html". Certains clients ou certaines personnes n'ont pas le visionnage HTML d'activé, fournir une version textuelle est donc utile. Pour cela pas besoin de maintenir 2 contenus différents du même email, le projet en exemple ci-dessus utilise `html-to-text` (voir [ici](https://github.com/inclusion-numerique/mediature/blob/1f179aeb0170a06628b5fb3600d7c9c1ac41c159/packages/ui/src/utils/email.ts) pour le paramétrage en lien avec leur layout d'email)
 
