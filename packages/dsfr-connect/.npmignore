@@ -1,0 +1,6 @@
+# By default `.gitignore` is used but once `.npmignore` exists the first one is totally ignored so we duplicate its entries
+/*/
+!/dist/
+!/src/
+/*.*
+!/package.json
