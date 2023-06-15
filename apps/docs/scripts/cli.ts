@@ -105,8 +105,10 @@ program
         await executeParallelCommands(selectedFrameworks, action, commands);
 
         // As mentioned above, add the index redirection file
+        // Also add our host configuration file (Netlify) to allow CORS for people using our themes without local assets
         await concurrently([
           { command: `cp ${path.resolve(mainFolderPath, './utils/storybook/dist-index.html')} ${path.resolve(mainFolderPath, './dist/index.html')}` },
+          { command: `cp ${path.resolve(mainFolderPath, './utils/netlify.toml')} ${path.resolve(mainFolderPath, './dist/netlify.toml')}` },
         ]).result;
 
         break;
