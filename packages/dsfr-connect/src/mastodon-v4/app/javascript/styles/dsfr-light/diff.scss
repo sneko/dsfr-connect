@@ -1,5 +1,9 @@
-button.btn {
-  text-transform: unset;
+button {
+  font-size: 1rem !important;
+
+  .btn {
+    text-transform: unset !important;
+  }
 }
 
 input[type='text'],
