@@ -1,30 +1,18 @@
-//
-// [IMPORTANT]
-// We did not find a way to make working `@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;`
-// to reuse variables directly... it would be a preprocessor of the preprocessor SCSS and there is no known way.
-//
-// So for now, just harcoding values while pointing to the expected variable
-//
-
-@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
-
-// $classic-primary-color: dsfrColors.from(background action-high blue-france, hex);
-
 // Commonly used web colors
 $black: #000000; // Black
 $white: #ffffff; // White
-$red-600: dsfrColors.from(background action-high error, hex) !default; // Deep Carmine
-$red-500: dsfrColors.from(background action-high error, hex) !default; // Cerise
-$blurple-600: dsfrColors.from(background action-high blue-france, hex); // Iris
-$blurple-500: dsfrColors.from(background action-high blue-france, hex); // Brand purple
-$blurple-400: dsfrColors.from(background action-high blue-france, hex); // Medium slate blue
-$blurple-300: dsfrColors.from(background action-high blue-france, hex); // Faded Blue
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
+$blurple-600: #563acc; // Iris
+$blurple-500: #6364ff; // Brand purple
+$blurple-400: #7477fd; // Medium slate blue
+$blurple-300: #858afa; // Faded Blue
 $grey-600: #4e4c5a; // Trout
 $grey-100: #dadaf3; // Topaz
 
-$success-green: dsfrColors.from(background action-high success, hex) !default; // Padua
+$success-green: #79bd9a !default; // Padua
 $error-red: $red-500 !default; // Cerise
-$warning-red: dsfrColors.from(background action-high warning, hex) !default; // Sunset Orange
+$warning-red: #ff5050 !default; // Sunset Orange
 $gold-star: #ca8f04 !default; // Dark Goldenrod
 
 $red-bookmark: $warning-red;
@@ -33,7 +21,7 @@ $red-bookmark: $warning-red;
 $classic-base-color: #282c37; // Midnight Express
 $classic-primary-color: #9baec8; // Echo Blue
 $classic-secondary-color: #d9e1e8; // Pattens Blue
-$classic-highlight-color: dsfrColors.from(background action-high blue-france, hex); // Brand purple
+$classic-highlight-color: #6364ff; // Brand purple
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -45,7 +33,10 @@ $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default; // Darkest
-$ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
+$ui-base-lighter-color: lighten(
+  $ui-base-color,
+  26%
+) !default; // Lighter darkest
 $ui-primary-color: $classic-primary-color !default; // Lighter
 $ui-secondary-color: $classic-secondary-color !default; // Lightest
 $ui-highlight-color: $classic-highlight-color !default;
@@ -105,10 +96,8 @@ $font-monospace: 'mastodon-font-monospace' !default;
 :root {
   --dropdown-border-color: #{lighten($ui-base-color, 12%)};
   --dropdown-background-color: #{lighten($ui-base-color, 4%)};
-  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
+    0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
   --modal-background-color: #{darken($ui-base-color, 4%)};
   --modal-border-color: #{lighten($ui-base-color, 4%)};
 }
-
-// Newly added colors for mastodon-light
-$account-background-color: $white !default;
