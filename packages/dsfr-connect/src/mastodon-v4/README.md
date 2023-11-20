@@ -9,6 +9,8 @@ In the `./packages/dsfr-connect/src/mastodon-v4/` directory, just run:
 
 Once done, go to [http://localhost/](http://localhost/) to start using your local instance.
 
+_Note: the default `docker-compose.yaml` file does not implement `healthcheck` feature on containers, so logs may say "started" whereas you have to wait a bit more (~ 1 minute)._
+
 ### Admin access
 
 You can log in with admin credentials:

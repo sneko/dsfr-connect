@@ -36,7 +36,7 @@ services:
       # All specifics to test our DSFR theme
       - './app/javascript/styles/dsfr-light:/opt/bitnami/mastodon/app/javascript/styles/dsfr-light'
       - './app/javascript/styles/dsfr-light.scss:/opt/bitnami/mastodon/app/javascript/styles/dsfr-light.scss'
-      - './config/themes.yaml:/opt/bitnami/mastodon/config/themes.yaml'
+      - './config/themes.yml:/opt/bitnami/mastodon/config/themes.yml'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MASTODON_MODE=web
