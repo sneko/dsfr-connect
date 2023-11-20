@@ -4,26 +4,58 @@
 
 ### Launch
 
-In the `./packages/dsfr-connect/src/mastodon-v4/` directory, just run:
-`docker-compose up`
+The easiest way to start a local instance is to use the Mastodon source code. I tried Binami `docker-compose.yaml` and the Mastodon main one but they are not easily compatible.
 
-Once done, go to [http://localhost/](http://localhost/) to start using your local instance.
+So just run:
+`git clone https://github.com/mastodon/mastodon.git`
 
-_Note: the default `docker-compose.yaml` file does not implement `healthcheck` feature on containers, so logs may say "started" whereas you have to wait a bit more (~ 1 minute)._
+And use to a stable version tag:
+`cd mastodon && git chechout v4.2.1`
 
-### Admin access
+Use the IDE Visual Studio Code to open the project:
+`code .`
 
-You can log in with admin credentials:
+It should suggest you to use the `Dev Containers mode locally`, accept and it will run some commands for like 5 minutes (you can see logs to see the progress). Then your Visual Studio Code transits to a "containerized workspace".
 
-- Email: `user@bitnami.org`
-- Password: `bitnami1`
+_If you have no suggestion, install the `Dev Containers` extension and restart the IDE._
+
+Create an admin account to modify the displayed theme:
+
+```shell
+RAILS_ENV=development bin/tootctl accounts create \
+  test \
+  --email test@example.com \
+  --confirmed \
+  --role Owner
+```
+
+**It will display a password for this account, keep it to log in.**
+
+And bind your custom theme to the Mastodon source code to easily commit and see modification (make sure to define both source and target folders):
+
+```shell
+export SOURCE_FOLDER=$(pwd)/packages/dsfr-connect/src/mastodon-v4
+export TARGET_FOLDER=/path/to/your/folder/.../mastodon
+export TARGET_FOLDER=/Users/sneko/Documents/beta.gouv.fr/repos/mastodon
+
+# `ln -s` for symbolic links does not work inside Docker containers easily, so doing hard links
+# but they cannot apply on folders, so doing it on files into the folder (if you create a new file, don't forget to perform this)
+mkdir "${TARGET_FOLDER}/app/javascript/styles/dsfr-light"
+ln -f "${SOURCE_FOLDER}/app/javascript/styles/dsfr-light/diff.scss" "${TARGET_FOLDER}/app/javascript/styles/dsfr-light/diff.scss"
+ln -f "${SOURCE_FOLDER}/app/javascript/styles/dsfr-light/variables.scss" "${TARGET_FOLDER}/app/javascript/styles/dsfr-light/variables.scss"
+ln -f "${SOURCE_FOLDER}/app/javascript/styles/dsfr-light.scss" "${TARGET_FOLDER}/app/javascript/styles/dsfr-light.scss"
+ln -f "${SOURCE_FOLDER}/config/themes.yml" "${TARGET_FOLDER}/config/themes.yml"
+```
+
+From now you can run the server in development mode with:
+`foreman start -f Procfile.dev`
 
 ### Start theming
 
-The DSFR theme we develop is a dedicated theme, so the first time you launch Mastodon you need:
+The DSFR theme we develop is a dedicated theme, so the first time you launch Mastodon you need to:
 
-1. To log in with the admin account
-2. Go to the appearance settings (http://localhost/settings/preferences/appearance)
+1. Log in with the admin account you created
+2. Go to the appearance settings (http://localhost:3000/settings/preferences/appearance)
 3. Switch the `Site theme` property to `dsfr-light`
 
 Once done you can start playing with files into `./packages/dsfr-connect/src/mastodon-v4/app/javascript/styles/` since they are mounted onto the Mastodon instance.
