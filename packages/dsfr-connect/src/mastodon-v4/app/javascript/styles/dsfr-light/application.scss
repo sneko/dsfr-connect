@@ -1,7 +1,16 @@
 @import 'mastodon/mixins';
+
+// Variables are set based on our custom light/dark theme
 // @import 'mastodon/variables';
-@import 'fonts/roboto';
-@import 'fonts/roboto-mono';
+
+// Since this file is precompiled for Mastodon we cannot rely on the Mastodon compilation variables
+// to set paths... so we hardcode the one for our CDN (we are in `~/packs/css/dsfr-light-xxxxxx.chunck.css`)
+$assetsBaseUrl: '../../';
+
+@import '../../../../../fonts/definition';
+
+// @import 'fonts/roboto';
+// @import 'fonts/roboto-mono';
 
 @import 'mastodon/reset';
 @import 'mastodon/basics';

@@ -1,4 +1,22 @@
 @import 'variables';
-@import 'application';
-@import 'mastodon-light/diff';
 @import 'diff';
+
+// ---
+// Since the default Mastodon theme is dark, we respect "dark" being default to avoid weird effects
+// if our custom theme differs from the original
+//
+// To simplify the logic and to not clean the basic theme, we import it 2 times with different variables set
+// (it implies some duplication in the final bundle, but much easier to deal with and to improve)
+// ---
+
+@mixin application($theme: 'dark') {
+  @include variables($theme);
+  @import 'application';
+  @include diff($theme);
+}
+
+@include application('dark');
+
+@media (prefers-color-scheme: light) {
+  @include application('light');
+}

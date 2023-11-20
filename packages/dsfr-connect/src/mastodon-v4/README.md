@@ -61,3 +61,9 @@ The DSFR theme we develop is a dedicated theme, so the first time you launch Mas
 Once done you can start playing with files into `./packages/dsfr-connect/src/mastodon-v4/app/javascript/styles/` since they are mounted onto the Mastodon instance.
 
 _Note: switching the theme is only required the first time since settings are persisted on a Docker volume._
+
+### Update the Mastodon base theme
+
+In case you update the Mastodon theme we base our own theme on, override `mastodon/*`, have a look in the Git status to see what has changed. If there are modifications, report structure of coloration modifications into `dsfr/*` while stripping other things.
+
+Like that it's "easy" to catch up new base theme versions.

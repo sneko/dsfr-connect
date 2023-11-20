@@ -1,25 +1,29 @@
-button {
-  font-size: 1rem !important;
+// Below things that differ from the original theme
 
-  .btn {
-    text-transform: unset !important;
+@mixin diff($theme: 'dark') {
+  button {
+    font-size: 1rem !important;
+
+    .btn {
+      text-transform: unset !important;
+    }
   }
-}
 
-input[type='text'],
-input[type='number'],
-input[type='email'],
-input[type='password'],
-input[type='url'],
-input[type='datetime-local'],
-textarea {
-  border-radius: unset !important;
-}
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='url'],
+  input[type='datetime-local'],
+  textarea {
+    border-radius: unset !important;
+  }
 
-select {
-  border-radius: unset !important;
-}
+  select {
+    border-radius: unset !important;
+  }
 
-.simple-navigation-active-leaf a {
-  border-radius: unset !important;
+  .simple-navigation-active-leaf a {
+    border-radius: unset !important;
+  }
 }
