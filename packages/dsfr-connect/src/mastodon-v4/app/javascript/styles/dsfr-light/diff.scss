@@ -3,10 +3,8 @@
 @mixin diff($theme: 'dark') {
   button {
     font-size: 1rem !important;
-
-    .btn {
-      text-transform: unset !important;
-    }
+    border-radius: unset !important;
+    text-transform: unset !important;
   }
 
   input[type='text'],

@@ -2,95 +2,136 @@
 
 @mixin variables($theme: 'dark') {
   // Commonly used web colors
-  $black: #000000; // Black
-  $white: #ffffff; // White
-  $red-600: #b7253d !default; // Deep Carmine
-  $blurple-600: #563acc; // Iris
-  $blurple-500: #6364ff; // Brand purple
-  $blurple-400: #7477fd; // Medium slate blue
-  $blurple-300: #858afa; // Faded Blue
-  $grey-600: #4e4c5a; // Trout
-  $grey-100: #dadaf3; // Topaz
+  $black: #000000 !global; // Black
+  $white: #ffffff !global; // White
+  $red-600: #b7253d !global; // Deep Carmine
+  $blurple-600: #563acc !global; // Iris
+  $blurple-300: #858afa !global; // Faded Blue
+  $grey-600: #4e4c5a !global; // Trout
+  $grey-100: #dadaf3 !global; // Topaz
 
-  $success-green: dsfrColors.from(background action-high success, hex) !default; // Padua
-  $error-red: dsfrColors.from(background action-high error, hex) !default; // Cerise
-  $warning-red: dsfrColors.from(background action-high warning, hex) !default; // Sunset Orange
-  $gold-star: #ca8f04 !default; // Dark Goldenrod
+  $success-green: dsfrColors.from(
+    background action-high success,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Padua
+  $error-red: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Cerise
+  $warning-red: dsfrColors.from(
+    background action-high warning,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Sunset Orange
+  $gold-star: #ca8f04 !global; // Dark Goldenrod
 
-  $red-bookmark: $warning-red;
+  $red-bookmark: $warning-red !global;
 
   // Values from the classic Mastodon UI
-  $classic-base-color: #282c37; // Midnight Express
-  $classic-primary-color: #9baec8; // Echo Blue
-  $classic-secondary-color: #d9e1e8; // Pattens Blue
-  $classic-highlight-color: #6364ff; // Brand purple
+  $classic-base-color: #282c37 !global; // Midnight Express
+  $classic-primary-color: #9baec8 !global; // Echo Blue
+  $classic-secondary-color: #d9e1e8 !global; // Pattens Blue
+  $classic-highlight-color: dsfrColors.from(
+    background open blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Brand purple
 
-  // Variables for defaults in UI
-  $base-shadow-color: $black !default;
-  $base-overlay-background: $black !default;
-  $base-border-color: $white !default;
-  $simple-background-color: $white !default;
-  $valid-value-color: $success-green !default;
-  $error-value-color: $error-red !default;
+  // Variables for globals in UI
+  $base-shadow-color: $black !global;
+  $base-overlay-background: $black !global;
+  $base-border-color: $white !global;
+  $simple-background-color: $white !global;
+  $valid-value-color: $success-green !global;
+  $error-value-color: $error-red !global;
 
   // Tell UI to use selected colors
-  $ui-base-color: $classic-base-color !default; // Darkest
-  $ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
-  $ui-primary-color: $classic-primary-color !default; // Lighter
-  $ui-secondary-color: $classic-secondary-color !default; // Lightest
-  $ui-highlight-color: $classic-highlight-color !default;
-  $ui-button-color: $white !default;
-  $ui-button-background-color: $blurple-500 !default;
-  $ui-button-focus-background-color: $blurple-600 !default;
-  $ui-button-focus-outline-color: $blurple-400 !default;
-  $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+  $ui-base-color: $classic-base-color !global; // Darkest
+  $ui-base-lighter-color: lighten($ui-base-color, 26%) !global; // Lighter darkest
+  $ui-primary-color: $classic-primary-color !global; // Lighter
+  $ui-secondary-color: $classic-secondary-color !global; // Lightest
+  $ui-highlight-color: $classic-highlight-color !global;
+  $ui-button-color: dsfrColors.from(
+    text inverted blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-background-color: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-focus-background-color: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-focus-outline-color: #0a76f6 !global;
+  $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !global;
 
-  $ui-button-secondary-color: $grey-100 !default;
-  $ui-button-secondary-border-color: $grey-100 !default;
-  $ui-button-secondary-focus-background-color: $grey-600 !default;
-  $ui-button-secondary-focus-color: $white !default;
+  $ui-button-secondary-color: $grey-100 !global;
+  $ui-button-secondary-border-color: $grey-100 !global;
+  $ui-button-secondary-focus-background-color: $grey-600 !global;
+  $ui-button-secondary-focus-color: $white !global;
 
-  $ui-button-tertiary-color: $blurple-300 !default;
-  $ui-button-tertiary-border-color: $blurple-300 !default;
-  $ui-button-tertiary-focus-background-color: $blurple-600 !default;
-  $ui-button-tertiary-focus-color: $white !default;
+  $ui-button-tertiary-color: $blurple-300 !global;
+  $ui-button-tertiary-border-color: $blurple-300 !global;
+  $ui-button-tertiary-focus-background-color: $blurple-600 !global;
+  $ui-button-tertiary-focus-color: $white !global;
 
-  $ui-button-destructive-background-color: dsfrColors.from(background action-high error, hex) !default;
-  $ui-button-destructive-focus-background-color: $red-600 !default;
+  $ui-button-destructive-background-color: dsfrColors.from(background action-high error, hex) !global;
+  $ui-button-destructive-focus-background-color: $red-600 !global;
 
-  $ui-button-icon-focus-outline: $ui-button-focus-outline !default;
-  $ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
+  $ui-button-icon-focus-outline: $ui-button-focus-outline !global;
+  $ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !global;
 
   // Variables for texts
-  $primary-text-color: $white !default;
-  $darker-text-color: $ui-primary-color !default;
-  $dark-text-color: $ui-base-lighter-color !default;
-  $secondary-text-color: $ui-secondary-color !default;
-  $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
-  $action-button-color: $ui-base-lighter-color !default;
-  $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
-  $passive-text-color: $gold-star !default;
-  $active-passive-text-color: $success-green !default;
+  $primary-text-color: $white !global;
+  $darker-text-color: $ui-primary-color !global;
+  $dark-text-color: $ui-base-lighter-color !global;
+  $secondary-text-color: $ui-secondary-color !global;
+  $highlight-text-color: lighten($ui-highlight-color, 8%) !global;
+  $action-button-color: $ui-base-lighter-color !global;
+  $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !global;
+  $passive-text-color: $gold-star !global;
+  $active-passive-text-color: $success-green !global;
 
   // For texts on inverted backgrounds
-  $inverted-text-color: $ui-base-color !default;
-  $lighter-text-color: $ui-base-lighter-color !default;
-  $light-text-color: $ui-primary-color !default;
+  $inverted-text-color: $ui-base-color !global;
+  $lighter-text-color: $ui-base-lighter-color !global;
+  $light-text-color: $ui-primary-color !global;
 
   // Language codes that uses CJK fonts
-  $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
+  $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW !global;
 
   // Variables for components
-  $media-modal-media-max-width: 100%;
+  $media-modal-media-max-width: 100% !global;
 
   // put margins on top and bottom of image to avoid the screen covered by image.
-  $media-modal-media-max-height: 80%;
+  $media-modal-media-max-height: 80% !global;
 
-  $no-gap-breakpoint: 1175px;
+  $no-gap-breakpoint: 1175px !global;
 
-  $font-sans-serif: 'Marianne' !default;
-  $font-display: 'Marianne' !default;
-  $font-monospace: 'Marianne' !default;
+  $font-sans-serif: 'Marianne' !global;
+  $font-display: 'Marianne' !global;
+  $font-monospace: 'Marianne' !global;
 
   :root {
     --dropdown-border-color: #{lighten($ui-base-color, 12%)};

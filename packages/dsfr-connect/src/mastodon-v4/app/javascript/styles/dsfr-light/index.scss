@@ -9,14 +9,16 @@
 // (it implies some duplication in the final bundle, but much easier to deal with and to improve)
 // ---
 
-@mixin application($theme: 'dark') {
+$theme: dark;
+
+@include variables($theme);
+@import 'application';
+@include diff($theme);
+
+@media (prefers-color-scheme: light) {
+  $theme: light;
+
   @include variables($theme);
   @import 'application';
   @include diff($theme);
-}
-
-@include application('dark');
-
-@media (prefers-color-scheme: light) {
-  @include application('light');
 }
