@@ -18,9 +18,9 @@ $theme: dark;
 @import 'application';
 @include diff($theme);
 
-@media (prefers-color-scheme: light) {
-  $theme: light;
+$theme: light; // This must be outside @media otherwise our workaround to swap `lighten/darken` won't work (always getting `$theme: dark`)
 
+@media (prefers-color-scheme: light) {
   @include variables($theme);
   @import 'application';
   @include diff($theme);

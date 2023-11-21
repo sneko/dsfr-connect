@@ -52,7 +52,6 @@
       theme: $theme,
     )
   ) !global; // Midnight Express
-  $classic-primary-color: red !global; // Echo Blue
   $classic-primary-color: dsfrColors.from(
     background action-high blue-ecume,
     hex,
@@ -91,7 +90,13 @@
       theme: $theme,
     )
   ) !global; // Darkest
-  $ui-base-lighter-color: lighten($ui-base-color, 26%) !global; // Lighter darkest
+  $ui-base-lighter-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Lighter darkest
   $ui-primary-color: $classic-primary-color !global; // Lighter
   $ui-secondary-color: $classic-secondary-color !global; // Lightest
   $ui-highlight-color: $classic-highlight-color !global;
@@ -232,18 +237,23 @@
   $font-monospace: 'Marianne' !global;
 
   :root {
-    @if $theme == 'light' {
-      --dropdown-border-color: #{darken($ui-base-color, 12%)};
-      --dropdown-background-color: #{darken($ui-base-color, 4%)};
-      --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-      --modal-background-color: #{lighten($ui-base-color, 4%)};
-      --modal-border-color: #{darken($ui-base-color, 4%)};
-    } @else {
-      --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-      --dropdown-background-color: #{lighten($ui-base-color, 4%)};
-      --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-      --modal-background-color: #{darken($ui-base-color, 4%)};
-      --modal-border-color: #{lighten($ui-base-color, 4%)};
-    }
+    --dropdown-border-color: #{dsfrColors.from(
+        background alt blue-france,
+        hex,
+        (
+          hover: true,
+          theme: $theme,
+        )
+      )};
+    --dropdown-background-color: #{dsfrColors.from(
+        background default grey,
+        hex,
+        (
+          theme: $theme,
+        )
+      )};
+    --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+    --modal-background-color: #{darken($ui-base-color, 4%)};
+    --modal-border-color: #{lighten($ui-base-color, 4%)};
   }
 }

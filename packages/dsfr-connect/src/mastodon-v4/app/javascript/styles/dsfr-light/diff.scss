@@ -150,4 +150,25 @@
     display: block;
     padding-bottom: 10px;
   }
+
+  // Since in light mode the background is totally white we need to add some separations
+  @if $theme == 'light' {
+    .columns-area__panels__main {
+      border: solid
+        1px
+        dsfrColors.from(
+          border default grey,
+          hex,
+          (
+            theme: $theme,
+          )
+        ) !important;
+      border-top: none !important;
+      border-bottom: none !important;
+    }
+  }
+
+  .compose-panel .search {
+    padding: 0 15px !important;
+  }
 }
