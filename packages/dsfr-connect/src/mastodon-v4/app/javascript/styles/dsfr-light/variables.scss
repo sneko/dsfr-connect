@@ -4,8 +4,13 @@
   // Commonly used web colors
   $black: if($theme == 'light', #ffffff, #000000) !global; // Black
   $white: if($theme == 'light', #000000, #ffffff) !global; // White
-  $blurple-600: #563acc !global; // Iris
-  $blurple-300: #858afa !global; // Faded Blue
+  $blurple-300: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Faded Blue
 
   $success-green: dsfrColors.from(
     background action-high success,
@@ -28,7 +33,14 @@
       theme: $theme,
     )
   ) !global; // Sunset Orange
-  $gold-star: #ca8f04 !global; // Dark Goldenrod
+  $gold-star: dsfrColors.from(
+    background contrast yellow-tournesol,
+    hex,
+    (
+      theme: light,
+      // We force the light mode because the gold color can be displayed on both, and DSFR decision for ~gold is never close between light and dark themes
+    )
+  ) !global; // Dark Goldenrod
 
   $red-bookmark: $warning-red !global;
 
@@ -40,7 +52,14 @@
       theme: $theme,
     )
   ) !global; // Midnight Express
-  $classic-primary-color: #9baec8 !global; // Echo Blue
+  $classic-primary-color: red !global; // Echo Blue
+  $classic-primary-color: dsfrColors.from(
+    background action-high blue-ecume,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Echo Blue
   $classic-secondary-color: dsfrColors.from(
     text title grey,
     hex,
@@ -132,10 +151,12 @@
     )
   ) !global;
 
-  $ui-button-tertiary-color: $blurple-300 !global;
-  $ui-button-tertiary-border-color: $blurple-300 !global;
-  $ui-button-tertiary-focus-background-color: $blurple-600 !global;
-  $ui-button-tertiary-focus-color: $white !global;
+  // There is no tertiary button usage in the Mastodon repository and probably not in future contributions
+  // so just reusing secondary properties to avoid inventing mappings
+  $ui-button-tertiary-color: $ui-button-secondary-color !global;
+  $ui-button-tertiary-border-color: $ui-button-secondary-border-color !global;
+  $ui-button-tertiary-focus-background-color: $ui-button-secondary-focus-background-color !global;
+  $ui-button-tertiary-focus-color: $ui-button-secondary-focus-color !global;
 
   $ui-button-destructive-background-color: dsfrColors.from(
     background action-high error,
@@ -154,7 +175,6 @@
   ) !global;
 
   $ui-button-icon-focus-outline: $ui-button-focus-outline !global;
-  $ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !global;
 
   // Variables for texts
   $primary-text-color: dsfrColors.from(
@@ -171,9 +191,21 @@
       theme: $theme,
     )
   ) !global;
-  $dark-text-color: $ui-base-lighter-color !global;
+  $dark-text-color: dsfrColors.from(
+    text mention grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
   $secondary-text-color: $ui-secondary-color !global;
-  $highlight-text-color: lighten($ui-highlight-color, 8%) !global;
+  $highlight-text-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
   $action-button-color: $ui-base-lighter-color !global;
   $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !global;
   $passive-text-color: $gold-star !global;
@@ -200,10 +232,18 @@
   $font-monospace: 'Marianne' !global;
 
   :root {
-    --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-    --dropdown-background-color: #{lighten($ui-base-color, 4%)};
-    --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-    --modal-background-color: #{darken($ui-base-color, 4%)};
-    --modal-border-color: #{lighten($ui-base-color, 4%)};
+    @if $theme == 'light' {
+      --dropdown-border-color: #{darken($ui-base-color, 12%)};
+      --dropdown-background-color: #{darken($ui-base-color, 4%)};
+      --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+      --modal-background-color: #{lighten($ui-base-color, 4%)};
+      --modal-border-color: #{darken($ui-base-color, 4%)};
+    } @else {
+      --dropdown-border-color: #{lighten($ui-base-color, 12%)};
+      --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+      --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+      --modal-background-color: #{darken($ui-base-color, 4%)};
+      --modal-border-color: #{lighten($ui-base-color, 4%)};
+    }
   }
 }

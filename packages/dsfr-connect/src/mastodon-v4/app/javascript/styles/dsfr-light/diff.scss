@@ -1,7 +1,43 @@
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
 @use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
 @use '../../../../../../../../packages/dsfr-connect/src/common/workarounds/dsfr-title' as dsfrTitle;
 
 // Below things that differ from the original theme
+
+@mixin input-style($theme: 'dark') {
+  // `input-style` is required because the message composer should not have this style
+  input:not([type='file']),
+  select,
+  textarea {
+    background: dsfrColors.from(
+      background contrast grey,
+      hex,
+      (
+        theme: $theme,
+      )
+    ) !important;
+    color: dsfrColors.from(
+      text label grey,
+      hex,
+      (
+        theme: $theme,
+      )
+    ) !important;
+    font-size: 1rem !important;
+    border-bottom: solid !important;
+    border-width: 2px !important;
+    border-radius: 0.25rem 0.25rem 0 0 !important;
+
+    // When a field is valid or with an error we keep the Mastodon logic with only the bottom border
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+
+    &::placeholder {
+      font-style: italic !important;
+    }
+  }
+}
 
 @mixin diff($theme: 'dark') {
   button,
@@ -10,20 +46,6 @@
     font-size: 1rem !important;
     border-radius: unset !important;
     text-transform: unset !important;
-  }
-
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
-  input[type='url'],
-  input[type='datetime-local'],
-  textarea {
-    border-radius: 0.25rem 0.25rem 0 0 !important;
-  }
-
-  select {
-    border-radius: 0.25rem 0.25rem 0 0 !important;
   }
 
   .simple-navigation-active-leaf a {
@@ -56,14 +78,10 @@
     }
   }
 
-  input,
-  select,
-  textarea {
-    font-size: 1rem !important;
-
-    &::placeholder {
-      font-style: italic !important;
-    }
+  .search,
+  .columns-area__panels__main,
+  .content {
+    @include input-style($theme);
   }
 
   h1 {
@@ -112,5 +130,24 @@
       map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h6, breakpoints, md)))
     ) !important;
     font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h6, weight)) !important;
+  }
+
+  a:not(.button):not(.block-button) {
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 3px !important;
+
+    &:hover {
+      text-decoration-thickness: 2px !important;
+    }
+  }
+
+  .dismissable-banner {
+    border-radius: unset !important;
+  }
+
+  .account__header__tabs__name > h1 > span {
+    // This is required because the title was overlapping the `<small>` just after
+    display: block;
+    padding-bottom: 10px;
   }
 }
