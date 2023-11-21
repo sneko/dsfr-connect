@@ -1,7 +1,12 @@
+@use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
+@use '../../../../../../../../packages/dsfr-connect/src/common/workarounds/dsfr-title' as dsfrTitle;
+
 // Below things that differ from the original theme
 
 @mixin diff($theme: 'dark') {
-  button {
+  button,
+  a.button,
+  a.block-button {
     font-size: 1rem !important;
     border-radius: unset !important;
     text-transform: unset !important;
@@ -14,14 +19,98 @@
   input[type='url'],
   input[type='datetime-local'],
   textarea {
-    border-radius: unset !important;
+    border-radius: 0.25rem 0.25rem 0 0 !important;
   }
 
   select {
-    border-radius: unset !important;
+    border-radius: 0.25rem 0.25rem 0 0 !important;
   }
 
   .simple-navigation-active-leaf a {
     border-radius: unset !important;
+  }
+
+  [contenteditable]:not([contenteditable='false']),
+  [tabindex],
+  a,
+  audio[controls],
+  button,
+  details,
+  details > summary:first-of-type,
+  input,
+  input[type='button'],
+  input[type='checkbox'] + label:before,
+  input[type='image'],
+  input[type='radio'] + label:before,
+  input[type='reset'],
+  input[type='submit'],
+  select,
+  textarea,
+  video[controls] {
+    &,
+    &:focus-visible {
+      // TODO: not working, I don't know why it's not propagated...
+      outline-color: #0a76f6 !important; // Hardcoded value in the DSFR too
+      outline-offset: 2px !important;
+      outline-width: 2px !important;
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 1rem !important;
+
+    &::placeholder {
+      font-style: italic !important;
+    }
+  }
+
+  h1 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h1, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h1, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h1, weight)) !important;
+  }
+
+  h2 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h2, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h2, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h2, weight)) !important;
+  }
+
+  h3 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h3, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h3, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h3, weight)) !important;
+  }
+
+  h4 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h4, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h4, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h4, weight)) !important;
+  }
+
+  h5 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h5, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h5, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h5, weight)) !important;
+  }
+
+  h6 {
+    font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h6, breakpoints, md)) !important;
+    line-height: dsfrSpacing.space(
+      map-get(dsfrTitle.$title-styles, dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h6, breakpoints, md)))
+    ) !important;
+    font-weight: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h6, weight)) !important;
   }
 }

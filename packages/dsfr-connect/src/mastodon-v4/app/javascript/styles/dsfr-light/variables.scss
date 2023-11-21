@@ -2,13 +2,10 @@
 
 @mixin variables($theme: 'dark') {
   // Commonly used web colors
-  $black: #000000 !global; // Black
-  $white: #ffffff !global; // White
-  $red-600: #b7253d !global; // Deep Carmine
+  $black: if($theme == 'light', #ffffff, #000000) !global; // Black
+  $white: if($theme == 'light', #000000, #ffffff) !global; // White
   $blurple-600: #563acc !global; // Iris
   $blurple-300: #858afa !global; // Faded Blue
-  $grey-600: #4e4c5a !global; // Trout
-  $grey-100: #dadaf3 !global; // Topaz
 
   $success-green: dsfrColors.from(
     background action-high success,
@@ -36,9 +33,21 @@
   $red-bookmark: $warning-red !global;
 
   // Values from the classic Mastodon UI
-  $classic-base-color: #282c37 !global; // Midnight Express
+  $classic-base-color: dsfrColors.from(
+    background default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Midnight Express
   $classic-primary-color: #9baec8 !global; // Echo Blue
-  $classic-secondary-color: #d9e1e8 !global; // Pattens Blue
+  $classic-secondary-color: dsfrColors.from(
+    text title grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Pattens Blue
   $classic-highlight-color: dsfrColors.from(
     background open blue-france,
     hex,
@@ -56,7 +65,13 @@
   $error-value-color: $error-red !global;
 
   // Tell UI to use selected colors
-  $ui-base-color: $classic-base-color !global; // Darkest
+  $ui-base-color: dsfrColors.from(
+    background default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Darkest
   $ui-base-lighter-color: lighten($ui-base-color, 26%) !global; // Lighter darkest
   $ui-primary-color: $classic-primary-color !global; // Lighter
   $ui-secondary-color: $classic-secondary-color !global; // Lightest
@@ -83,28 +98,79 @@
       theme: $theme,
     )
   ) !global;
-  $ui-button-focus-outline-color: #0a76f6 !global;
+  $ui-button-focus-outline-color: #0a76f6 !global; // Hardcoded value in the DSFR too
   $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !global;
 
-  $ui-button-secondary-color: $grey-100 !global;
-  $ui-button-secondary-border-color: $grey-100 !global;
-  $ui-button-secondary-focus-background-color: $grey-600 !global;
-  $ui-button-secondary-focus-color: $white !global;
+  $ui-button-secondary-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-border-color: dsfrColors.from(
+    border action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-focus-background-color: dsfrColors.from(
+    background contrast blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-focus-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
 
   $ui-button-tertiary-color: $blurple-300 !global;
   $ui-button-tertiary-border-color: $blurple-300 !global;
   $ui-button-tertiary-focus-background-color: $blurple-600 !global;
   $ui-button-tertiary-focus-color: $white !global;
 
-  $ui-button-destructive-background-color: dsfrColors.from(background action-high error, hex) !global;
-  $ui-button-destructive-focus-background-color: $red-600 !global;
+  $ui-button-destructive-background-color: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-destructive-focus-background-color: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
 
   $ui-button-icon-focus-outline: $ui-button-focus-outline !global;
   $ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !global;
 
   // Variables for texts
-  $primary-text-color: $white !global;
-  $darker-text-color: $ui-primary-color !global;
+  $primary-text-color: dsfrColors.from(
+    text label grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $darker-text-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
   $dark-text-color: $ui-base-lighter-color !global;
   $secondary-text-color: $ui-secondary-color !global;
   $highlight-text-color: lighten($ui-highlight-color, 8%) !global;
