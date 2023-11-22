@@ -37,6 +37,9 @@
     },
     "format:check": {
       "cache": false
+    },
+    "deploy": {
+      "cache": false
     }
   },
   "globalEnv": ["CRISP_WEBSITE_ID", "DSFR_CONNECT_ASSETS_BASE_URL", "npm_package_name", "SELECTED_FRAMEWORKS"]
