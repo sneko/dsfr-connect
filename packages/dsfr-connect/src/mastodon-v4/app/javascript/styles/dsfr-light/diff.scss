@@ -84,6 +84,21 @@
     @include input-style($theme);
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: dsfrColors.from(
+      text title grey,
+      hex,
+      (
+        theme: $theme,
+      )
+    ) !important;
+  }
+
   h1 {
     font-size: dsfrSpacing.space(map-get(dsfrTitle.$title-settings, h1, breakpoints, md)) !important;
     line-height: dsfrSpacing.space(
@@ -166,9 +181,80 @@
       border-top: none !important;
       border-bottom: none !important;
     }
+
+    .admin-wrapper {
+      .sidebar-wrapper {
+        border-right: solid
+          1px
+          dsfrColors.from(
+            border default grey,
+            hex,
+            (
+              theme: $theme,
+            )
+          ) !important;
+      }
+    }
   }
 
-  .compose-panel .search {
-    padding: 0 15px !important;
+  .compose-panel {
+    overflow: visible !important; // Show box-shadow from the popout
+
+    .search {
+      padding: 0 15px !important;
+
+      .search__popout {
+        box-shadow: 0 5px 5px
+          dsfrColors.from(
+            border default grey,
+            hex,
+            (
+              theme: $theme,
+            )
+          ) !important;
+      }
+
+      .search__icon .fa {
+        right: 25px !important; // Needed due to added padding
+      }
+    }
+  }
+
+  h4 {
+    // This is the only title being uppercased
+    text-transform: unset !important;
+  }
+
+  .flash-message {
+    border-radius: unset !important;
+  }
+
+  .dashboard__quick-access {
+    border-radius: unset !important;
+    color: $ui-button-color !important;
+  }
+
+  .react-toggle {
+    .react-toggle-track {
+      background: dsfrColors.from(
+        background contrast grey,
+        hex,
+        (
+          theme: $theme,
+        )
+      ) !important;
+    }
+
+    &.react-toggle--checked {
+      .react-toggle-track {
+        background: dsfrColors.from(
+          background action-high blue-france,
+          hex,
+          (
+            theme: $theme,
+          )
+        ) !important;
+      }
+    }
   }
 }

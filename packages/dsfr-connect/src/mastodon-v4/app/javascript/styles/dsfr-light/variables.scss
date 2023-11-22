@@ -37,8 +37,9 @@
     background contrast yellow-tournesol,
     hex,
     (
-      theme: light,
+      active: true,
       // We force the light mode because the gold color can be displayed on both, and DSFR decision for ~gold is never close between light and dark themes
+      theme: light,
     )
   ) !global; // Dark Goldenrod
 
