@@ -70,7 +70,7 @@ jobs:
       - name: Build
         env:
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
-        run: make build && cat apps/docs/dist/main/stories.json
+        run: make build
 
       - name: Deploy to Netlify
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
