@@ -1,3 +1,8 @@
 /apps/docs/dist/
+/apps/docs/tmp/
 /apps/docs/public/mockServiceWorker.js
+/apps/docs-*/stories/framework/
+/packages/dsfr-connect/builder-dist/
+/packages/dsfr-connect/dist/
+/packages/dsfr-connect/src/mastodon-v4/mastodon/
 /pnpm-lock.yaml
