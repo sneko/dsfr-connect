@@ -16,7 +16,8 @@
     "build": "pnpm cli build",
     "lint": "pnpm cli lint",
     "lint:es": "pnpm cli lint:es",
-    "lint:ts": "pnpm cli lint:ts"
+    "lint:ts": "pnpm cli lint:ts",
+    "deploy": "netlify deploy --filter docs --dir=dist --prod"
   },
   "devDependencies": {
     "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
@@ -55,6 +56,7 @@
     "he": "^1.2.0",
     "http-server": "^14.1.1",
     "jsdom": "^22.0.0",
+    "netlify-cli": "^17.6.0",
     "node-fetch-native": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

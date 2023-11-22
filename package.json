@@ -16,7 +16,8 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mdx}\"",
     "test:unit": "turbo run test:unit",
     "test:unit:watch": "turbo run test:unit:watch",
-    "start": "turbo run start"
+    "start": "turbo run start",
+    "deploy": "turbo run deploy"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
