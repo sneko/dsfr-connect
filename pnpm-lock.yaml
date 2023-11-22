@@ -772,7 +772,7 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       semantic-release:
-        specifier: ^21.0.2
+        specifier: 21.0.2
         version: 21.0.2
       ts-jest:
         specifier: ^29.0.3
