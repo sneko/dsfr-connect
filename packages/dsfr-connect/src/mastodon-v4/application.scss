@@ -4,11 +4,10 @@
 // @import 'mastodon/variables';
 
 // Since this file is precompiled for Mastodon we cannot rely on the Mastodon compilation variables
-// to set paths... so we hardcode the one for our CDN (we are in `~/packs/css/dsfr-light-xxxxxx.chunck.css`)
+// to set paths... so we hardcode the one for our CDN (we are in `~/packs/css/dsfr-xxxxxx.chunck.css`)
 $assetsBaseUrl: '../../../public/assets/';
-// $assetsBaseUrl: '/assets/';
 
-@import '../../../../../fonts/definition';
+@import '../fonts/definition';
 
 // @import 'fonts/roboto';
 // @import 'fonts/roboto-mono';
