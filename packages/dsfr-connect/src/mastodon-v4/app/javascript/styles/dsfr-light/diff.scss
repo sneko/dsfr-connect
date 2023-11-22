@@ -2,6 +2,8 @@
 @use '@gouvfr/dsfr/module/spacing' as dsfrSpacing;
 @use '../../../../../../../../packages/dsfr-connect/src/common/workarounds/dsfr-title' as dsfrTitle;
 
+@import 'composer';
+
 // Below things that differ from the original theme
 
 @mixin input-style($theme: 'dark') {
@@ -43,9 +45,12 @@
   button,
   a.button,
   a.block-button {
-    font-size: 1rem !important;
     border-radius: unset !important;
-    text-transform: unset !important;
+
+    &:not(.text-icon-button) {
+      font-size: 1rem !important;
+      text-transform: unset !important;
+    }
   }
 
   .simple-navigation-active-leaf a {
@@ -79,6 +84,7 @@
   }
 
   .search,
+  .compose-form,
   .columns-area__panels__main,
   .content {
     @include input-style($theme);
@@ -257,4 +263,25 @@
       }
     }
   }
+
+  .compose-form__modifiers {
+    .compose-form__poll-wrapper,
+    .poll__footer {
+      border-top: none !important;
+    }
+  }
+
+  .dropdown-animation {
+    border: none !important;
+    box-shadow: 0 5px 5px
+      dsfrColors.from(
+        border default grey,
+        hex,
+        (
+          theme: $theme,
+        )
+      ) !important;
+  }
+
+  @include composer($theme);
 }

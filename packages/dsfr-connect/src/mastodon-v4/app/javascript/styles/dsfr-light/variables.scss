@@ -218,9 +218,29 @@
   $active-passive-text-color: $success-green !global;
 
   // For texts on inverted backgrounds
-  $inverted-text-color: $ui-base-color !global;
-  $lighter-text-color: $ui-base-lighter-color !global;
-  $light-text-color: $ui-primary-color !global;
+  // This is a base to modify how the composer will look like in addition to our custom `composer.scsss` file
+  $inverted-text-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $lighter-text-color: dsfrColors.from(
+    text mention grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $light-text-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      active: true,
+      theme: $theme,
+    )
+  ) !global;
 
   // Language codes that uses CJK fonts
   $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW !global;
