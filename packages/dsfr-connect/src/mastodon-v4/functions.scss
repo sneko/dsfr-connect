@@ -1,0 +1,22 @@
+// Since basic theme uses `darken()` and `lighten()` and we don't want to override all occurences
+// because it would make things really complex, we override the old functions definitions to adjust depending
+// on light or dark theme
+//
+// Note: for now we are fine since they do not use new SASS module with `color.adjust()` as below, otherwise there
+// is no longer a way to override by default (https://sass-lang.com/documentation/modules/color/#darken)
+
+@function darken($color, $amount) {
+  @if global-variable-exists('theme') and $theme == 'light' {
+    @return color.adjust($color, $lightness: $amount);
+  } @else {
+    @return color.adjust($color, $lightness: -$amount);
+  }
+}
+
+@function lighten($color, $amount) {
+  @if global-variable-exists('theme') and $theme == 'light' {
+    @return color.adjust($color, $lightness: -$amount);
+  } @else {
+    @return color.adjust($color, $lightness: $amount);
+  }
+}

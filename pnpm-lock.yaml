@@ -18,12 +18,15 @@ overrides:
   '@storybook/manager-api': 7.0.17
   '@storybook/theming': 7.0.17
   '@storybook/types': 7.0.17
+  '@types/adm-zip': ^0.5.0
   '@types/fs-extra': ^11.0.1
   '@types/react': 18.2.9
   '@types/react-dom': 18.2.4
+  adm-zip: ^0.5.10
   concurrently: ^8.0.1
   fs-extra: ^11.1.1
   http-server: ^14.1.1
+  node-fetch-native: ^1.1.1
   react: ^18.2.0
   react-dom: ^18.2.0
   sass: ^1.62.1
@@ -690,6 +693,9 @@ importers:
       '@storybook/theming':
         specifier: 7.0.17
         version: 7.0.17(react-dom@18.2.0)(react@18.2.0)
+      '@types/adm-zip':
+        specifier: ^0.5.0
+        version: 0.5.0
       '@types/fs-extra':
         specifier: ^11.0.1
         version: 11.0.1
@@ -705,6 +711,9 @@ importers:
       '@types/react-dom':
         specifier: 18.2.4
         version: 18.2.4
+      adm-zip:
+        specifier: ^0.5.10
+        version: 0.5.10
       bootstrap:
         specifier: ^5.3.0-alpha3
         version: 5.3.0-alpha3(@popperjs/core@2.11.8)
@@ -747,6 +756,9 @@ importers:
       jest-resolver-tsconfig-paths:
         specifier: ^0.14.4
         version: 0.14.4
+      node-fetch-native:
+        specifier: ^1.1.1
+        version: 1.1.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
