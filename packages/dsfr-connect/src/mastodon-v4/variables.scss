@@ -1,0 +1,280 @@
+@use '@gouvfr/dsfr/module/color/function/_colors' as dsfrColors;
+
+@mixin variables($theme: 'dark') {
+  // Commonly used web colors
+  $black: if($theme == 'light', #ffffff, #000000) !global; // Black
+  $white: if($theme == 'light', #000000, #ffffff) !global; // White
+  $blurple-300: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Faded Blue
+
+  $success-green: dsfrColors.from(
+    background action-high success,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Padua
+  $error-red: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Cerise
+  $warning-red: dsfrColors.from(
+    background action-high warning,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Sunset Orange
+  $gold-star: dsfrColors.from(
+    background contrast yellow-tournesol,
+    hex,
+    (
+      active: true,
+      // We force the light mode because the gold color can be displayed on both, and DSFR decision for ~gold is never close between light and dark themes
+      theme: light,
+    )
+  ) !global; // Dark Goldenrod
+
+  $red-bookmark: $warning-red !global;
+
+  // Values from the classic Mastodon UI
+  $classic-base-color: dsfrColors.from(
+    background default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Midnight Express
+  $classic-primary-color: dsfrColors.from(
+    background action-high blue-ecume,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Echo Blue
+  $classic-secondary-color: dsfrColors.from(
+    text title grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Pattens Blue
+  $classic-highlight-color: dsfrColors.from(
+    background open blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Brand purple
+
+  // Variables for globals in UI
+  $base-shadow-color: $black !global;
+  $base-overlay-background: $black !global;
+  $base-border-color: $white !global;
+  $simple-background-color: $white !global;
+  $valid-value-color: $success-green !global;
+  $error-value-color: $error-red !global;
+
+  // Tell UI to use selected colors
+  $ui-base-color: dsfrColors.from(
+    background default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Darkest
+  $ui-base-lighter-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global; // Lighter darkest
+  $ui-primary-color: $classic-primary-color !global; // Lighter
+  $ui-secondary-color: $classic-secondary-color !global; // Lightest
+  $ui-highlight-color: $classic-highlight-color !global;
+  $ui-button-color: dsfrColors.from(
+    text inverted blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-background-color: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-focus-background-color: dsfrColors.from(
+    background action-high blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-focus-outline-color: #0a76f6 !global; // Hardcoded value in the DSFR too
+  $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !global;
+
+  $ui-button-secondary-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-border-color: dsfrColors.from(
+    border action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-focus-background-color: dsfrColors.from(
+    background contrast blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-secondary-focus-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+
+  // There is no tertiary button usage in the Mastodon repository and probably not in future contributions
+  // so just reusing secondary properties to avoid inventing mappings
+  $ui-button-tertiary-color: $ui-button-secondary-color !global;
+  $ui-button-tertiary-border-color: $ui-button-secondary-border-color !global;
+  $ui-button-tertiary-focus-background-color: $ui-button-secondary-focus-background-color !global;
+  $ui-button-tertiary-focus-color: $ui-button-secondary-focus-color !global;
+
+  $ui-button-destructive-background-color: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $ui-button-destructive-focus-background-color: dsfrColors.from(
+    background action-high error,
+    hex,
+    (
+      hover: true,
+      theme: $theme,
+    )
+  ) !global;
+
+  $ui-button-icon-focus-outline: $ui-button-focus-outline !global;
+
+  // Variables for texts
+  $primary-text-color: dsfrColors.from(
+    text label grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $darker-text-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $dark-text-color: dsfrColors.from(
+    text mention grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $secondary-text-color: $ui-secondary-color !global;
+  $highlight-text-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $action-button-color: $ui-base-lighter-color !global;
+  $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !global;
+  $passive-text-color: $gold-star !global;
+  $active-passive-text-color: $success-green !global;
+
+  // For texts on inverted backgrounds
+  // This is a base to modify how the composer will look like in addition to our custom `composer.scsss` file
+  $inverted-text-color: dsfrColors.from(
+    text default grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $lighter-text-color: dsfrColors.from(
+    text mention grey,
+    hex,
+    (
+      theme: $theme,
+    )
+  ) !global;
+  $light-text-color: dsfrColors.from(
+    text action-high blue-france,
+    hex,
+    (
+      active: true,
+      theme: $theme,
+    )
+  ) !global;
+
+  // Language codes that uses CJK fonts
+  $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW !global;
+
+  // Variables for components
+  $media-modal-media-max-width: 100% !global;
+
+  // put margins on top and bottom of image to avoid the screen covered by image.
+  $media-modal-media-max-height: 80% !global;
+
+  $no-gap-breakpoint: 1175px !global;
+
+  $font-sans-serif: 'Marianne' !global;
+  $font-display: 'Marianne' !global;
+  $font-monospace: 'Marianne' !global;
+
+  :root {
+    --dropdown-border-color: #{dsfrColors.from(
+        background alt blue-france,
+        hex,
+        (
+          hover: true,
+          theme: $theme,
+        )
+      )};
+    --dropdown-background-color: #{dsfrColors.from(
+        background default grey,
+        hex,
+        (
+          theme: $theme,
+        )
+      )};
+    --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)}, 0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+    --modal-background-color: #{darken($ui-base-color, 4%)};
+    --modal-border-color: #{lighten($ui-base-color, 4%)};
+  }
+}
