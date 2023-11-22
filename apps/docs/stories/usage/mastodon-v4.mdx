@@ -1,38 +1,94 @@
 import { Meta } from '@storybook/blocks';
 
+import adminPreview from '@dsfrc/docs/stories/usage/mastodon-v4_admin_preview.png';
+import darkAdminPreview from '@dsfrc/docs/stories/usage/mastodon-v4_dark_admin_preview.png';
+import darkHomePreview from '@dsfrc/docs/stories/usage/mastodon-v4_dark_home_preview.png';
+import homePreview from '@dsfrc/docs/stories/usage/mastodon-v4_home_preview.png';
+
 <Meta title="dsfr-connect/Utilisation/mastodon-v4" />
 
 # mastodon-v4
 
-Work in progress...
+Si vous avez une instance [Mastodon](https://github.com/mastodon/mastodon) nous vous proposons un thème DSFR accessible pour prendre en charge le `light` et `dark` mode en fonction de la configuration système du visiteur. Pour vous donner un aperçu du thème :
 
-Define how to set up (since Ruby, need to copy/paste file?)
+<p float="left">
+  <img src={homePreview} width="50%" />
+  <img src={darkHomePreview} width="50%" />
+</p>
 
+<p float="left">
+  <img src={adminPreview} width="50%" />
+  <img src={darkAdminPreview} width="50%" />
+</p>
 
-WIP
+**Mastodon ne propose pas de manière simple d'installer un thème avec les polices associées... Donc nous allons vous décrire ci-dessous 2 méthodes possibles.**
 
-Copy files
-And run...
+## Prérequis communs
 
-RAILS_ENV=production rails app:update:bin
-RAILS_ENV=production OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:clobber
-RAILS_ENV=production OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+Comme indiqué dans [les prérequis généraux](/?path=/docs/dsfr-connect-prérequis--docs) il peut être bon de mettre les assets d'un thème sur "votre propre serveur". En l'occurence du fait de la génération particulière du thème Mastodon, vous êtes obligés de le faire car sinon les polices officielles du DSFR ne seront pas chargées.
 
+Pour commencer, Si vous ne les avez pas déjà téléchargez les polices [sur le site du DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie/).
 
+Ensuite, allez sur l'instance Mastodon et créez le dossier `/public/assets/fonts/` pour y mettre toutes les polices. Vous devriez avoir au final :
 
-RAILS_ENV=development OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+```
+/public/assets/fonts/Marianne-Bold_Italic.woff
+/public/assets/fonts/Marianne-Bold_Italic.woff2
+/public/assets/fonts/Marianne-Bold.woff
+/public/assets/fonts/Marianne-Bold.woff2
+/public/assets/fonts/Marianne-Light_Italic.woff
+/public/assets/fonts/Marianne-Light_Italic.woff2
+/public/assets/fonts/Marianne-Light.woff
+/public/assets/fonts/Marianne-Light.woff2
+/public/assets/fonts/Marianne-Medium_Italic.woff
+/public/assets/fonts/Marianne-Medium_Italic.woff2
+/public/assets/fonts/Marianne-Medium.woff
+/public/assets/fonts/Marianne-Medium.woff2
+/public/assets/fonts/Marianne-Regular_Italic.woff
+/public/assets/fonts/Marianne-Regular_Italic.woff2
+/public/assets/fonts/Marianne-Regular.woff
+/public/assets/fonts/Marianne-Regular.woff2
+/public/assets/fonts/Spectral-ExtraBold.woff
+/public/assets/fonts/Spectral-ExtraBold.woff2
+/public/assets/fonts/Spectral-Regular.woff
+/public/assets/fonts/Spectral-Regular.woff2
+```
 
+## Méthodes d'installation du thème
 
-Use the Mastodon (Dark) if custom CSS applied...
+### Installation avec les privilèges administrateur **(recommandée)**
 
----
+_Par "privilèges administrateur" nous voulons dire que vous êtes en mesure d'accéder aux fichiers de votre instance Mastodon et d'y exécuter des commandes._
 
-TODO:
+Téléchargez le fichier https://unpkg.com/dsfr-connect@latest/dist/mastodon-v4/index.css puis renommez-le en `dsfr.css` pour le mettre dans votre instance Mastodon à l'emplacement suivant :
+`/app/javascript/styles/dsfr.css`
 
-Ensuite définir sur la présentation dsfr-connect dans le tableau la différence entre les thèmes pour Framework UI, et pour les outils
+Ensuite il faut dire à votre instance Mastodon d'indexer ce nouveau thème. Allez dans le fichier `/config/theme.yml` et ajoutez la dernière ligne pour avoir le contenu du fichier similaire à :
 
-Add custom CSS...
-http://localhost:3000/admin/settings/appearance
+```yaml
+default: styles/application.scss
+contrast: styles/contrast.scss
+mastodon-light: styles/mastodon-light.scss
+dsfr: styles/dsfr.css
+```
 
+_À noter qu'une fois configuré entièrement vous pourriez a priori supprimer `default`, `contrast` et `mastodon-light` mais cela enlèvera la possibilité aux utilisateurs de changer de thème s'ils sont plus à l'aise avec un autre. Et cela pourrait vous causer problème si vous faites une erreur de configuration du thème DSFR._
 
-It's for both user and admin!!! The other is just a user setting....
+Maintenant il faut recompiler les assets Mastodon pour que l'indexation se fasse :
+`RAILS_ENV=production OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile`
+
+La dernière étape est d'appliquer ce thème à tous les utilisateurs du site. Allez dans `Préférences > Administration > Paramètres serveur > Apparence` (ou directement via https://mon-instance-mastodon-xxxxx.com/admin/settings/appearance) puis configurer `Thème du site` sur la valeur `dsfr`.
+
+_Si votre instance ne liste pas le thème nommé `dsfr`, n'hésitez pas à redémarrer l'instance comme vous le faites d'habitude (cela varie en fonction de votre installation initiale)._
+
+### Installation sans privilège **(déconseillée)**
+
+Si vous n'avez pas la possibilité d'exécuter des commandes sur instance Mastodon, il est toujours possible de s'approcher d'une configuration complète en configurant un style CSS via l'interface. Mais il faut garder à l'esprit que c'est comme faire un "patch" par-dessus le thème actuel :
+
+- Il peut y avoir des conflits de style avec le thème utilisé par votre instance Mastodon
+- Cela peut diminuer les performances et temps de chargement comparé à l'autre méthode
+
+Tout d'abord allez dans `Préférences > Administration > Paramètres serveur > Apparence` (ou directement via https://mon-instance-mastodon-xxxxx.com/admin/settings/appearance), puis :
+
+1. Veuillez à configurer le thème par défaut sur `Mastodon (Dark)` _(le thème DSFR est basé sur celui-ci, donc en "patchant" celui-ci nous évitons de potentiels conflits avec le style des autres thèmes)_
+2. Dans le champ `CSS personnalisé` veuillez y copier-coller le contenu du fichier https://unpkg.com/dsfr-connect@latest/dist/mastodon-v4/index.css

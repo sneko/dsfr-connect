@@ -92,7 +92,7 @@ You are good to go! From within the `mastodon` containerized workspace in `vscod
 The DSFR theme we develop is a dedicated theme, so the first time you launch Mastodon you need to:
 
 1. Log in with the admin account you created
-2. Go to the appearance settings into `Administration > Server settings > Appearance` (http://localhost:3000/admin/settings/appearance)
+2. Go to the appearance settings into `Preferences > Administration > Server settings > Appearance` (http://localhost:3000/admin/settings/appearance)
 3. Switch the `Site theme` property to `dsfr`
 
 Now you can start playing with files into `./packages/dsfr-connect/src/mastodon-v4/` by running the watching compilation since you bound the compiled file to the Mastodon containerized workspace:
