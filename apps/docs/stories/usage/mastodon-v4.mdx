@@ -25,6 +25,8 @@ Si vous avez une instance [Mastodon](https://github.com/mastodon/mastodon) nous 
 
 ## Prérequis communs
 
+### Les polices
+
 Comme indiqué dans [les prérequis généraux](/?path=/docs/dsfr-connect-prérequis--docs) il peut être bon de mettre les assets d'un thème sur "votre propre serveur". En l'occurence du fait de la génération particulière du thème Mastodon, vous êtes obligés de le faire car sinon les polices officielles du DSFR ne seront pas chargées.
 
 Pour commencer, si vous ne les avez pas déjà téléchargez les polices [sur le site du DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie/).
@@ -53,6 +55,13 @@ Ensuite, allez sur l'instance Mastodon et créez le dossier `/public/assets/font
 /public/assets/fonts/Spectral-Regular.woff
 /public/assets/fonts/Spectral-Regular.woff2
 ```
+
+### Les images
+
+Suivant les besoins vous pouvez :
+
+- Changer le `favicon` par défaut de Mastodon, en téléchargeant [https://unpkg.com/@gouvfr/dsfr@latest/dist/favicon/favicon.ico](https://unpkg.com/@gouvfr/dsfr@latest/dist/favicon/favicon.ico) pour remplacer l'icône Mastodon située à `/public/favicon.ico`
+- Ajouter un logo depuis l'interface d'administration, en choisissant un fond blanc pour le logo pour qu'il soit lisible aussi bien en `light` que `dark` mode
 
 ## Méthodes d'installation du thème
 
