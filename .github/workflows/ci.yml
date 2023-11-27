@@ -64,6 +64,15 @@ jobs:
       - name: Test unit
         run: make test-unit
 
+      - uses: actions/cache@v3
+        name: Setup assets cache
+        with:
+          path: apps/docs/tmp/
+          # The `raw` DSFR is scrapped with a fixed URL so you have to delete the CI/CD cache if you want a new version of it
+          key: ${{ runner.os }}-assets-${{ hashFiles('apps/docs/scripts/assets.ts') }}
+          restore-keys: |
+            ${{ runner.os }}-assets-
+
       - name: Prepare building
         run: make build-prepare
 
