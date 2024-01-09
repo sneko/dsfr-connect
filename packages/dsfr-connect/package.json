@@ -15,7 +15,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "postinstall": "ts-node -r tsconfig-paths/register ./scripts/setup.ts",
+    "prepare": "ts-node -r tsconfig-paths/register ./scripts/setup.ts",
     "build": "pnpm run build:script && pnpm run build:json && pnpm run build:style",
     "build:script": "tsup",
     "build:style": "ts-node -r tsconfig-paths/register ./compile-style-files.ts",

@@ -12,10 +12,10 @@ _It should have been easy by customizing main variables in a few hours... But Ma
 
 ### Get the official theme
 
-Since our theme is based on the official one, we need to get it. We made the fetching automatic when you install dependencies of this repository. But if needed you can run it a new time from `/packages/dsfr-connect` with:
-`pnpm run postinstall`
+Since our theme is based on the official one, we need to get it. We made the fetching automatic when you install dependencies of this repository (only when developing, not when installing the package from the NPM registry). But if needed you can run it a new time from `/packages/dsfr-connect` with:
+`pnpm run prepare`
 
-_Note: if you want to upgrade the official Mastodon theme, modify the version into `/packages/dsfr-connect/src/mastodon-v4/settings.ts`, delete the folder `/packages/dsfr-connect/src/mastodon-v4/mastodon/` and run again the `postinstall` command._
+_Note: if you want to upgrade the official Mastodon theme, modify the version into `/packages/dsfr-connect/src/mastodon-v4/settings.ts`, delete the folder `/packages/dsfr-connect/src/mastodon-v4/mastodon/` and run again the `prepare` command._
 
 ### Launch
 
