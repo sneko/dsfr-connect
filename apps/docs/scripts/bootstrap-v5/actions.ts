@@ -4,11 +4,12 @@ import { glob } from 'glob';
 import handlebars from 'handlebars';
 import path from 'path';
 
+import { assetsUrls } from '@dsfrc/docs/scripts/assets';
 import { getFrameworkFolderPath } from '@dsfrc/docs/utils';
 import { downloadFile } from '@dsfrc/docs/utils';
 
 const framework: string = path.basename(__dirname);
-const zipUrl = 'https://github.com/twbs/bootstrap/archive/refs/tags/v5.3.0-alpha3.zip';
+const zipUrl = assetsUrls.bootstrapV5;
 
 export async function downloadAndExtract() {
   const zipDestination = path.resolve(__dirname, `../../tmp/${framework}.zip`);
@@ -16,6 +17,8 @@ export async function downloadAndExtract() {
 
   if (!(await fs.pathExists(zipDestination))) {
     await downloadFile(zipUrl, zipDestination);
+  } else {
+    console.warn(`${framework} assets downloads skipped since present locally`);
   }
 
   const zip = new AdmZip(zipDestination);

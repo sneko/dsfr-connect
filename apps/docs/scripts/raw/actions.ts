@@ -7,16 +7,22 @@ import { JSDOM } from 'jsdom';
 import path from 'path';
 import urlToolkit from 'url-toolkit';
 
+import { assetsUrls } from '@dsfrc/docs/scripts/assets';
+
 const framework: string = path.basename(__dirname);
 
-const mainPageUrl = new URL('https://main--ds-gouv.netlify.app/example/');
+const mainPageUrl = new URL(assetsUrls.raw);
 const baseUrl = mainPageUrl.toString();
 const outputFolder = path.resolve(__dirname, `../../tmp/${framework}`);
 const visitedUrls = new Set();
 
 export async function downloadAndExtract() {
-  // We do our own crawling because there is no good library to do recursive lookup simply
-  await startCrawling();
+  if (!(await fs.pathExists(outputFolder))) {
+    // We do our own crawling because there is no good library to do recursive lookup simply
+    await startCrawling();
+  } else {
+    console.warn(`${framework} assets downloads skipped since present locally`);
+  }
 }
 
 export async function build() {
