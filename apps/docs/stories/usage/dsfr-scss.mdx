@@ -4,7 +4,7 @@ import { Source } from '@storybook/blocks';
 import ViteTab from '@dsfrc/docs/stories/usage/dsfr-scss-vite.mdx';
 import WebpackTab from '@dsfrc/docs/stories/usage/dsfr-scss-webpack.mdx';
 
-Mais comme notre fichier `.scss` importe des variables directement depuis le DSFR, vous devez installer leur librairie :
+Mais comme le fichier `.scss` du thème importe des variables directement depuis le DSFR, vous devez installer leur librairie :
 
 <Tabs
   tabs={[
@@ -14,7 +14,7 @@ Mais comme notre fichier `.scss` importe des variables directement depuis le DSF
   ]}
 />
 
-Et comme la librairie DSFR utilise des alias lors de ces imports de style, nous somme obligés de définir d'en définir un minimum pour que la compilation SCSS fonctionne dans votre "module bundler" :
+Et comme la librairie DSFR utilise des alias lors de ces imports de style, nous somme obligés d'en définir un minimum pour que la compilation SCSS fonctionne dans le préprocesseur :
 
 <Tabs
   tabs={[
