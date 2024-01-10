@@ -29,8 +29,7 @@ export function getConfig(framework?: string): StorybookConfig {
   if (framework) {
     stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   } else {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.@(mdx)`));
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.stories.@(js|ts|jsx|tsx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   }
 
   const addons: Preset[] = [
