@@ -1,0 +1,25 @@
+import DsfrScssExplanation from '@dsfrc/docs/stories/usage/dsfr-scss.mdx';
+
+Pour utiliser du SCSS il faut d'abord suivre leurs instructions sur [https://docusaurus.io/docs/styling-layout#sassscss](https://docusaurus.io/docs/styling-layout#sassscss).
+
+Puis spécifiez le thème SCSS :
+
+```ts
+// docusaurus.config.js
+
+module.exports = {
+  // ...
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        theme: {
+          customCss: [require.resolve('dsfr-connect/src/infima-v1/index.scss')],
+        },
+      },
+    ],
+  ],
+};
+```
+
+<DsfrScssExplanation />

@@ -10,5 +10,5 @@ export default {
   vuetifyV3: vuetifyV3,
   muiV5: muiV5,
   storybookV7: storybookV7,
-  infirmaV1: {},
+  infimaV1: {},
 };
