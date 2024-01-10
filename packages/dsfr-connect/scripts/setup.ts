@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import fetch from 'node-fetch-native';
 import path from 'path';
 
-import { mastodonVersion } from '@dsfrc/dsfr-connect/src/mastodon-v4/settings';
+import { mastodonVersion } from 'dsfr-connect/src/mastodon-v4/settings';
 
 export async function downloadFile(url: string, destination: string): Promise<void> {
   const response = await fetch(url);

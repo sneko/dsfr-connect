@@ -48,6 +48,7 @@
     "commander": "^10.0.1",
     "concurrently": "^8.0.1",
     "crisp-sdk-web": "^1.0.18",
+    "dsfr-connect": "workspace:dsfr-connect@*",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "fs-extra": "^11.1.1",

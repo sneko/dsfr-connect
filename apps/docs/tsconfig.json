@@ -5,7 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@dsfrc/docs/*": ["../../apps/docs/*"],
-      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
+      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"],
+      "dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
     "composite": false,
     "declaration": false,

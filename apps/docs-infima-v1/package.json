@@ -23,6 +23,7 @@
     "@storybook/html": "7.0.17",
     "@storybook/html-vite": "7.0.17",
     "@storybook/manager-api": "7.0.17",
+    "dsfr-connect": "workspace:dsfr-connect@*",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "glob": "^10.2.6",

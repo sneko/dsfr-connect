@@ -10,7 +10,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
+      "dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
     "composite": false,
     "declaration": true,
