@@ -20,6 +20,7 @@
     "deploy": "netlify deploy --filter docs --dir=dist --prod"
   },
   "devDependencies": {
+    "@codegouvfr/react-dsfr": "^0.60.0",
     "@dsfrc/dsfr-connect": "workspace:dsfr-connect@*",
     "@gouvfr/dsfr": "^1.9.3",
     "@storybook/addon-docs": "7.0.17",

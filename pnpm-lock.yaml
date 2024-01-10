@@ -60,6 +60,9 @@ importers:
 
   apps/docs:
     devDependencies:
+      '@codegouvfr/react-dsfr':
+        specifier: ^0.60.0
+        version: 0.60.0
       '@dsfrc/dsfr-connect':
         specifier: workspace:dsfr-connect@*
         version: link:../../packages/dsfr-connect

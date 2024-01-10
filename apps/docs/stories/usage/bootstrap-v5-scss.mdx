@@ -1,0 +1,35 @@
+import { Tabs } from '@codegouvfr/react-dsfr/Tabs';
+import { Source } from '@storybook/blocks';
+
+import ViteTab from '@dsfrc/docs/stories/usage/bootstrap-v5-scss-vite.mdx';
+import WebpackTab from '@dsfrc/docs/stories/usage/bootstrap-v5-scss-webpack.mdx';
+
+Le fichier SCSS :
+
+- Vous permet d'étendre ou de surcharger nos personnalisations pour qu'elles se répercutent sur tous les composants Bootstrap
+- Nécessite un peu plus de configuration du fait de compiler le style final dans votre projet
+
+Pour s'en servir, remplacez l'import de style Bootstrap officiel par :
+
+```ts
+import 'dsfr-connect/src/bootstrap-v5/index.scss';
+```
+
+Mais comme notre fichier `.scss` importe des variables directement depuis le DSFR, vous devez installer leur librairie :
+
+<Tabs
+  tabs={[
+    { label: 'npm', isDefault: true, content: <Source language="shell" code="npm add @gouvfr/dsfr@^1.9.3"></Source> },
+    { label: 'yarn', isDefault: false, content: <Source language="shell" code="yarn add @gouvfr/dsfr@^1.9.3"></Source> },
+    { label: 'pnpm', isDefault: false, content: <Source language="shell" code="pnpm add @gouvfr/dsfr@^1.9.3"></Source> },
+  ]}
+/>
+
+Et comme la librairie DSFR utilise des alias lors de ces imports de style, nous somme obligés de définir d'en définir un minimum pour que la compilation SCSS fonctionne dans votre "module bundler" :
+
+<Tabs
+  tabs={[
+    { label: 'Projet utilisant Webpack', isDefault: true, content: <WebpackTab /> },
+    { label: 'Projet utilisant Vite', isDefault: false, content: <ViteTab /> },
+  ]}
+/>
