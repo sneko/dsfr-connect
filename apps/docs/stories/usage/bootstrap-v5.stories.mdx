@@ -1,0 +1,18 @@
+import { Tabs } from '@codegouvfr/react-dsfr/Tabs';
+import { Meta } from '@storybook/blocks';
+
+import CssTab from '@dsfrc/docs/stories/usage/bootstrap-v5-css.mdx';
+import ScssTab from '@dsfrc/docs/stories/usage/bootstrap-v5-scss.mdx';
+
+<Meta title="dsfr-connect/Utilisation/bootstrap-v5" />
+
+# bootstrap-v5
+
+Remplacez l'import du style par défaut de Bootstrap au sein de votre applicatif.
+
+<Tabs
+  tabs={[
+    { label: 'CSS (thème rigide)', isDefault: true, content: <CssTab /> },
+    { label: 'SCSS (thème flexible)', isDefault: false, content: <ScssTab /> },
+  ]}
+/>

@@ -1,7 +1,7 @@
 import chalk, { Chalk } from 'chalk';
 
 import { build as bootstrapV5Build, downloadAndExtract as bootstrapV5DownloadAndExtract } from '@dsfrc/docs/scripts/bootstrap-v5/actions';
-import { build as infirmaV1Build, downloadAndExtract as infirmaV1DownloadAndExtract } from '@dsfrc/docs/scripts/infima-v1/actions';
+import { build as infimaV1Build, downloadAndExtract as infimaV1DownloadAndExtract } from '@dsfrc/docs/scripts/infima-v1/actions';
 import { build as muiV5Build, downloadAndExtract as muiV5DownloadAndExtract } from '@dsfrc/docs/scripts/mui-v5/actions';
 import { build as mainBuild, downloadAndExtract as mainDownloadAndExtract } from '@dsfrc/docs/scripts/raw/actions';
 import { build as vuetifyV3Build, downloadAndExtract as vuetifyV3DownloadAndExtract } from '@dsfrc/docs/scripts/vuetify-v3/actions';
@@ -49,8 +49,8 @@ export const frameworks: Target[] = [
   {
     name: 'infima-v1',
     port: 6010,
-    download: infirmaV1DownloadAndExtract,
-    extract: infirmaV1Build,
+    download: infimaV1DownloadAndExtract,
+    extract: infimaV1Build,
     terminalFormatter: chalk.red,
   },
 ];

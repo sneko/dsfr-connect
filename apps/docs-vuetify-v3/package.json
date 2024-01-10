@@ -30,6 +30,7 @@
     "@vuelidate/validators": "^2.0.2",
     "bootstrap": "^5.3.0-alpha3",
     "date-fns": "^2.30.0",
+    "dsfr-connect": "workspace:dsfr-connect@*",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "glob": "^10.2.6",

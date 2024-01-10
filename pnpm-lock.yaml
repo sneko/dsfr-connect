@@ -60,6 +60,9 @@ importers:
 
   apps/docs:
     devDependencies:
+      '@codegouvfr/react-dsfr':
+        specifier: ^0.60.0
+        version: 0.60.0
       '@dsfrc/dsfr-connect':
         specifier: workspace:dsfr-connect@*
         version: link:../../packages/dsfr-connect
@@ -144,6 +147,9 @@ importers:
       crisp-sdk-web:
         specifier: ^1.0.18
         version: 1.0.18
+      dsfr-connect:
+        specifier: workspace:dsfr-connect@*
+        version: link:../../packages/dsfr-connect
       eslint:
         specifier: 7.32.0
         version: 7.32.0
@@ -258,6 +264,9 @@ importers:
       bootstrap:
         specifier: ^5.3.0-alpha3
         version: 5.3.0-alpha3(@popperjs/core@2.11.8)
+      dsfr-connect:
+        specifier: workspace:dsfr-connect@*
+        version: link:../../packages/dsfr-connect
       eslint:
         specifier: 7.32.0
         version: 7.32.0
@@ -336,6 +345,9 @@ importers:
       '@storybook/manager-api':
         specifier: 7.0.17
         version: 7.0.17(react-dom@18.2.0)(react@18.2.0)
+      dsfr-connect:
+        specifier: workspace:dsfr-connect@*
+        version: link:../../packages/dsfr-connect
       eslint:
         specifier: 7.32.0
         version: 7.32.0
@@ -474,6 +486,9 @@ importers:
       css-mediaquery:
         specifier: ^0.1.2
         version: 0.1.2
+      dsfr-connect:
+        specifier: workspace:dsfr-connect@*
+        version: link:../../packages/dsfr-connect
       eslint:
         specifier: 7.32.0
         version: 7.32.0
@@ -615,6 +630,9 @@ importers:
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
+      dsfr-connect:
+        specifier: workspace:dsfr-connect@*
+        version: link:../../packages/dsfr-connect
       eslint:
         specifier: 7.32.0
         version: 7.32.0

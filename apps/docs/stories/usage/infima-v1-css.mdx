@@ -1,0 +1,19 @@
+Spécifiez le thème CSS dans Docusaurus v2 :
+
+```ts
+// docusaurus.config.js
+
+module.exports = {
+  // ...
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        theme: {
+          customCss: [require.resolve('dsfr-connect/dist/infima-v1/index.css')],
+        },
+      },
+    ],
+  ],
+};
+```

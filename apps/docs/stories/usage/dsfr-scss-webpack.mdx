@@ -1,0 +1,18 @@
+Dans votre fichier `webpack.config.js` vous devez déclarez l'alias suivant au sein de votre configuration actuelle :
+
+```ts
+const path = require('path');
+
+// ...
+
+const webpackConfig = {
+  // ...
+  resolve: {
+    // ...
+    alias: {
+      // ...
+      module: path.resolve(__dirname, './node_modules/@gouvfr/dsfr/module'),
+    },
+  },
+};
+```

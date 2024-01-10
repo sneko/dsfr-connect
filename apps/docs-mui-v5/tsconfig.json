@@ -3,7 +3,8 @@
   "compilerOptions": {
     "paths": {
       "@dsfrc/docs/*": ["../../apps/docs/*"],
-      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"]
+      "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"],
+      "dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     }
   },
   "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "stories/**/*.ts", "stories/**/*.tsx"],

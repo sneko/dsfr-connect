@@ -1,0 +1,24 @@
+import { Tabs } from '@codegouvfr/react-dsfr/Tabs';
+import { Source } from '@storybook/blocks';
+
+import ViteTab from '@dsfrc/docs/stories/usage/dsfr-scss-vite.mdx';
+import WebpackTab from '@dsfrc/docs/stories/usage/dsfr-scss-webpack.mdx';
+
+Mais comme le fichier `.scss` du thème importe des variables directement depuis le DSFR, vous devez installer leur librairie :
+
+<Tabs
+  tabs={[
+    { label: 'npm', isDefault: true, content: <Source language="shell" code="npm add @gouvfr/dsfr@^1.9.3"></Source> },
+    { label: 'yarn', isDefault: false, content: <Source language="shell" code="yarn add @gouvfr/dsfr@^1.9.3"></Source> },
+    { label: 'pnpm', isDefault: false, content: <Source language="shell" code="pnpm add @gouvfr/dsfr@^1.9.3"></Source> },
+  ]}
+/>
+
+Et comme la librairie DSFR utilise des alias lors de ces imports de style, nous somme obligés d'en définir un minimum pour que la compilation SCSS fonctionne dans le préprocesseur :
+
+<Tabs
+  tabs={[
+    { label: 'Projet utilisant Webpack', isDefault: true, content: <WebpackTab /> },
+    { label: 'Projet utilisant Vite', isDefault: false, content: <ViteTab /> },
+  ]}
+/>

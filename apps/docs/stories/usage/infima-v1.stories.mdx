@@ -1,0 +1,18 @@
+import { Tabs } from '@codegouvfr/react-dsfr/Tabs';
+import { Meta } from '@storybook/blocks';
+
+import CssTab from '@dsfrc/docs/stories/usage/infima-v1-css.mdx';
+import ScssTab from '@dsfrc/docs/stories/usage/infima-v1-scss.mdx';
+
+<Meta title="dsfr-connect/Utilisation/infima-v1" />
+
+# infima-v1
+
+_Note: il est peu probable que vous utilisiez Infima hors du cadre d'usage de Docusaurus, c'est pourquoi cet outil est mentionné ci-dessous._
+
+<Tabs
+  tabs={[
+    { label: 'CSS (thème rigide)', isDefault: true, content: <CssTab /> },
+    { label: 'SCSS (thème flexible)', isDefault: false, content: <ScssTab /> },
+  ]}
+/>

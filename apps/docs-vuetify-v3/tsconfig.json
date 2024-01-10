@@ -4,7 +4,8 @@
     "paths": {
       "@dsfrc/docs/*": ["../../apps/docs/*"],
       "@dsfrc/dsfr-connect/*": ["../../packages/dsfr-connect/*"],
-      "@/util/*": ["stories/framework/util/*"]
+      "@/util/*": ["stories/framework/util/*"],
+      "dsfr-connect/*": ["../../packages/dsfr-connect/*"]
     },
     "types": ["vite/client"]
   },

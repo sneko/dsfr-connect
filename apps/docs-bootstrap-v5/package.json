@@ -24,6 +24,7 @@
     "@storybook/html-vite": "7.0.17",
     "@storybook/manager-api": "7.0.17",
     "bootstrap": "^5.3.0-alpha3",
+    "dsfr-connect": "workspace:dsfr-connect@*",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "glob": "^10.2.6",

@@ -29,8 +29,7 @@ export function getConfig(framework?: string): StorybookConfig {
   if (framework) {
     stories.push(path.resolve(__dirname, `../../../../apps/docs-${framework}/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   } else {
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.@(mdx)`));
-    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.stories.@(js|ts|jsx|tsx)`));
+    stories.push(path.resolve(__dirname, `../../../../apps/docs/stories/**/*.stories.@(js|ts|jsx|tsx|mdx)`));
   }
 
   const addons: Preset[] = [
@@ -169,6 +168,10 @@ export function viteFinalFactory(factoryOptions?: ViteFinalFactoryOptions) {
           },
           {
             find: '@dsfrc/dsfr-connect',
+            replacement: path.resolve(__dirname, '../../../../packages/dsfr-connect'),
+          },
+          {
+            find: 'dsfr-connect',
             replacement: path.resolve(__dirname, '../../../../packages/dsfr-connect'),
           },
           // When using SASS DSFR imports it's unable to find for example `module/string`
