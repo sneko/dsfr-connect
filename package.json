@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/sneko/dsfr-connect.git"
   },
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "scripts": {
     "build:prepare": "turbo run build:prepare",
     "build": "turbo run build",

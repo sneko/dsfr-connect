@@ -7,7 +7,7 @@
     "url": "git+https://github.com/sneko/dsfr-connect.git",
     "directory": "apps/docs"
   },
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "scripts": {
     "cli": "ts-node -r tsconfig-paths/register ./scripts/cli.ts",
     "dev:prepare": "pnpm cli prepare",
