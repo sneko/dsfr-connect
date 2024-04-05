@@ -7,7 +7,7 @@
     "url": "git+https://github.com/sneko/dsfr-connect.git",
     "directory": "packages/eslint-config-custom"
   },
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "eslint-config-prettier": "^8.3.0",

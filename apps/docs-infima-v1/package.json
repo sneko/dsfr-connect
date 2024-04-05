@@ -7,7 +7,7 @@
     "url": "git+https://github.com/sneko/dsfr-connect.git",
     "directory": "apps/docs-infima-v1"
   },
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "scripts": {
     "cli": "cd ../../apps/docs && ts-node -r tsconfig-paths/register ./scripts/cli.ts"
   },

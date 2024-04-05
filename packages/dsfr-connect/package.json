@@ -7,7 +7,7 @@
     "url": "git+https://github.com/sneko/dsfr-connect.git",
     "directory": "packages/dsfr-connect"
   },
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
