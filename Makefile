@@ -42,6 +42,3 @@ format:
 
 format-check:
 	pnpm run format:check
-
-deploy:
-	pnpm run deploy

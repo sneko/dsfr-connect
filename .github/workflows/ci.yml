@@ -6,6 +6,9 @@ on:
       - dev
   pull_request:
 env:
+  APP_NAME: dsfr-connect
+  CONTAINER_REGISTRY: ghcr.io
+  CONTAINER_IMAGE_FOLDER: ghcr.io/${{ github.repository }}
   NODE_OPTIONS: --max_old_space_size=4096
   NODE_VERSION: 18.16.0
   PNPM_VERSION: 8.6.1
@@ -18,7 +21,8 @@ jobs:
     name: Continuous Integration
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      packages: write
       issues: write
       pull-requests: write
     steps:
@@ -81,12 +85,32 @@ jobs:
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
         run: make build
 
-      - name: Deploy to Netlify
+      - name: Set up Docker buildx
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: make deploy
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.CONTAINER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push the application Docker image
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ env.CONTAINER_IMAGE_FOLDER }}/${{ env.APP_NAME }}-${{ github.ref_name }}:${{ github.sha }},${{ env.CONTAINER_IMAGE_FOLDER }}/${{ env.APP_NAME }}-${{ github.ref_name }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to Coolify
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          curl --fail-with-body --request POST '${{ secrets.COOLIFY_CORE_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_CORE_TOKEN }}'
 
       - name: Release package
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

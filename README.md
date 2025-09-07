@@ -73,8 +73,8 @@ You must configure 2 environments in the CI/CD settings:
 The following ones must be repository secrets (not environment ones):
 
 - `NPM_TOKEN`: [SECRET]
-- `NETLIFY_AUTH_TOKEN`: [SECRET]
-- `NETLIFY_SITE_ID`: [SECRET]
+- `COOLIFY_CORE_TOKEN`: [GENERATED] _(can be created into Coolify `Keys & Tokens > API tokens`)_
+- `COOLIFY_CORE_WEBHOOK`: [GENERATED] _(can be retrieved into the Coolify resource for `laby`)_
 - `CRISP_WEBSITE_ID`: [SECRET]
 
 ### Default branch
@@ -98,7 +98,14 @@ The default branch is `dev`.
 
 ### Hosting & domain
 
-We managed to have all Storybooks static in the same folder and we chose Netlify to host it. Just configure the 2 environments variables you can find from the Netlify interface and you're good to go!
+In our case we use Coolify to host our final bundle, just create a resource:
+
+- Use `Existing Docker Image`
+- Image: `ghcr.io/sneko/dsfr-connect/dsfr-connect-main:latest`
+- General
+  - Domains: `https://dsfr-connect.rame.fr`
+  - Direction: `Redirect to non-www.`
+  - Ports Exposes: `80` _(it has to be set according to Coolify)_
 
 _Note: you can add a custom domain easily_
 
